@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2026年2月27日、奮起と躍進の集い。OpenClawを安全で再利用可能なAI労働基盤として設計し始めた記録。">
+<title>2026.02.27｜Rise &amp; Leap Meeting Archive</title>
+<link rel="stylesheet" href="assets/archive.css">
+</head>
+<body>
+<header>
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">Rise &amp; Leap</a>
+    <nav class="nav"><a href="#summary">Summary</a><a href="#decisions">Decisions</a><a href="#topics">Topics</a><a href="#actions">Actions</a></nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-panel">
+      <div class="hero-top">
+        <span>Historical Archive</span>
+        <!-- ARCHIVE_SEQUENCE: 1/16以前の回を追加した際に No.TBD を差し替える -->
+        <span data-archive-sequence="pending">No.TBD / 2026.02.27</span>
+      </div>
+      <div class="hero-content">
+        <div><h1>Rise<br>&amp; Leap</h1><div class="jp-title">奮起と躍進の集い・歴史アーカイブ</div></div>
+        <div class="hero-copy">
+          <p class="big">隔離し、ルールで制御し、人間の承認を残したAI労働基盤へ。</p>
+          <p>OpenClawを実験から実運用へ移す、開発と運用の思想が定まった。</p>
+        </div>
+      </div>
+      <div class="hero-footer">
+        <div><span>Date</span>2026年2月27日</div>
+        <div><span>Members</span>中村和雄・中村健太郎・木場晏門</div>
+        <div><span>Position</span>AI労働基盤の設計思想を確立した回</div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="feature" id="summary">
+      <aside class="aside-card">
+        <div class="label">Executive Summary</div>
+        <h2>今回の要点</h2>
+        <p>OpenClawを、安全に実装・検証・展開できる再利用可能な業務基盤へ育てる。</p>
+      </aside>
+      <article class="content-card">
+        <p>健太郎さんがOpenClawの構造、セキュリティ、コスト、並列処理を一週間かけて調査し、PCへの直接導入ではなくDockerによる隔離運用を提案した。まず自身のiMacで負荷と安定性を測り、完成した環境を晏門さんの端末へ展開する開発フローが見え始めた。最終送信前には人間の承認を残し、無限ループ、API超過、ログや画像の蓄積を防ぐ安全設計も議論。研究会の目的もAIツールの習得ではなく、一人が十人分の価値を提供し、自分の暮らしを守れる新しい労働構造の実現へと明確化された。</p>
+      </article>
+    </section>
+
+    <section class="section" id="topics">
+      <div class="section-head"><div><div class="section-kicker">Discussion</div><h2>主な議論</h2></div><p>OpenClawを安全な実運用へ載せ、未来の労働構造を実装するための44の論点。</p></div>
+      <div class="topic-grid">
+        <article class="topic"><span class="tag">Architecture</span><h3>全体構造の理解を優先</h3><p>本体、モデル、PC操作、タスク分解、権限、環境、停止方法を理解してから実運用へ進む。</p></article>
+        <article class="topic"><span class="tag">Phases</span><h3>段階的に導入する</h3><p>限定権限の小規模実験から始め、確認後に専用機・複数業務・常時稼働へ範囲を広げる。</p></article>
+        <article class="topic"><span class="tag">Risk</span><h3>直接導入の危険を具体化</h3><p>個人ファイル、ログイン情報、誤操作、資源競合、再現性、復旧性の問題をデモと実運用で分ける。</p></article>
+        <article class="topic"><span class="tag">Docker</span><h3>コンテナで隔離運用</h3><p>人間用PCから分離し、タスク別に並列化し、不具合だけを止め、テストと本番を揃える。</p></article>
+        <article class="topic"><span class="tag">Reuse</span><h3>開発環境を再利用する</h3><p>設定をファイルへまとめ、健太郎さんが作った環境を他端末へ短時間で複製できる形にする。</p></article>
+        <article class="topic"><span class="tag">Parallel</span><h3>AI部門を並列で動かす</h3><p>求人、メール、資料、ニュース、記事を担当別コンテナへ分け、複数業務を同時実行する。</p></article>
+        <article class="topic"><span class="tag">Hardware</span><h3>購入前に必要性能を測る</h3><p>高性能Mac miniを候補にしつつ、16GB iMacでコンテナ数、速度、メモリ、ブラウザ安定性を実測する。</p></article>
+        <article class="topic"><span class="tag">Topology</span><h3>集中型と分散型を比較</h3><p>一台集中の管理性・単一障害と、複数台分散の独立性・費用・管理負荷を検証後に判断する。</p></article>
+        <article class="topic"><span class="tag">Models</span><h3>モデルを役割で分ける</h3><p>PC操作、判断、文章、検証を得意なモデルへ割り当て、OpenClawを複数モデルの実行環境として捉える。</p></article>
+        <article class="topic"><span class="tag">Compliance</span><h3>規約回避をしない</h3><p>正規API、従量課金、使用量制限、専用アカウントを使い、安さより停止しない長期運用を優先する。</p></article>
+        <article class="topic"><span class="tag">Google</span><h3>専用アカウントで情報を限定</h3><p>必要なDrive、Gmail、Calendar、Sheetsだけを共有し、顧客や用途ごとに権限を分ける。</p></article>
+        <article class="topic"><span class="tag">Apple</span><h3>本体側の分離範囲を判断</h3><p>Dockerの隔離範囲を確認し、パスワード、iCloud、写真、メッセージに不安があれば専用アカウントを使う。</p></article>
+        <article class="topic"><span class="tag">Pull Tasks</span><h3>エージェントが仕事を取りに行く</h3><p>外部のタスク表を定期確認し、未処理を取得、実行、記録して次の仕事へ進む構造を検討する。</p></article>
+        <article class="topic"><span class="tag">Dashboard</span><h3>状態管理を見た目より優先</h3><p>キャラクター表示より、タスク、状態、エラー、完了、承認、コスト、実行ログを先に整える。</p></article>
+        <article class="topic"><span class="tag">Task Base</span><h3>Sheetsをタスク基盤候補に</h3><p>タスク、条件、ルール、状態、承認要否、結果を表で管理し、接続方法を検証する。</p></article>
+        <article class="topic"><span class="tag">Rule Design</span><h3>構想を実行ルールへ変換</h3><p>業務の話からGemが不足を問い、ジョブ、条件、入力、出力、例外、承認、次処理へ分解する。</p></article>
+        <article class="topic"><span class="tag">Roles</span><h3>構想者と開発者を分ける</h3><p>晏門さんが価値・ルール・承認点を設計し、健太郎さんが実装・検証・展開・安全管理を担う。</p></article>
+        <article class="topic"><span class="tag">Workflow</span><h3>処理完了を次の起点にする</h3><p>企業発見から営業、承認、返信、日程、面談、文字起こし、提案、送付まで状態変化でつなぐ。</p></article>
+        <article class="topic"><span class="tag">Rulebook</span><h3>毎回ルールを読み込む</h3><p>営業、記事、提案、顧客対応、禁止、承認のルールをタスクごとに適用し、自由判断を抑える。</p></article>
+        <article class="topic"><span class="tag">Safety</span><h3>外部送信の直前で止める</h3><p>誤宛先、内容、重複、情報漏洩、条件ミスを防ぎ、AIが準備して人間が最後に承認する。</p></article>
+        <article class="topic"><span class="tag">Approval</span><h3>承認フローを実装する</h3><p>処理後に承認待ちへ移し、ダッシュボードで人間が確認してから送信・公開する。</p></article>
+        <article class="topic"><span class="tag">Recovery</span><h3>修正も再利用可能にする</h3><p>更新ファイル、復旧手順、正常設定を配布し、個別の手作業ではなく短時間で同じ修正を適用する。</p></article>
+        <article class="topic"><span class="tag">Memory</span><h3>実タスクでメモリを測る</h3><p>コンテナ、ブラウザ、画像・動画処理ごとの消費を測り、同時実行数と必要スペックを決める。</p></article>
+        <article class="topic"><span class="tag">Storage</span><h3>自動化のゴミを片づける</h3><p>スクリーンショット、ログ、一時ファイルの保存期間を定め、定期削除しSSD圧迫を防ぐ。</p></article>
+        <article class="topic"><span class="tag">Observe</span><h3>必要なときだけ作業を監視</h3><p>検証やエラー時に遠隔画面で現在位置、停止箇所、誤操作、ブラウザ状態を確認できるようにする。</p></article>
+        <article class="topic"><span class="tag">Cost Guard</span><h3>API利用を上限で守る</h3><p>日・月の予算、回数、再試行、最大時間、異常通知を設け、ループによる料金増加を止める。</p></article>
+        <article class="topic"><span class="tag">Loop Guard</span><h3>暴走の停止条件を作る</h3><p>送信数、再試行、同一宛先、連続処理を制限し、承認なしや異常時には強制停止する。</p></article>
+        <article class="topic"><span class="tag">Efficiency</span><h3>画面処理のコストを減らす</h3><p>解像度、切り取り、対象範囲を最小化し、利用可能なら画像よりDOMやテキストを使う。</p></article>
+        <article class="topic"><span class="tag">Test Bed</span><h3>iMacで小さく検証する</h3><p>既存の16GB・2TB環境と遠隔操作、Node.js、Dockerを使い、設備投資前に仮説を試す。</p></article>
+        <article class="topic"><span class="tag">Delivery</span><h3>検証後に他端末へ展開</h3><p>構想、ルール、実装、iMacテスト、修正、安定化、環境ファイル配布の流れを標準化する。</p></article>
+        <article class="topic"><span class="tag">Community</span><h3>複数の参加形態を持つ</h3><p>学ぶ人、仕事を受ける人、実装する人、自主研究する人、知識を共有する人が小さく連携する。</p></article>
+        <article class="topic"><span class="tag">Rhythm</span><h3>少人数定例で熱量を保つ</h3><p>一対一や少人数の毎週対話を、進捗だけでなく思考と参加意欲を維持する仕組みにする。</p></article>
+        <article class="topic"><span class="tag">Self Help</span><h3>自助を共有して助け合う</h3><p>会社や国への依存リスクに備え、個人が自分を守る収益・労働モデルを共有する。</p></article>
+        <article class="topic"><span class="tag">Iron Man</span><h3>AIを標準化されたスーツに</h3><p>情報、判断、実行、顧客、提案を補強する基盤を作り、個人の能力を大きく拡張する。</p></article>
+        <article class="topic"><span class="tag">10× Labor</span><h3>一人で十人分の価値を出す</h3><p>反復をAIへ任せ、上流判断へ集中し、時間を増やさず複数案件と高い提供価値を実現する。</p></article>
+        <article class="topic"><span class="tag">SF</span><h3>AI活用よりSF力</h3><p>技術の使い方より、AIが成長した未来の一日、仕事、暮らしを先に想像する。</p></article>
+        <article class="topic"><span class="tag">Future First</span><h3>未来から技術を逆算する</h3><p>理想の暮らし、働き方、人間の役割、AIの役割を決めてから、必要な技術だけを学ぶ。</p></article>
+        <article class="topic"><span class="tag">Incentive</span><h3>時短だけでは自由にならない</h3><p>時給型では効率化しても仕事量だけ増える。成果の評価方法や契約構造も変える必要がある。</p></article>
+        <article class="topic"><span class="tag">Outcome Pay</span><h3>成果へ報酬を結びつける</h3><p>作業時間ではなく提供した成果と価値に対して報酬を受け取り、AIの生産性を本人へ還元する。</p></article>
+        <article class="topic"><span class="tag">Labor Design</span><h3>労働構造そのものを研究</h3><p>契約、報酬、役割、成果報酬、自動化利益、責任、品質、時間の使い方まで含めて考える。</p></article>
+        <article class="topic"><span class="tag">Continuity</span><h3>和雄さんの活動を継続</h3><p>調査、応募、分析、数値化を続け、未着手の他媒体と2月振り返り・3月目標へ進む。</p></article>
+        <article class="topic"><span class="tag">Enablement</span><h3>営業へ自動化環境を渡す</h3><p>検索、収集、比較、候補抽出、プロフィール、提案を自動化し、和雄さんは顧客理解と判断へ集中する。</p></article>
+        <article class="topic"><span class="tag">Platform</span><h3>求人媒体の攻略を自動化</h3><p>職歴と強み、競合、単価、プロフィール、勝ち筋を分析し、案件選択と提案を支援する。</p></article>
+        <article class="topic"><span class="tag">Human Rules</span><h3>AIを動かすのは人間のルール</h3><p>目的、優先、禁止、停止、完了条件を人間が定め、コンサル設計と技術実装を接続する。</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="decisions">
+      <div class="section-head"><div><div class="section-kicker">Decisions</div><h2>決定事項</h2></div><p>小さく測り、安全に止め、同じ仕組みを繰り返し展開する。</p></div>
+      <div class="decision-grid">
+        <article class="decision"><div class="num">01</div><h3>Dockerで実機検証</h3><p>iMacを最初の検証機にし、直接導入より隔離運用、複数コンテナ、ブラウザ並列を測る。</p></article>
+        <article class="decision"><div class="num">02</div><h3>購入は実測後に判断</h3><p>メモリ、速度、安定性を確認してから、一台集中か複数台分散か、本番端末を決める。</p></article>
+        <article class="decision"><div class="num">03</div><h3>アカウントと環境を分離</h3><p>専用Googleアカウントを用意し、Apple側はDockerの隔離範囲を見て判断する。</p></article>
+        <article class="decision"><div class="num">04</div><h3>状態管理を先に作る</h3><p>見た目よりタスク、進捗、エラー、承認、コスト、ログを確認できるダッシュボードを優先する。</p></article>
+        <article class="decision"><div class="num">05</div><h3>人間承認を安全ゲートに</h3><p>送信・公開前で止め、最大回数、再試行、実行時間、費用上限で暴走を防ぐ。</p></article>
+        <article class="decision"><div class="num">06</div><h3>実装と復旧を再利用</h3><p>環境ファイルと更新手順を他端末へ展開し、画像・ログの自動清掃も含めて運用する。</p></article>
+        <article class="decision"><div class="num">07</div><h3>構想と実装を分担</h3><p>晏門さんがルールと承認点、健太郎さんが実行可能なタスクと安全な環境を作る。</p></article>
+        <article class="decision"><div class="num">08</div><h3>未来の労働から逆算</h3><p>研究会を労働構造研究として進め、SF力を共通思想に、一人で十人分の価値を目指す。</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><div class="section-kicker">Concepts</div><h2>この回で生まれた重要概念</h2></div><p>AI労働基盤を実運用する21の設計原則。</p></div>
+      <div class="research-grid">
+        <div class="research-item"><strong>Docker隔離運用</strong><br>PC本体から分離し、安全性と再現性を高める。</div>
+        <div class="research-item"><strong>コンテナ型AI社員</strong><br>一コンテナを一担当・部署として並列稼働する。</div>
+        <div class="research-item"><strong>再利用可能な実装</strong><br>設定ファイルで同じ環境を他端末へ展開する。</div>
+        <div class="research-item"><strong>一台集中型</strong><br>高性能な一台で複数エージェントを動かす。</div>
+        <div class="research-item"><strong>複数台分散型</strong><br>役割ごとに端末を分け、障害と負荷を分散する。</div>
+        <div class="research-item"><strong>モデル分業</strong><br>思考、文章、操作、検証を複数モデルで担う。</div>
+        <div class="research-item"><strong>専用アカウント運用</strong><br>AIに必要な情報だけを共有する。</div>
+        <div class="research-item"><strong>タスク取得型エージェント</strong><br>AI側が仕事の基盤を定期確認する。</div>
+        <div class="research-item"><strong>タスク連鎖</strong><br>一つの完了を次の作業の起点にする。</div>
+        <div class="research-item"><strong>ルールブック駆動</strong><br>業務ルールを毎回読み込んで実行する。</div>
+        <div class="research-item"><strong>人間承認ゲート</strong><br>影響の大きい処理直前で人間が確認する。</div>
+        <div class="research-item"><strong>修正ファイルによる復旧</strong><br>更新一式を配布して同じ修正を適用する。</div>
+        <div class="research-item"><strong>自動清掃</strong><br>画像、ログ、一時データを定期削除する。</div>
+        <div class="research-item"><strong>コストガード</strong><br>予算、回数、時間、再試行を制限する。</div>
+        <div class="research-item"><strong>SF力</strong><br>AIが成長した未来の暮らしを想像する力。</div>
+        <div class="research-item"><strong>未来起点設計</strong><br>理想の未来から必要な仕組みを逆算する。</div>
+        <div class="research-item"><strong>自助モデル</strong><br>個人が自分を守れる収益・労働構造。</div>
+        <div class="research-item"><strong>アイアンマンスーツ</strong><br>個人能力をAIで補強する標準業務基盤。</div>
+        <div class="research-item"><strong>十人分労働力</strong><br>時間を増やさず複数人分の価値を提供する。</div>
+        <div class="research-item"><strong>成果評価型労働</strong><br>作業時間ではなく成果と価値で報酬を得る。</div>
+        <div class="research-item"><strong>労働構造研究</strong><br>AI時代の契約、報酬、役割、働き方を研究する。</div>
+      </div>
+    </section>
+
+    <section class="section" id="actions">
+      <div class="section-head"><div><div class="section-kicker">Actions</div><h2>次回までの担当</h2></div></div>
+      <div class="actions">
+        <article class="person"><div class="name-row"><div><h3>中村健太郎</h3><div class="role">Development / Operations</div></div><div class="initial">健</div></div><ul><li>Docker内へOpenClawを導入</li><li>小規模タスクと複数コンテナを検証</li><li>メモリ・ブラウザ・API費を計測</li><li>実行・再試行・費用上限を設定</li><li>ログ清掃と復旧方法を整備</li><li>他端末へ展開できる環境を作成</li></ul></article>
+        <article class="person"><div class="name-row"><div><h3>木場晏門</h3><div class="role">Vision / Rulebooks</div></div><div class="initial">晏</div></div><ul><li>自動化業務とルールを整理</li><li>入力・出力・条件・連鎖を設計</li><li>人間承認の箇所を定義</li><li>検証タスクと画面要件を共有</li><li>自助モデルとSF力を資料化</li><li>十人分労働力の構想を継続</li></ul></article>
+        <article class="person"><div class="name-row"><div><h3>中村和雄</h3><div class="role">Sales / Future User</div></div><div class="initial">和</div></div><ul><li>案件調査・応募・結果記録を継続</li><li>不採用理由の仮説を整理</li><li>Indeed・Wantedlyを試す</li><li>2月振り返りと3月目標を作成</li><li>将来の自動化対象を洗い出す</li><li>顧客理解・営業・判断へ集中する準備</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><div class="section-kicker">From Previous</div><h2>前回からの変化</h2></div><p>自律型AIの可能性発見から、安全に開発・運用・展開する基盤設計へ。</p></div>
+      <div class="content-card"><p>2月20日は、OpenClawがPC操作、情報収集、連絡、更新、報告を自律実行する可能性として本格的に共有された回だった。2月27日は、直接導入の危険を具体化し、Docker隔離、複数コンテナ、専用アカウント、API・ループ・保存容量の制御、人間承認、ルールブック駆動、再配布可能な環境という実運用の思想へ進んだ。晏門さんが構想と業務ルール、健太郎さんが実装と安全性を担う役割分担が定まり、将来は和雄さんの案件探索を自動化する道筋も見えた。同時に、研究会の目的はAI研究ではなく、SF力から未来の暮らしを描き、一人が十人分の価値を生む労働構造研究だと再定義された。</p></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><div class="section-kicker">Historical Position</div><h2>歴史的な位置づけ</h2></div><p>AIエージェントを実験から実運用へ移す、開発・運用思想が確立した回。</p></div>
+      <div class="content-card"><p>強力な自律型AIは、個人データへのアクセス、誤操作、API超過、無限ループ、大量送信、ストレージ圧迫、再現不能、復旧困難という新しいリスクを生む。この回では、それらをDocker、専用アカウント、コンテナ分割、実行・費用上限、自動清掃、復旧ファイル、人間承認、ルールブック、タスク連鎖、検証機から本番機への展開で抑える基礎思想が形成された。AIへ自由に仕事をさせるのではなく、人間のルールと承認の中で自律的に働かせる方向性は、後のOpenClaw／PO1における承認キュー、安全ゲート、実行ログ、例外処理、状態管理、タスク分解、エスカレーション、環境分離へ直接つながる。研究会は新しいツールを試す集まりから、未来の労働構造を想像し、実装可能なシステムへ落とし込む研究開発組織へ進み始めた。</p></div>
+    </section>
+
+    <section class="closing"><p>Imagine the future. Engineer the safeguards.<small>未来から逆算し、安全に働くAI基盤をつくる。</small></p></section>
+  </main>
+  <footer>Rise &amp; Leap — Historical Archive / 2026.02.27</footer>
+</div>
+</body>
+</html>
