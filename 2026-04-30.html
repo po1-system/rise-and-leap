@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2026年4月30日、奮起と躍進の集い。OpenClawをAIへの説明コストをなくす文脈維持型の業務基盤へ再定義した記録。">
+<title>2026.04.30｜Rise &amp; Leap Meeting Archive</title>
+<link rel="stylesheet" href="assets/archive.css?v=20260725-brand2">
+</head>
+<body>
+<header>
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="Rise & Leap Gathering ホーム"><img src="assets/rise-and-leap-logo.png?v=20260725-transparent" alt="Rise & Leap Gathering — 奮起と躍進の集い"></a>
+    <nav class="nav"><a href="#summary">Summary</a><a href="#decisions">Decisions</a><a href="#topics">Topics</a><a href="#actions">Actions</a></nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-panel">
+      <div class="hero-top">
+        <span>Historical Archive</span>
+        <!-- ARCHIVE_SEQUENCE: 1/16以前の回を追加した際に No.TBD を差し替える -->
+        <span data-archive-sequence="pending">No.TBD / 2026.04.30</span>
+      </div>
+      <div class="hero-content">
+        <div><h1>Rise<br>&amp; Leap</h1><div class="jp-title">奮起と躍進の集い・歴史アーカイブ</div></div>
+        <div class="hero-copy">
+          <p class="big">説明しなくても、文脈を理解して先回りするAIへ。</p>
+          <p>OpenClawを通知システムから、人間の説明負担をなくす業務基盤へ再定義する。</p>
+        </div>
+      </div>
+      <div class="hero-footer">
+        <div><span>Date</span>2026年4月30日</div>
+        <div><span>Members</span>中村健太郎・木場晏門</div>
+        <div><span>Absent</span>中村和雄（家族対応）</div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="feature" id="summary">
+      <aside class="aside-card">
+        <div class="label">Executive Summary</div>
+        <h2>今回の要点</h2>
+        <p>AI活用の最大の壁を「説明コスト」と捉え、仕事の文脈を維持する基盤を設計する。</p>
+      </aside>
+      <article class="content-card">
+        <p>和雄さんが家族対応のため欠席となり、健太郎さんと晏門さんの二人でOpenClaw構想を深く整理した。健太郎さんは、航空便欠航時にAIへ代替ルートや切符を相談し、突発事態で判断を支える相手として活用した体験を共有した。一方、仕事でAIを使っても労働時間が減らない最大の原因として、背景・関係者・最新状況を毎回説明する「説明コスト」が言語化された。OpenClawは、会議、Slack、メール、契約書からプロジェクトごとの最新状態を継続更新し、返信、資料、タスク、確認依頼を先回りして準備する。外部送信は人間の承認後に行う。基本機能は進んでいるがコード構造が複雑化したため、安定版とファイル構成を整理し、業務背景から管理UIと承認フローを共同設計する。</p>
+      </article>
+    </section>
+
+    <section class="section" id="topics">
+      <div class="section-head"><div><div class="section-kicker">Discussion</div><h2>主な議論</h2></div><p>説明コスト、文脈維持、承認、共同設計を整理した50の論点。</p></div>
+      <div class="topic-grid">
+        <article class="topic"><span class="tag">Travel</span><h3>航空便欠航で鉄道へ</h3><p>白浜からの便が欠航し、大きく迂回して約8時間かけて帰京した。</p></article>
+        <article class="topic"><span class="tag">Emergency AI</span><h3>緊急時の相談相手</h3><p>代替ルート、切符、駅での行動、時間をAIと確認しながら移動した。</p></article>
+        <article class="topic"><span class="tag">Decision Support</span><h3>検索から判断支援へ</h3><p>複数情報を自分で比較せず、状況を統合した次の行動を得られた。</p></article>
+        <article class="topic"><span class="tag">Model Shift</span><h3>モデル性能は入れ替わる</h3><p>数か月でも優位なサービスが変わり、固定的な評価は通用しない。</p></article>
+        <article class="topic"><span class="tag">Focus</span><h3>すべてを追わない</h3><p>主要なサービスへ絞り、用途と変化を見ながら使い分ける。</p></article>
+        <article class="topic"><span class="tag">History</span><h3>進化の履歴が判断力になる</h3><p>AI初期から変化を体験することで、次に可能になることを予測しやすくなる。</p></article>
+        <article class="topic"><span class="tag">Feedback</span><h3>和雄さんへ計画性を指摘</h3><p>別ミーティングで予定、曖昧な言葉、実行を断言しない姿勢を確認した。</p></article>
+        <article class="topic"><span class="tag">Language</span><h3>「取れそう」をやめる</h3><p>時間を取ると決め、責任を曖昧にする表現を減らす。</p></article>
+        <article class="topic"><span class="tag">Calendar</span><h3>二か月先まで仮置き</h3><p>完全に確定しなくても予定を先に置き、必要に応じて変更する。</p></article>
+        <article class="topic"><span class="tag">Urgency Trap</span><h3>目の前だけに追われる</h3><p>本業が忙しいほど長期計画が消え、直近作業だけになる傾向を認識する。</p></article>
+        <article class="topic"><span class="tag">External Structure</span><h3>決めてもらう方が進む人</h3><p>自主計画が難しい人には、期限と行動を外部から明確にする。</p></article>
+        <article class="topic"><span class="tag">Deep Interest</span><h3>研究会と凝り性の相性</h3><p>興味を持つと自発的に深掘りする人が研究活動へ向いている。</p></article>
+        <article class="topic"><span class="tag">Beyond Brief</span><h3>指示の外まで試す</h3><p>調査、別案、改善、新発見を自ら持ち帰る姿勢を価値とする。</p></article>
+        <article class="topic"><span class="tag">Initial Focus</span><h3>初期は範囲を絞る</h3><p>判断基準がない段階で多くのツールへ手を出し、混乱するのを防ぐ。</p></article>
+        <article class="topic"><span class="tag">Expansion</span><h3>判断後に利用範囲を広げる</h3><p>必要・不要を見極められるようになってから新しい手段を加える。</p></article>
+        <article class="topic"><span class="tag">Roles</span><h3>Claude CodeとOpenClaw</h3><p>個別機能の検証と、複数業務を統合する外側の基盤を分担する。</p></article>
+        <article class="topic"><span class="tag">Branches</span><h3>枝を検証し幹へ統合</h3><p>他メンバーの個別成果を、健太郎さんがOpenClawへまとめる。</p></article>
+        <article class="topic"><span class="tag">Stall</span><h3>エラー対応で停滞</h3><p>配信時刻、API、通知、互換性、構成の修正へ時間を使っている。</p></article>
+        <article class="topic"><span class="tag">Core Ready</span><h3>基本機能は完成</h3><p>何を作るかではなく、安定して動かす方法が中心課題になった。</p></article>
+        <article class="topic"><span class="tag">Missing Context</span><h3>構想の背景が見えない</h3><p>機能一覧だけでは、実際の業務で使われる場面を完全に理解できない。</p></article>
+        <article class="topic"><span class="tag">Work First</span><h3>機能より業務から説明</h3><p>誰が何に困り、どこで手間や見落としが生じるかから設計する。</p></article>
+        <article class="topic"><span class="tag">No Time Saved</span><h3>AIでも時間が減らない</h3><p>積極利用しても、研究会メンバーの忙しさは大きく変わっていない。</p></article>
+        <article class="topic"><span class="tag">More Work</span><h3>会社員には仕事が追加される</h3><p>速く終えても別の仕事が増え、自由時間や収入へ還元されない。</p></article>
+        <article class="topic"><span class="tag">Explanation Cost</span><h3>最大のボトルネック</h3><p>背景、目的、関係者、現在地を毎回AIへ説明する負担を言語化した。</p></article>
+        <article class="topic"><span class="tag">Faster Alone</span><h3>自分でやる方が早い問題</h3><p>10分説明するなら15分で自分が完成させようと判断してしまう。</p></article>
+        <article class="topic"><span class="tag">Quality Trap</span><h3>品質は上がり時間も増える</h3><p>必要水準を越えた調整によって、本来の効率化から外れる。</p></article>
+        <article class="topic"><span class="tag">Enough</span><h3>10倍良い資料は不要なことも</h3><p>最高品質ではなく、目的・期限・コストに合う十分な品質を選ぶ。</p></article>
+        <article class="topic"><span class="tag">Living File</span><h3>常時更新するプロジェクト</h3><p>契約、会議、会話、進捗、課題を一つの最新ファイルへ統合する。</p></article>
+        <article class="topic"><span class="tag">Archive Master</span><h3>研究会のマスターデータ</h3><p>毎回の文字起こしから、参加者、進捗、課題、決定、行動を更新する。</p></article>
+        <article class="topic"><span class="tag">Fresh Context</span><h3>古い前提を防ぐ</h3><p>今週変わった情報を反映し、先週の状態で回答することを避ける。</p></article>
+        <article class="topic"><span class="tag">Classification</span><h3>案件ごとに自動仕分け</h3><p>混在するSlack会話を店舗、案件、プロジェクトへ分類する。</p></article>
+        <article class="topic"><span class="tag">Continuous Watch</span><h3>継続監視はClaude Code外</h3><p>複数情報源を監視し、分類とマスター更新を続ける外側の仕組みが必要。</p></article>
+        <article class="topic"><span class="tag">Preparation</span><h3>文脈に沿った下準備</h3><p>記憶だけでなく、次の資料、返信、提案を最新状態から作る。</p></article>
+        <article class="topic"><span class="tag">Junior</span><h3>優秀な後輩のようなAI</h3><p>残る問題、確認相手、用意した案を指示前に知らせる。</p></article>
+        <article class="topic"><span class="tag">Contract Seed</span><h3>契約書を初期データへ</h3><p>新案件の目的、条件、範囲をプロジェクト情報の起点にする。</p></article>
+        <article class="topic"><span class="tag">Kickoff</span><h3>情報を育てる</h3><p>会議、関係者、議事録、チャットを加え、文脈を継続的に更新する。</p></article>
+        <article class="topic"><span class="tag">Missing Info</span><h3>確認依頼を作る</h3><p>必要情報の不足を見つけ、誰へ何を聞くかAIが下書きする。</p></article>
+        <article class="topic"><span class="tag">Send Risk</span><h3>完全自動送信は慎重に</h3><p>相手や内容を誤る可能性があるため、外部行動を直ちに自動化しない。</p></article>
+        <article class="topic"><span class="tag">Approval</span><h3>承認後に送信</h3><p>確認相手とメッセージを管理画面へ出し、人間が承認してから送る。</p></article>
+        <article class="topic"><span class="tag">Dashboard</span><h3>管理UIが必要</h3><p>重要変化、タスク、未解決、承認待ち、詳細資料を一画面で見る。</p></article>
+        <article class="topic"><span class="tag">LINE</span><h3>LINEは概要だけ</h3><p>短い通知から管理画面やDriveへ移動して詳細を確認する。</p></article>
+        <article class="topic"><span class="tag">Regression</span><h3>承認ボタンが消える</h3><p>コード全体の入れ替えによって、実装済み機能が失われた。</p></article>
+        <article class="topic"><span class="tag">Chain Error</span><h3>一つ直すと別が壊れる</h3><p>追加と修正の連鎖で、新たな不具合が生まれる状態になった。</p></article>
+        <article class="topic"><span class="tag">File Debt</span><h3>ファイル構成が混乱</h3><p>不要ファイルと役割不明な処理が増え、全体を追いづらくなった。</p></article>
+        <article class="topic"><span class="tag">Refactor</span><h3>一度整理する</h3><p>現状、役割、実行順、不要物、安定版を新機能より先に確定する。</p></article>
+        <article class="topic"><span class="tag">UI Vision</span><h3>UIイメージを再作成</h3><p>晏門さんが最新の画像生成機能で管理画面と承認フローを示す。</p></article>
+        <article class="topic"><span class="tag">Ask Early</span><h3>定例を待たず質問</h3><p>業務背景や図が必要なら、健太郎さんからすぐ共有を依頼する。</p></article>
+        <article class="topic"><span class="tag">Walkthrough</span><h3>録画で確認する</h3><p>操作しながら解説する動画で、実装と構想のずれを確認する。</p></article>
+        <article class="topic"><span class="tag">Remote Patch</span><h3>GitHub経由で修正</h3><p>移行後もコード変更を利用環境へ反映できる運用を続ける。</p></article>
+        <article class="topic"><span class="tag">Anywhere</span><h3>外出先から遠隔対応</h3><p>MacBookからiMacへ接続し、場所を問わず修正できる環境を活用する。</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="decisions">
+      <div class="section-head"><div><div class="section-kicker">Decisions</div><h2>決定事項</h2></div><p>AIが準備し、人間が判断する文脈維持型の基盤へ。</p></div>
+      <div class="decision-grid">
+        <article class="decision"><div class="num">01</div><h3>説明コスト削減を目的にする</h3><p>成果物生成より前にある、背景と現在地を毎回説明する負担をOpenClawがなくす。</p></article>
+        <article class="decision"><div class="num">02</div><h3>最新マスターデータを持つ</h3><p>契約、会議、Slack、メールから各プロジェクトの状態を継続更新する。</p></article>
+        <article class="decision"><div class="num">03</div><h3>文脈から先回りして準備</h3><p>返信、資料、タスク、確認文、行動案を指示される前に用意する。</p></article>
+        <article class="decision"><div class="num">04</div><h3>外部送信に承認ゲート</h3><p>AIが相手と文面を作り、管理画面で人間が承認・修正・保留する。</p></article>
+        <article class="decision"><div class="num">05</div><h3>管理UIと短い通知を分ける</h3><p>LINEは概要、詳細と承認待ちは管理画面またはDriveで扱う。</p></article>
+        <article class="decision"><div class="num">06</div><h3>機能追加前に安定版を固定</h3><p>ファイル、役割、入口、分岐、API、通知、承認の構造を整理する。</p></article>
+        <article class="decision"><div class="num">07</div><h3>業務背景から共同設計</h3><p>機能一覧ではなく、現場の出来事と困り事を共有して実装を決める。</p></article>
+        <article class="decision"><div class="num">08</div><h3>枝の成果を幹へ統合</h3><p>Claude Code等の個別検証をOpenClawへ集め、GitHubと遠隔環境で保守する。</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><div class="section-kicker">Concepts</div><h2>この回で生まれた重要概念</h2></div><p>AI業務基盤の目的と安全性を定義する12の視点。</p></div>
+      <div class="research-grid">
+        <div class="research-item"><strong>AIへの説明コスト</strong><br>背景・目的・現状・関係者を伝える負担。</div>
+        <div class="research-item"><strong>文脈維持型AI</strong><br>プロジェクト状態を継続的に記憶・更新するAI。</div>
+        <div class="research-item"><strong>プロジェクトマスターデータ</strong><br>契約、関係者、進捗、課題、決定を統合した最新情報。</div>
+        <div class="research-item"><strong>説明不要の業務環境</strong><br>AIが背景を把握し、毎回の説明なしで頼める環境。</div>
+        <div class="research-item"><strong>品質過剰</strong><br>必要水準を越えて時間とコストが増える状態。</div>
+        <div class="research-item"><strong>先回り型AI</strong><br>問題を見つけ、下書きと提案を用意するAI。</div>
+        <div class="research-item"><strong>承認ゲート</strong><br>外部行動の前に人間が確認する仕組み。</div>
+        <div class="research-item"><strong>枝の検証と幹の統合</strong><br>個別機能を試し、全体基盤へまとめる開発法。</div>
+        <div class="research-item"><strong>業務背景駆動設計</strong><br>現場の問題から必要機能を決める設計。</div>
+        <div class="research-item"><strong>コード構造負債</strong><br>追加と修正で役割と処理が分かりにくい状態。</div>
+        <div class="research-item"><strong>安定版の固定</strong><br>新機能を止め、動くコードと構造を確定すること。</div>
+        <div class="research-item"><strong>凝り性適性</strong><br>自発的な深掘りと検証が研究へ向く性質。</div>
+      </div>
+    </section>
+
+    <section class="section" id="actions">
+      <div class="section-head"><div><div class="section-kicker">Actions</div><h2>次回までの担当</h2></div></div>
+      <div class="actions">
+        <article class="person"><div class="name-row"><div><h3>中村健太郎</h3><div class="role">Architecture / Stability</div></div><div class="initial">健</div></div><ul><li>安定版を特定しバックアップ</li><li>ファイル一覧と役割・実行順を整理</li><li>承認機能と通知ログを復旧</li><li>情報不足時の確認フローを設計</li><li>LINEを短文化し詳細リンクを追加</li><li>業務背景の不明点を早期共有</li><li>GitHub・遠隔修正を再確認</li></ul></article>
+        <article class="person"><div class="name-row"><div><h3>木場晏門</h3><div class="role">Workflow / Product</div></div><div class="initial">晏</div></div><ul><li>実際の業務背景とやり取り例を整理</li><li>情報不足と確認相手の基準を定義</li><li>承認必須・自動送信可能条件を検討</li><li>管理UIと承認フローを再作成</li><li>重要変化・タスク表示を整理</li><li>LINEと詳細資料の情報量を決定</li><li>定例前の質問にも回答</li></ul></article>
+        <article class="person"><div class="name-row"><div><h3>中村和雄</h3><div class="role">Absent / Planning Follow-up</div></div><div class="initial">和</div></div><ul><li>二か月先まで仮予定を立てる</li><li>「時間を取る」と明確に決める</li><li>曖昧な表現を減らす</li><li>忙しい時ほど長期計画を確認</li><li>目の前だけで一週間を終えない</li><li>必要なら期限を外部設定する</li><li>別ミーティングの指摘を次回へ反映</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><div class="section-kicker">From Previous</div><h2>前回からの変化</h2></div><p>本番運用の技術基盤から、OpenClawが解決する業務課題そのものへ。</p></div>
+      <div class="content-card"><p>4月24日は、GitHub Actionsとローカル処理によってOpenClawを止まりにくい本番基盤へ変える回だった。4月30日は、さらに一段戻って「なぜ作るのか」を問い、AIへ背景を説明し続ける負担こそが仕事を速くしきれない原因だと整理した。OpenClawは通知や差分分析の集合ではなく、契約、会議、会話、進捗を常に最新の文脈へ統合し、優秀な後輩のように準備する基盤となる。一方でコード構造の複雑化も表面化し、新機能より安定版と設計の整理を優先する段階へ入った。</p></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><div class="section-kicker">Historical Position</div><h2>歴史的な位置づけ</h2></div><p>技術開発の目的が、初めて明確な業務上のボトルネックと結びついた回。</p></div>
+      <div class="content-card"><p>AIが一秒で文章を作れても、背景、関係者、決定、最新状況、相手の意図を毎回説明するなら、人間の仕事は一秒では終わらない。OpenClawの価値はAIを自動実行することではなく、AIが働く前提となる文脈を自動で収集・整理・更新し続けることにある。過去の記録を保存するだけでなく、現在の判断に使える最新状態へ変換し、AIが先回りして準備して、人間が最終判断する。この役割分担が、研究会の目指すAI協働として明確になった。また、構想を渡して実装する一方向の関係から、現場を説明し、疑問を返し、利用場面を確認して設計を調整する共同開発へ移り始めた。</p></div>
+    </section>
+
+    <section class="closing"><p>Keep the context alive.<small>AIが先回りし、人間が最終判断する。</small></p></section>
+  </main>
+  <footer>Rise &amp; Leap — Historical Archive / 2026.04.30</footer>
+</div>
+</body>
+</html>
