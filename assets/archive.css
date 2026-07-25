@@ -1,0 +1,120 @@
+:root{
+  --bg:#f2ede3;
+  --paper:#faf7f0;
+  --ink:#24231f;
+  --muted:#706d64;
+  --line:#cbc3b4;
+  --orange:#a84f2a;
+  --blue:#6d7966;
+  --green:#7c715c;
+  --shadow:none;
+}
+body{
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{width:min(1180px,calc(100% - 48px))}
+header{
+  position:relative;
+  background:transparent;
+  backdrop-filter:none;
+  border-color:var(--line);
+}
+.header-inner{height:78px}
+.brand{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:21px;
+  font-weight:400;
+  letter-spacing:-.02em;
+}
+.brand:before{content:"←";font-family:inherit;color:var(--clay);margin-right:8px}
+.dot{display:none}
+.nav{gap:28px;font-size:12px;letter-spacing:.08em}
+.nav a:hover,.nav a:focus-visible{color:var(--orange)}
+.hero{padding:24px 0 76px}
+.hero-panel{
+  min-height:690px;
+  border-radius:2px;
+  border-color:var(--line);
+  background:
+    linear-gradient(90deg,rgba(39,34,26,.76),rgba(39,34,26,.34) 48%,rgba(39,34,26,.08)),
+    url("featured-journey.jpg") center/cover;
+}
+.hero-panel:before{display:none}
+.hero-top{
+  color:#f8f2e7;
+  border-color:rgba(255,255,255,.35);
+  padding:25px 28px;
+  font-size:10px;
+  letter-spacing:.18em;
+}
+.hero-content{
+  min-height:510px;
+  grid-template-columns:1fr 1fr;
+  align-items:end;
+  padding:70px clamp(28px,6vw,76px) 58px;
+}
+h1{
+  color:#fffaf0;
+  font-size:clamp(72px,9vw,124px);
+  line-height:.82;
+  font-weight:400;
+}
+.jp-title{color:#e8c2a4;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.hero-copy{color:#fffaf0;border-color:rgba(255,255,255,.55)}
+.hero-copy .big{font-family:Georgia,"Times New Roman","YuMincho","Hiragino Mincho ProN",serif;font-weight:400}
+.hero-copy p:last-child{color:rgba(255,250,240,.75)}
+.hero-footer{color:#fffaf0;border-color:rgba(255,255,255,.35)}
+.hero-footer div{border-color:rgba(255,255,255,.35)}
+.hero-footer span{color:#e8c2a4}
+main{padding:0 0 96px}
+.feature{grid-template-columns:.64fr 1.36fr;gap:0;margin-top:0;border:1px solid var(--line)}
+.aside-card,.content-card,.section{
+  background:var(--paper);
+  border-radius:0;
+  border-color:var(--line);
+  box-shadow:none;
+}
+.aside-card,.content-card{border:0}
+.content-card{border-left:1px solid var(--line)}
+.aside-card .label,.section-kicker{color:var(--orange)}
+.aside-card h2,.section-head h2,.decision h3,.topic h3,.step h3,.person h3{
+  font-weight:500;
+  letter-spacing:-.03em;
+}
+.content-card p{font-family:Georgia,"Times New Roman","YuMincho","Hiragino Mincho ProN",serif}
+.section{margin-top:72px}
+.section-head{padding:30px 34px;border-color:var(--line)}
+.decision,.topic,.research-item,.person{border-color:var(--line)}
+.decision .num{color:var(--orange);font-weight:400}
+.topic .tag{border-radius:0;background:transparent!important;color:var(--orange)!important;padding:0}
+.step .circle{border-radius:0;border-color:var(--line);color:var(--orange)}
+.initial{border-radius:0;background:var(--bg);color:var(--orange)}
+.closing{
+  margin-top:72px;
+  border-radius:0;
+  background:
+    linear-gradient(90deg,rgba(36,35,31,.94),rgba(36,35,31,.76)),
+    url("featured-journey.jpg") center/cover;
+}
+footer{border-top:1px solid var(--line);letter-spacing:.08em}
+@media(max-width:900px){
+  .hero-content{grid-template-columns:1fr;align-content:end}
+  .content-card{border-left:0;border-top:1px solid var(--line)}
+}
+@media(max-width:620px){
+  .wrap{width:min(100% - 28px,1180px)}
+  .header-inner{height:66px}
+  .hero{padding-top:14px}
+  .hero-panel{min-height:620px;border-radius:2px}
+  .hero-content{min-height:450px;padding:48px 22px 34px}
+  h1{font-size:clamp(62px,21vw,82px)}
+  .hero-copy .big{font-size:25px}
+  .hero-footer div{padding:18px 22px}
+  .section{margin-top:52px}
+  .section-head{padding:26px 24px}
+  .aside-card,.content-card{padding:28px 24px}
+  .closing{margin-top:52px;padding:34px 22px}
+}
