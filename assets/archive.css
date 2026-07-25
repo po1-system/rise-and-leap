@@ -96,7 +96,7 @@ header{
   border-color:var(--line);
   background:
     linear-gradient(90deg,rgba(39,34,26,.76),rgba(39,34,26,.34) 48%,rgba(39,34,26,.08)),
-    url("featured-journey.jpg") center/cover;
+    url("featured-journey.jpg?v=20260725-gathering-photo") center 56%/cover;
 }
 .hero-panel:before{display:none}
 .hero-top{
@@ -155,7 +155,7 @@ main{padding:0 0 96px}
   border-radius:0;
   background:
     linear-gradient(90deg,rgba(36,35,31,.94),rgba(36,35,31,.76)),
-    url("featured-journey.jpg") center/cover;
+    url("featured-journey.jpg?v=20260725-gathering-photo") center 56%/cover;
 }
 footer{padding:30px 0 50px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--line);letter-spacing:.08em}
 @media(max-width:900px){
@@ -206,7 +206,7 @@ header:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;bac
 .nav a:hover:after,.nav a:focus-visible:after{right:0}
 .hero-panel{border-radius:22px;box-shadow:0 24px 70px rgba(50,42,64,.16)}
 .hero-panel:after{content:"";position:absolute;z-index:4;left:0;right:0;top:0;height:5px;background:var(--brand-gradient)}
-.hero-panel{background:linear-gradient(90deg,rgba(37,36,58,.76),rgba(37,36,58,.28) 50%,rgba(22,142,196,.04)),url("featured-journey.jpg") center/cover}
+.hero-panel{background:linear-gradient(90deg,rgba(37,36,58,.76),rgba(37,36,58,.28) 50%,rgba(22,142,196,.04)),url("featured-journey.jpg?v=20260725-gathering-photo") center 56%/cover}
 .hero-top,.hero-content,.hero-footer{color:#fffaf3}
 .hero-footer{border-color:rgba(255,255,255,.38)}.hero-footer div{border-color:rgba(255,255,255,.28)}
 main>.feature,main>.section{border:0;border-radius:18px;overflow:hidden;background:rgba(255,250,243,.84);box-shadow:0 14px 42px rgba(50,42,64,.08)}
@@ -217,7 +217,7 @@ main>.feature,main>.section{border:0;border-radius:18px;overflow:hidden;backgrou
 .topic{transition:background .2s,transform .2s}.topic:hover{background:linear-gradient(145deg,rgba(22,142,196,.06),rgba(217,95,141,.05),rgba(255,139,74,.04));transform:translateY(-2px)}
 .initial{border-radius:50%;background:var(--brand-gradient);color:#fff;box-shadow:0 8px 20px rgba(105,86,168,.2)}
 .research-item strong{color:var(--violet)}
-.closing{border-radius:22px;box-shadow:0 24px 70px rgba(50,42,64,.15);background:linear-gradient(110deg,rgba(37,36,58,.88),rgba(105,86,168,.7),rgba(217,95,141,.55),rgba(255,139,74,.38)),url("featured-journey.jpg") center/cover}
+.closing{border-radius:22px;box-shadow:0 24px 70px rgba(50,42,64,.15);background:linear-gradient(110deg,rgba(37,36,58,.88),rgba(105,86,168,.7),rgba(217,95,141,.55),rgba(255,139,74,.38)),url("featured-journey.jpg?v=20260725-gathering-photo") center 56%/cover}
 footer{position:relative;border:0}footer:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--brand-gradient);opacity:.6}
 @media(max-width:900px){
   main>.feature,main>.section{border-radius:14px}

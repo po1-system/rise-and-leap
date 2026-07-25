@@ -30,7 +30,7 @@ a{color:inherit;text-decoration:none}
 .nav-links a:hover,.nav-links a:focus-visible{color:var(--clay)}
 .hero{padding:24px 0 76px}
 .hero-visual{position:relative;min-height:690px;overflow:hidden;border-radius:2px;background:var(--sand)}
-.hero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 56%}
 .hero-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(39,34,26,.72) 0%,rgba(39,34,26,.36) 38%,transparent 68%),linear-gradient(0deg,rgba(25,24,20,.26),transparent 45%)}
 .hero-meta{position:absolute;z-index:2;top:25px;left:28px;right:28px;display:flex;justify-content:space-between;color:#f8f2e7;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
 .hero-copy{position:absolute;z-index:2;left:clamp(28px,6vw,76px);bottom:clamp(38px,8vw,84px);max-width:720px;color:#fffaf0}
@@ -46,7 +46,7 @@ a{color:inherit;text-decoration:none}
 .section-head h2{margin:-10px 0 0;font-size:clamp(42px,6vw,78px);line-height:1;letter-spacing:-.055em;font-weight:400}
 .section-head .intro{max-width:540px;margin:14px 0 0;color:var(--muted)}
 .latest-grid{display:grid;grid-template-columns:1.12fr .88fr;background:var(--paper-light);border:1px solid var(--line)}
-.latest-image{min-height:600px;background:url("assets/featured-journey.jpg") center/cover}
+.latest-image{min-height:600px;background:url("assets/featured-journey.jpg?v=20260725-gathering-photo") center 56%/cover}
 .latest-story{display:flex;flex-direction:column;padding:clamp(32px,5vw,64px);border-left:1px solid var(--line)}
 .issue{display:flex;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.12em;color:var(--muted)}
 .latest-story h3{margin:52px 0 24px;font-size:clamp(36px,5vw,62px);line-height:1.12;font-weight:400;letter-spacing:-.045em}
@@ -160,7 +160,7 @@ body{
 <main id="top">
   <div class="wrap hero">
     <section class="hero-visual" aria-labelledby="hero-title">
-      <img src="assets/featured-journey.jpg" alt="幾重にも連なる山と、その先へ続く一本の道を描いた抽象風景">
+      <img src="assets/featured-journey.jpg?v=20260725-gathering-photo" alt="夕日の水辺で飛び跳ねるRise & Leapの3人と、その姿を映す水面">
       <div class="hero-meta"><span>Collective Research Journal</span><span>Established 2026 · Japan</span></div>
       <div class="hero-copy">
         <div class="kicker" style="color:#e8c2a4">Rise &amp; Leap</div>
