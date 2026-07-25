@@ -23,7 +23,8 @@ a{color:inherit;text-decoration:none}
 .kicker{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--clay)}
 .site-header{position:relative;z-index:10;border-bottom:1px solid var(--line)}
 .nav{height:78px;display:flex;align-items:center;justify-content:space-between}
-.brand{font-family:Georgia,"Times New Roman",serif;font-size:21px;letter-spacing:-.02em}
+.brand{display:block;width:250px;height:62px;overflow:hidden}
+.brand img{display:block;width:250px;height:auto;transform:translateY(-28px);mix-blend-mode:multiply}
 .nav-links{display:flex;gap:28px;font-size:12px;letter-spacing:.08em;color:var(--muted)}
 .nav-links a{transition:color .2s}
 .nav-links a:hover,.nav-links a:focus-visible{color:var(--clay)}
@@ -83,6 +84,7 @@ a{color:inherit;text-decoration:none}
 .footer{padding:48px 0 60px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font-size:11px;letter-spacing:.08em}
 @media(max-width:780px){
   .wrap{width:min(100% - 28px,1180px)}
+  .brand{width:170px;height:44px}.brand img{width:170px;transform:translateY(-19px)}
   .nav{height:66px}.nav-links{gap:14px}.nav-links a:first-child{display:none}
   .hero{padding-top:14px}.hero-visual{min-height:620px}
   .hero-visual img{object-position:62% center}
@@ -106,7 +108,7 @@ a{color:inherit;text-decoration:none}
 <body>
 <header class="site-header">
   <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="Rise & Leap ホーム">Rise &amp; Leap</a>
+    <a class="brand" href="#top" aria-label="Rise & Leap Gathering ホーム"><img src="assets/rise-and-leap-logo.png" alt="Rise & Leap Gathering — 奮起と躍進の集い"></a>
     <nav class="nav-links" aria-label="メインナビゲーション">
       <a href="#latest">Latest Story</a><a href="#journey">Our Journey</a><a href="#members">Members</a><a href="#meetings">Meetings</a><a href="#archive">Milestone Archive</a>
     </nav>
