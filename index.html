@@ -85,7 +85,10 @@ a{color:inherit;text-decoration:none}
 @media(max-width:780px){
   .wrap{width:min(100% - 28px,1180px)}
   .brand{width:170px;height:44px}.brand img{width:170px;transform:translateY(-19px)}
-  .nav{height:66px}.nav-links{gap:14px}.nav-links a:first-child{display:none}
+  .nav{height:auto;min-height:66px;flex-wrap:wrap;justify-content:center;padding:8px 0 10px;gap:2px}
+  .brand{flex:0 0 100%;margin:auto}
+  .nav-links{width:100%;justify-content:center;gap:14px;line-height:1.4}
+  .nav-links a:first-child{display:none}
   .hero{padding-top:14px}.hero-visual{min-height:620px}
   .hero-visual img{object-position:62% center}
   .hero-visual:after{background:linear-gradient(90deg,rgba(39,34,26,.64),rgba(39,34,26,.05)),linear-gradient(0deg,rgba(25,24,20,.48),transparent 55%)}
@@ -98,10 +101,26 @@ a{color:inherit;text-decoration:none}
   .members{grid-template-columns:1fr}.member{min-height:230px}.member+.member{border-left:0;border-top:1px solid var(--line)}
   .meeting{grid-template-columns:1fr auto;gap:10px}.meeting-day{grid-column:1/-1}.meeting-time{grid-row:2/4;grid-column:2}
   .archive-item{grid-template-columns:1fr auto;gap:8px}.archive-item time{grid-column:1/-1}
+  .archive-item strong{min-width:0;overflow-wrap:anywhere}
+  .footer{flex-wrap:wrap;gap:8px 20px}
 }
 @media(max-width:440px){
-  .nav-links a:nth-child(2){display:none}.hero-visual{min-height:560px}
-  .hero-note>div{padding:24px 20px}.journey-row{grid-template-columns:82px 12px 1fr}
+  .nav-links{gap:12px;font-size:11px;letter-spacing:.04em}
+  .nav-links a:nth-child(2){display:none}
+  .hero-visual{min-height:540px}
+  .hero-copy{left:18px;right:18px;bottom:28px}
+  .hero-note>div{padding:24px 20px}
+  .latest-image{min-height:290px}
+  .latest-story{min-height:0;padding:28px 24px}
+  .latest-story h3{margin:34px 0 20px;font-size:34px;overflow-wrap:anywhere}
+  .story-link{padding-top:38px}
+  .journey-row{grid-template-columns:12px minmax(0,1fr);gap:8px 12px;padding:28px 0}
+  .journey-date{grid-column:1/-1;font-size:16px}
+  .journey-mark{grid-column:1}
+  .journey-row>div:last-child{grid-column:2;min-width:0}
+  .journey-row h3{font-size:19px;overflow-wrap:anywhere}
+  .meeting-time{font-size:29px}
+  .footer{justify-content:center;text-align:center}
 }
 
 /* Rise & Leap Gathering brand system */

@@ -184,6 +184,14 @@ footer{padding:30px 0 50px;text-align:center;font-size:12px;color:var(--muted);b
   .section-head{padding:26px 24px;align-items:flex-start;flex-direction:column}
   .aside-card,.content-card{padding:28px 24px}
   .closing{margin-top:52px;padding:34px 22px}
+  .section-head h2{font-size:32px;overflow-wrap:anywhere}
+  .content-card p{font-size:18px;line-height:1.8}
+  .hero-top{padding:20px 18px;gap:12px}
+  .hero-top span:last-child{text-align:right}
+  .hero-copy{padding-left:18px}
+  .hero-copy .big{font-size:23px;overflow-wrap:anywhere}
+  .decision,.topic,.person,.research-item{padding-left:24px;padding-right:24px}
+  .person,.person *,.closing p{min-width:0;overflow-wrap:anywhere}
 }
 
 /* Rise & Leap Gathering brand system */
