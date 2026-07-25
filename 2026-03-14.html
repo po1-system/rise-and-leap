@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2026年3月14日、奮起と躍進の集い。自動化の前処理と改善可能な報告設計が同時に始まった記録。">
+<title>2026.03.14｜Rise &amp; Leap Meeting Archive</title>
+<link rel="stylesheet" href="assets/archive.css">
+</head>
+<body>
+<header>
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">Rise &amp; Leap</a>
+    <nav class="nav"><a href="#summary">Summary</a><a href="#decisions">Decisions</a><a href="#topics">Topics</a><a href="#actions">Actions</a></nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-panel">
+      <div class="hero-top">
+        <span>Historical Archive</span>
+        <!-- ARCHIVE_SEQUENCE: 1/16以前の回を追加した際に No.TBD を差し替える -->
+        <span data-archive-sequence="pending">No.TBD / 2026.03.14</span>
+      </div>
+      <div class="hero-content">
+        <div><h1>Rise<br>&amp; Leap</h1><div class="jp-title">奮起と躍進の集い・歴史アーカイブ</div></div>
+        <div class="hero-copy">
+          <p class="big">結果をきれいに見せるのではなく、他者が検証し、改善できる構造へ。</p>
+          <p>AIも人間も、目的・入力・処理・結果が整って初めて正しく判断できる。</p>
+        </div>
+      </div>
+      <div class="hero-footer">
+        <div><span>Date</span>2026年3月14日</div>
+        <div><span>Members</span>中村和雄・中村健太郎・木場晏門</div>
+        <div><span>Position</span>前処理と改善可能な報告を設計した回</div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="feature" id="summary">
+      <aside class="aside-card">
+        <div class="label">Executive Summary</div>
+        <h2>今回の要点</h2>
+        <p>目的・母数・工数・判断・処理過程を、AIと人間が検証できる形にする。</p>
+      </aside>
+      <article class="content-card">
+        <p>和雄さんは3月の案件応募15件に対して5件の反応を得て、返信率33％まで改善した。一方で、返信率だけでは求人確認数・工数・単価・月間目標との関係が分からず、改善に使える報告にはならないことが明確になった。今後は年間目標から現在地までを毎回示し、行動ログを参照する定例報告専用Gemを作る。健太郎さんはOpenClaw導入前の処理として、Pythonからスプレッドシートへの直接書き込みと、存在しないURLや空欄でも全体を止めない異常系処理を実装。コードでできる処理とAI判断を分け、トークンを必要な工程だけに使う設計思想が生まれた。</p>
+      </article>
+    </section>
+
+    <section class="section" id="topics">
+      <div class="section-head"><div><div class="section-kicker">Discussion</div><h2>主な議論</h2></div><p>応募成果、報告設計、前処理基盤、ツール選択へ広がった42の論点。</p></div>
+      <div class="topic-grid">
+        <article class="topic"><span class="tag">Habit</span><h3>案件活動が習慣になる</h3><p>note、X、求人調査、応募が一定の流れで続き、迷いや準備を減らして日常のルーティンへ変わった。</p></article>
+        <article class="topic"><span class="tag">Life PM</span><h3>引っ越しと副業を同時管理</h3><p>家庭、本業、移動、清掃、副業をカレンダーで整理し、人生全体の管理をPMの訓練と捉える。</p></article>
+        <article class="topic"><span class="tag">KPI</span><h3>返信率33％を数値化</h3><p>15件応募・5件反応を初めて明示し、感覚的な報告から定量的な進捗へ進んだ。</p></article>
+        <article class="topic"><span class="tag">Denominator</span><h3>返信率に母数と工数を足す</h3><p>求人確認数、除外数、時間、種類、単価、受注額、月間目標がなければ効率や価値を判断できない。</p></article>
+        <article class="topic"><span class="tag">Selection</span><h3>求人の見極めが速くなる</h3><p>発注者、評価、本人確認、矛盾、外部誘導、報酬不一致を人間が見て、対象外を保存前に除く。</p></article>
+        <article class="topic"><span class="tag">Role Fit</span><h3>採用側の期待から不採用を考える</h3><p>深い分析より、指示理解、速度、安定処理を求める案件もある。求められる役割に見せ方を合わせる。</p></article>
+        <article class="topic"><span class="tag">Market</span><h3>正しさと市場価値を分ける</h3><p>自分が正しくても相手が求めなければ選ばれない。能力を全部見せず案件目的に合わせる。</p></article>
+        <article class="topic"><span class="tag">Intent</span><h3>PR案件の発注目的を読む</h3><p>700文字・2,000円の表面だけでなく、第三者記事、検索露出、話題性を増やす企業側の狙いを考える。</p></article>
+        <article class="topic"><span class="tag">Promotion</span><h3>広告表現の背景を理解</h3><p>口コミ誘導への規制を背景に、PR記事、体験コラム、SNS投稿で第三者発信を増やす構造を読む。</p></article>
+        <article class="topic"><span class="tag">Automation</span><h3>SheetsからNotionへ自動転記</h3><p>GASで15分ごとに案件情報を反映し、ギャラリー表示とステータス確認を改善した。</p></article>
+        <article class="topic"><span class="tag">Why</span><h3>なぜその経路なのかを問う</h3><p>既存データ、試したい技術だけでなく、獲得率、時短、PM目標、3月の優先度への効果を説明する。</p></article>
+        <article class="topic"><span class="tag">Priority</span><h3>作れることと作るべきことを分ける</h3><p>技術習得の価値と、受注・実務・収入・PM移行を遅らせるコストを比較する。</p></article>
+        <article class="topic"><span class="tag">Overbuild</span><h3>自動化のための自動化を避ける</h3><p>構築、学習、連携エラー、見た目調整が新たな仕事となり、本来の案件活動を止めないようにする。</p></article>
+        <article class="topic"><span class="tag">Narrative</span><h3>完成結果より意図を示す</h3><p>困りごと、選択理由、代替案、工数、期待効果、実際の効果を報告し、改善の会話を生む。</p></article>
+        <article class="topic"><span class="tag">Dual Purpose</span><h3>報告の二つの目的</h3><p>本人の振り返りと意欲管理に加え、相談相手が数字、優先、見落とし、目標とのずれを判断できるようにする。</p></article>
+        <article class="topic"><span class="tag">Hierarchy</span><h3>年間目標から今週へつなぐ</h3><p>2026年の状態、3月末の状態、現在地、今週の行動を冒頭に置き、長期から短期へ逆算する。</p></article>
+        <article class="topic"><span class="tag">Workflow</span><h3>現在の資料作成を可視化</h3><p>本人入力、Gemini整理、NotebookLMスライド化の流れを把握し、最初の入力が品質上限になると理解する。</p></article>
+        <article class="topic"><span class="tag">Input Quality</span><h3>見栄えと分析可能性を分ける</h3><p>母数、時間、単価、目的、比較基準がなければ、きれいでも改善判断に使える資料にはならない。</p></article>
+        <article class="topic"><span class="tag">Reporting Gem</span><h3>定例報告用Gemを作る</h3><p>目的、必須項目、目標、進捗、数字、相談、確認観点を固定し、毎週の構成を安定させる。</p></article>
+        <article class="topic"><span class="tag">Source</span><h3>行動ログをGemへ接続</h3><p>期間指定だけでSheetsの案件・行動データを参照し、転記、数字抜け、構成差、入力ミスを減らす。</p></article>
+        <article class="topic"><span class="tag">Meta Automation</span><h3>報告作成自体を仕組み化</h3><p>自動化の報告資料も標準化し、誰が何を判断するための資料かを先に定義する。</p></article>
+        <article class="topic"><span class="tag">Progress</span><h3>OpenClaw前の基盤が前倒し</h3><p>本体導入前にデータ入力、Sheets記録、URL判定、結果記録、異常時の停止・スキップまで進んだ。</p></article>
+        <article class="topic"><span class="tag">Simplify</span><h3>GAS中継をやめる</h3><p>外部CLI・GAS・Sheetsの複雑な経路を、Pythonからの直接書き込みへ変えて認証と接続点を減らす。</p></article>
+        <article class="topic"><span class="tag">Direct Write</span><h3>Pythonで結果を直接記録</h3><p>企業名、URL、メール文面、完了状態をセルへ書き込み、AI判断なしの確実な処理を作る。</p></article>
+        <article class="topic"><span class="tag">Edge Cases</span><h3>異常系を先に試す</h3><p>実在URL、不正URL、空欄で、無限検索、停止、後続処理、失敗記録を確認する。</p></article>
+        <article class="topic"><span class="tag">Bounded Search</span><h3>存在しないURLを探し続けない</h3><p>エラー、未完了、不正、スキップを記録し、コストと時間を消費せず次の行へ進む。</p></article>
+        <article class="topic"><span class="tag">Isolation</span><h3>一件の失敗で全体を止めない</h3><p>問題行を識別・記録して後続を処理し、失敗ログ、再試行、人間確認の基礎を作る。</p></article>
+        <article class="topic"><span class="tag">Zero Token</span><h3>コード処理にAIを使わない</h3><p>URL確認、空欄判定、書き込み、状態更新を通常コードで行い、トークン費用を発生させない。</p></article>
+        <article class="topic"><span class="tag">Separation</span><h3>コードとAI判断を分離</h3><p>取得・条件・記録は決定論的処理、企業評価・適合・文面・意味分析だけをAIへ任せる。</p></article>
+        <article class="topic"><span class="tag">Next Phase</span><h3>次にOpenClaw本体を入れる</h3><p>既存の安全な受け皿の上へ、企業・求人収集と晏門さん仕様の文面作成を追加する。</p></article>
+        <article class="topic"><span class="tag">Vehicle</span><h3>OpenClawを車体と捉える</h3><p>データ、処理ルール、エラー、記録を先に作り、車体の上へ収集・文章・評価の担当を載せる。</p></article>
+        <article class="topic"><span class="tag">Collector</span><h3>情報収集担当を追加する</h3><p>RSS、求人サイト、企業、ニュース、案件を監視して対象情報をSheetsへ保存する。</p></article>
+        <article class="topic"><span class="tag">Voice</span><h3>営業文面を晏門さん仕様へ</h3><p>言葉遣い、方針、相手別調整、送信基準、成功例をテストしながらルールへ反映する。</p></article>
+        <article class="topic"><span class="tag">Backend First</span><h3>画面より中身を優先</h3><p>派手な自動操作より、正しい処理、停止、費用制御、結果記録、確実な実行を先に整える。</p></article>
+        <article class="topic"><span class="tag">Wearable</span><h3>Apple Watchは安定化後</h3><p>予定、状態、承認、指示、結果確認の構想は残し、まず内部処理を安定させる。</p></article>
+        <article class="topic"><span class="tag">Compare</span><h3>Claude Codeとも比較する</h3><p>セットアップ、コード・ファイル操作、API準備の差を見て、OpenClawと目的別に使い分ける。</p></article>
+        <article class="topic"><span class="tag">Tool Agnostic</span><h3>一つのツールへ固執しない</h3><p>目的は業務自動化であり、各処理に最も速く安定するOpenClaw、Claude Code、Gemini等を選ぶ。</p></article>
+        <article class="topic"><span class="tag">Network</span><h3>メンタリングから専門性を得る</h3><p>支援相手から案件、専門知識、人脈、仕事機会が研究会へ還流する関係を作る。</p></article>
+        <article class="topic"><span class="tag">Distribution</span><h3>案件を研究会へ配分する</h3><p>コンサル先の切り出し業務を、公開求人だけでなく人脈・非公開案件・研究会紹介へつなぐ。</p></article>
+        <article class="topic"><span class="tag">CRM</span><h3>人脈管理も自動化する</h3><p>接点、相談、仕事、紹介先、次回連絡、過去履歴をOpenClawで継続管理する。</p></article>
+        <article class="topic"><span class="tag">Everyday AI</span><h3>エージェントを日常の道具へ</h3><p>GeminiやGemと同じように、OpenClawも意識せず使う業務道具になる未来を想定する。</p></article>
+        <article class="topic"><span class="tag">Acceleration</span><h3>年間の変化は計画を上回る</h3><p>自動操作、コード、エージェント、並列化の進展により、2026年の到達点が上振れする可能性を持つ。</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="decisions">
+      <div class="section-head"><div><div class="section-kicker">Decisions</div><h2>決定事項</h2></div><p>改善可能な報告と、止まらない決定論的処理を同時に整える。</p></div>
+      <div class="decision-grid">
+        <article class="decision"><div class="num">01</div><h3>KPIに構造を持たせる</h3><p>求人確認、除外、応募、返信、試験、受注、時間、種類、単価、金額を一緒に記録する。</p></article>
+        <article class="decision"><div class="num">02</div><h3>報告を相談の材料にする</h3><p>年間・月間目標、現在地、事実、迷い、改善してほしい点を固定構成で示す。</p></article>
+        <article class="decision"><div class="num">03</div><h3>定例報告用Gemを作る</h3><p>行動ログと案件データを参照し、目的と確認観点を毎週同じ形で維持する。</p></article>
+        <article class="decision"><div class="num">04</div><h3>システムの目的を検証する</h3><p>Notion連携の工数と時短効果を測り、案件活動を止める過剰化を避ける。</p></article>
+        <article class="decision"><div class="num">05</div><h3>Python直結の前処理を使う</h3><p>中継を減らし、不正URL・空欄・失敗を記録しながら一件の問題で全体を止めない。</p></article>
+        <article class="decision"><div class="num">06</div><h3>AI利用を必要箇所へ限定</h3><p>確実な取得・判定・記録はコード、意味・評価・文面だけをAIへ分ける。</p></article>
+        <article class="decision"><div class="num">07</div><h3>OpenClaw本体と担当を追加</h3><p>安全な基盤の上へ情報収集、企業評価、晏門さん仕様のメール生成を段階的に載せる。</p></article>
+        <article class="decision"><div class="num">08</div><h3>目的別にツールを選ぶ</h3><p>OpenClawとClaude Codeを比較し、UIより安定処理、人脈・案件管理まで含む実用性を優先する。</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><div class="section-kicker">Concepts</div><h2>この回で生まれた重要概念</h2></div><p>入力・処理・報告を改善可能にする16の原則。</p></div>
+      <div class="research-grid">
+        <div class="research-item"><strong>改善可能な報告</strong><br>第三者が改善点を発見できる情報を含める。</div>
+        <div class="research-item"><strong>母数付きKPI</strong><br>結果を母数、時間、単価と一緒に評価する。</div>
+        <div class="research-item"><strong>報告の二重目的</strong><br>本人の振り返りと他者からの改善を両立する。</div>
+        <div class="research-item"><strong>年間目標からの逆算表示</strong><br>長期、月間、現在地、今週を一つにつなぐ。</div>
+        <div class="research-item"><strong>定例報告用Gem</strong><br>固定目的と構成で毎週の報告を作るAI。</div>
+        <div class="research-item"><strong>入力品質が出力品質を決める</strong><br>目的と数字がなければ分析可能な出力にならない。</div>
+        <div class="research-item"><strong>システム過剰リスク</strong><br>自動化作業が本来の目標を妨げる状態。</div>
+        <div class="research-item"><strong>発注者目的の分析</strong><br>企業が案件から得たい成果を考える。</div>
+        <div class="research-item"><strong>役割演技</strong><br>案件ごとに求められる能力の見せ方を変える。</div>
+        <div class="research-item"><strong>Python直接書き込み</strong><br>中継せずSheetsへ結果を記録する。</div>
+        <div class="research-item"><strong>異常系先行テスト</strong><br>不正・空欄・失敗を正常系と同時に試す。</div>
+        <div class="research-item"><strong>失敗隔離</strong><br>一件のエラーで全体処理を止めない。</div>
+        <div class="research-item"><strong>決定論的処理とAI判断の分離</strong><br>確実なコード処理と意味判断を分ける。</div>
+        <div class="research-item"><strong>トークンゼロ処理</strong><br>通常コードだけで実行する工程。</div>
+        <div class="research-item"><strong>車体と社員</strong><br>OpenClaw上へ専門担当を追加する構造。</div>
+        <div class="research-item"><strong>ツール非依存設計</strong><br>目的に最適な手段を処理ごとに選ぶ。</div>
+      </div>
+    </section>
+
+    <section class="section" id="actions">
+      <div class="section-head"><div><div class="section-kicker">Actions</div><h2>次回までの担当</h2></div></div>
+      <div class="actions">
+        <article class="person"><div class="name-row"><div><h3>中村和雄</h3><div class="role">Reporting / Acquisition</div></div><div class="initial">和</div></div><ul><li>母数・時間・単価・収入を記録</li><li>発注目的と不採用仮説を整理</li><li>目標・現在地・質問を資料へ固定</li><li>定例報告用Gemを作成</li><li>Sheetsを参照情報へ登録</li><li>Notion連携の工数と効果を検証</li></ul></article>
+        <article class="person"><div class="name-row"><div><h3>中村健太郎</h3><div class="role">Preprocessing / Reliability</div></div><div class="initial">健</div></div><ul><li>Python直書き処理を安定化</li><li>URL正常・不正・空欄を継続検証</li><li>失敗状態とスキップを統一</li><li>コード処理とAI処理を一覧化</li><li>OpenClaw本体と収集担当を導入</li><li>Claude Codeとの分担を比較</li></ul></article>
+        <article class="person"><div class="name-row"><div><h3>木場晏門</h3><div class="role">Rules / Opportunities</div></div><div class="initial">晏</div></div><ul><li>収集条件と対象サイトを定義</li><li>メール文面と承認ルールを整理</li><li>比較検証の基準を作成</li><li>メンタリング案件を整理</li><li>研究会へ配分できる業務を確認</li><li>報告Gemの確認観点を提供</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><div class="section-kicker">From Previous</div><h2>前回からの変化</h2></div><p>OpenClawの初回実行から、安全なデータ入口と検証可能な報告構造へ。</p></div>
+      <div class="content-card"><p>3月6日はOpenClawの初期環境と最初の処理、API費用の実測、年間ロードマップが始まった回だった。3月14日は、PythonからSheetsへ直接書き込み、正常・不正・空欄を試し、一件のエラーで全体を止めず、コード処理にはトークンを使わない前処理基盤を実装した。同時に和雄さんの返信率は33％へ改善したが、母数、工数、単価、月間目標がなければ改善判断できないと判明。Notion連携の目的も問われ、成果発表型資料から、年間目標と行動ログを参照する定例報告用Gemへ再設計する方針が生まれた。</p></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><div class="section-kicker">Historical Position</div><h2>歴史的な位置づけ</h2></div><p>自動化の前処理と、改善可能な報告設計が同時に始まった回。</p></div>
+      <div class="content-card"><p>OpenClaw本体の前に、データ格納、URL確認、空欄処理、異常終了防止、結果記録、状態管理が必要だと実装で示された。AIが安全に動くには、存在しないURLを探し続けず、一件の失敗で全体を止めず、確実な処理にはAIを使わず、意味判断だけを後から加える必要がある。一方、人間の報告も同様に、目的、母数、工数、判断、目標との差がなければ、AIが整えたきれいな資料でも助言には使えない。AIも人間も整理された入力なしに良い判断はできないという共通原理が明確になり、研究会自身も固定目的、データ参照、期間、相談事項を持つ定例報告用Gemによって仕組み化の対象になった。</p></div>
+    </section>
+
+    <section class="closing"><p>Make the process inspectable.<small>結果だけでなく、判断と改善につながる構造を残す。</small></p></section>
+  </main>
+  <footer>Rise &amp; Leap — Historical Archive / 2026.03.14</footer>
+</div>
+</body>
+</html>
