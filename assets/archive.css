@@ -64,19 +64,21 @@ a{color:inherit;text-decoration:none}
 .closing p{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,7vw,92px);line-height:1.08;letter-spacing:-.055em}
 .closing small{display:block;margin-top:22px;color:rgba(255,255,255,.7);font-family:inherit;font-size:15px;letter-spacing:0}
 body{
+  margin:0;
   color:var(--ink);
   background:var(--bg);
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Sans","Yu Gothic",sans-serif;
   line-height:1.75;
   -webkit-font-smoothing:antialiased;
 }
-.wrap{width:min(1180px,calc(100% - 48px))}
+.wrap{width:min(1180px,calc(100% - 48px));margin:auto}
 header{
   position:relative;
   background:transparent;
   backdrop-filter:none;
-  border-color:var(--line);
+  border-bottom:1px solid var(--line);
 }
-.header-inner{height:78px}
+.header-inner{height:78px;display:flex;align-items:center;justify-content:space-between}
 .brand{
   font-family:Georgia,"Times New Roman",serif;
   font-size:21px;
@@ -85,7 +87,7 @@ header{
 }
 .brand:before{content:"←";font-family:inherit;color:var(--clay);margin-right:8px}
 .dot{display:none}
-.nav{gap:28px;font-size:12px;letter-spacing:.08em}
+.nav{display:flex;gap:28px;font-size:12px;letter-spacing:.08em;color:var(--muted)}
 .nav a:hover,.nav a:focus-visible{color:var(--orange)}
 .hero{padding:24px 0 76px}
 .hero-panel{
@@ -99,7 +101,7 @@ header{
 .hero-panel:before{display:none}
 .hero-top{
   color:#f8f2e7;
-  border-color:rgba(255,255,255,.35);
+  border-bottom:1px solid rgba(255,255,255,.35);
   padding:25px 28px;
   font-size:10px;
   letter-spacing:.18em;
@@ -111,12 +113,14 @@ header{
   padding:70px clamp(28px,6vw,76px) 58px;
 }
 h1{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
   color:#fffaf0;
   font-size:clamp(72px,9vw,124px);
   line-height:.82;
   font-weight:400;
 }
-.jp-title{color:#e8c2a4;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.jp-title{margin-top:28px;color:#e8c2a4;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
 .hero-copy{color:#fffaf0;border-color:rgba(255,255,255,.55)}
 .hero-copy .big{font-family:Georgia,"Times New Roman","YuMincho","Hiragino Mincho ProN",serif;font-weight:400}
 .hero-copy p:last-child{color:rgba(255,250,240,.75)}
@@ -127,8 +131,8 @@ main{padding:0 0 96px}
 .feature{grid-template-columns:.64fr 1.36fr;gap:0;margin-top:0;border:1px solid var(--line)}
 .aside-card,.content-card,.section{
   background:var(--paper);
+  border:1px solid var(--line);
   border-radius:0;
-  border-color:var(--line);
   box-shadow:none;
 }
 .aside-card,.content-card{border:0}
@@ -153,7 +157,7 @@ main{padding:0 0 96px}
     linear-gradient(90deg,rgba(36,35,31,.94),rgba(36,35,31,.76)),
     url("featured-journey.jpg") center/cover;
 }
-footer{border-top:1px solid var(--line);letter-spacing:.08em}
+footer{padding:30px 0 50px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--line);letter-spacing:.08em}
 @media(max-width:900px){
   .nav{display:none}
   .hero-content{grid-template-columns:1fr;align-content:end}
