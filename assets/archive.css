@@ -185,3 +185,44 @@ footer{padding:30px 0 50px;text-align:center;font-size:12px;color:var(--muted);b
   .aside-card,.content-card{padding:28px 24px}
   .closing{margin-top:52px;padding:34px 22px}
 }
+
+/* Rise & Leap Gathering brand system */
+:root{
+  --bg:#f5efe5;--paper:#fffaf3;--ink:#25243a;--muted:#6f6971;
+  --line:rgba(91,82,107,.2);--orange:#cf6465;--blue:#168ec4;--green:#6956a8;
+  --sun:#ff8b4a;--rose:#d95f8d;--violet:#6956a8;--ocean:#168ec4;--sky:#66bdd8;
+  --brand-gradient:linear-gradient(90deg,var(--ocean),var(--violet) 28%,var(--rose) 54%,var(--sun) 76%,#f2bf4c);
+}
+body{
+  background:
+    radial-gradient(circle at 8% 4%,rgba(102,189,216,.11),transparent 24rem),
+    radial-gradient(circle at 92% 10%,rgba(255,139,74,.1),transparent 25rem),
+    var(--bg);
+}
+header{position:sticky;top:0;background:rgba(245,239,229,.91);backdrop-filter:blur(18px);border:0}
+header:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--brand-gradient);opacity:.72}
+.brand{width:258px;height:62px}.brand img{width:258px;transform:translateY(-29px);mix-blend-mode:normal}
+.nav a{position:relative}.nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-8px;height:2px;background:var(--brand-gradient);transition:right .25s}
+.nav a:hover:after,.nav a:focus-visible:after{right:0}
+.hero-panel{border-radius:22px;box-shadow:0 24px 70px rgba(50,42,64,.16)}
+.hero-panel:after{content:"";position:absolute;z-index:4;left:0;right:0;top:0;height:5px;background:var(--brand-gradient)}
+.hero-panel{background:linear-gradient(90deg,rgba(37,36,58,.76),rgba(37,36,58,.28) 50%,rgba(22,142,196,.04)),url("featured-journey.jpg") center/cover}
+.hero-top,.hero-content,.hero-footer{color:#fffaf3}
+.hero-footer{border-color:rgba(255,255,255,.38)}.hero-footer div{border-color:rgba(255,255,255,.28)}
+main>.feature,main>.section{border:0;border-radius:18px;overflow:hidden;background:rgba(255,250,243,.84);box-shadow:0 14px 42px rgba(50,42,64,.08)}
+.section-head{position:relative}.section-head:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--brand-gradient)}
+.aside-card{background:linear-gradient(145deg,rgba(22,142,196,.08),rgba(217,95,141,.05),rgba(255,139,74,.06))}
+.aside-card .label,.section-kicker,.topic .tag{color:var(--rose)}
+.decision .num{background:var(--brand-gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+.topic{transition:background .2s,transform .2s}.topic:hover{background:linear-gradient(145deg,rgba(22,142,196,.06),rgba(217,95,141,.05),rgba(255,139,74,.04));transform:translateY(-2px)}
+.initial{border-radius:50%;background:var(--brand-gradient);color:#fff;box-shadow:0 8px 20px rgba(105,86,168,.2)}
+.research-item strong{color:var(--violet)}
+.closing{border-radius:22px;box-shadow:0 24px 70px rgba(50,42,64,.15);background:linear-gradient(110deg,rgba(37,36,58,.88),rgba(105,86,168,.7),rgba(217,95,141,.55),rgba(255,139,74,.38)),url("featured-journey.jpg") center/cover}
+footer{position:relative;border:0}footer:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--brand-gradient);opacity:.6}
+@media(max-width:900px){
+  main>.feature,main>.section{border-radius:14px}
+}
+@media(max-width:620px){
+  .brand{width:188px;height:47px}.brand img{width:188px;transform:translateY(-21px)}
+  .hero-panel,.closing{border-radius:16px}
+}
