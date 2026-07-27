@@ -211,31 +211,123 @@
     targets.forEach(node => observer.observe(node));
   };
 
+  const shortText = (text, length = 86) => {
+    const normalized = normalize(text);
+    if (normalized.length <= length) return normalized;
+    const sentence = normalized.match(/^.{1,86}?[。！？]/)?.[0];
+    return sentence || `${normalized.slice(0, length)}…`;
+  };
+
+  const renderPulse = items => {
+    const meetings = document.querySelector("#pulse-meetings");
+    const period = document.querySelector("#pulse-period");
+    const theme = document.querySelector("#pulse-theme");
+    const next = document.querySelector("#pulse-next");
+    if (!meetings || !period || !theme || !next || !items.length) return;
+    meetings.textContent = `${items.length}回`;
+    const dates = items.map(item => new Date(`${item.date}T00:00:00`)).sort((a, b) => a - b);
+    const months = Math.max(1, Math.round((dates.at(-1) - dates[0]) / 2629800000) + 1);
+    period.textContent = `約${months}か月`;
+    const latestThemes = items.slice(0, 3).flatMap(item => item.themes);
+    const themeCounts = latestThemes.reduce((map, name) => map.set(name, (map.get(name) || 0) + 1), new Map());
+    theme.textContent = [...themeCounts].sort((a, b) => b[1] - a[1])[0]?.[0] || "AI・実践";
+    const today = new Date();
+    let daysUntilFriday = (5 - today.getDay() + 7) % 7;
+    if (daysUntilFriday === 0 && today.getHours() >= 5) daysUntilFriday = 7;
+    const nextFriday = new Date(today);
+    nextFriday.setDate(today.getDate() + daysUntilFriday);
+    next.textContent = `${nextFriday.getMonth() + 1}/${nextFriday.getDate()} 金`;
+  };
+
+  const renderThemeMap = (items, container, onSelect) => {
+    container.replaceChildren();
+    const counts = themeRules.map(([name]) => [name, items.filter(item => item.themes.includes(name)).length]);
+    const max = Math.max(...counts.map(([, count]) => count), 1);
+    counts.forEach(([name, count]) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "theme-node";
+      button.style.setProperty("--node-size", `${96 + Math.round((count / max) * 40)}px`);
+      button.innerHTML = `<span>${name}<small>${count} records</small></span>`;
+      button.addEventListener("click", () => onSelect(name));
+      container.append(button);
+    });
+  };
+
   const renderTimeline = (items, timeline) => {
     timeline.replaceChildren();
     const changes = items.filter(item => item.change).sort((a, b) => a.date.localeCompare(b.date));
     changes.forEach(item => {
-      const article = document.createElement("article");
-      article.className = "change-entry reveal";
+      const details = document.createElement("details");
+      details.className = "change-entry reveal";
+      const summary = document.createElement("summary");
       const time = document.createElement("time");
       time.dateTime = item.date;
       time.textContent = item.date.replaceAll("-", ".");
+      const titleWrap = document.createElement("div");
+      titleWrap.className = "change-title";
       const title = document.createElement("h3");
       title.textContent = item.title;
-      const text = document.createElement("p");
-      text.textContent = item.change;
-      article.append(time, title, text);
-      timeline.append(article);
+      const lead = document.createElement("p");
+      lead.textContent = shortText(item.change);
+      titleWrap.append(title, lead);
+      const more = document.createElement("span");
+      more.className = "change-more";
+      more.setAttribute("aria-hidden", "true");
+      more.textContent = "+";
+      summary.append(time, titleWrap, more);
+      const full = document.createElement("p");
+      full.className = "change-full";
+      full.textContent = item.change;
+      details.append(summary, full);
+      timeline.append(details);
     });
     if (!changes.length) timeline.innerHTML = "<p class=\"archive-status\">変化の記録はまだありません。</p>";
     revealDynamic(timeline);
   };
 
+  const renderMonthly = (items, container) => {
+    container.replaceChildren();
+    const groups = items.reduce((map, item) => {
+      if (!map.has(item.month)) map.set(item.month, []);
+      map.get(item.month).push(item);
+      return map;
+    }, new Map());
+    [...groups].sort((a, b) => b[0].localeCompare(a[0])).forEach(([month, monthItems], index) => {
+      const details = document.createElement("details");
+      details.className = "month-review";
+      if (index === 0) details.open = true;
+      const counts = themeRules.map(([name]) => [name, monthItems.filter(item => item.themes.includes(name)).length]).sort((a, b) => b[1] - a[1]);
+      const dominant = counts[0]?.[0] || "研究と実践";
+      const finalChange = [...monthItems].sort((a, b) => b.date.localeCompare(a.date)).find(item => item.change)?.change;
+      const summary = document.createElement("summary");
+      summary.innerHTML = `<time>${month.replace("-", ".")}</time><h3>${dominant}</h3><span class="month-review-count">${monthItems.length} records</span>`;
+      const body = document.createElement("div");
+      body.className = "month-review-body";
+      const text = document.createElement("p");
+      text.textContent = finalChange ? shortText(finalChange, 130) : `${monthItems.length}回の対話を記録しました。`;
+      const links = document.createElement("div");
+      links.className = "month-review-links";
+      monthItems.forEach(item => {
+        const link = document.createElement("a");
+        link.href = item.href;
+        link.innerHTML = `<span>${item.title}</span><span aria-hidden="true">→</span>`;
+        links.append(link);
+      });
+      body.append(text, links);
+      details.append(summary, body);
+      container.append(details);
+    });
+  };
+
   const setupArchive = async () => {
     const list = document.querySelector(".archive-list");
     const timeline = document.querySelector("#change-timeline");
+    const monthly = document.querySelector("#monthly-grid");
+    const themeMap = document.querySelector("#theme-map");
     const status = document.querySelector("#archive-status");
-    if (!list || !timeline || !status) return;
+    const loadMore = document.querySelector("#load-more");
+    if (!list || !timeline || !monthly || !themeMap || !status || !loadMore) return;
     const sourceLinks = [...list.querySelectorAll("a.archive-item")];
     try {
       const items = await loadArchives(sourceLinks);
@@ -248,38 +340,90 @@
       populateSelect(member, memberNames.filter(name => items.some(item => item.members.includes(name))));
       populateSelect(theme, themeRules.map(([name]) => name));
 
-      const render = () => {
+      const storageKey = "rise-leap-archive-filters";
+      const params = new URLSearchParams(window.location.search);
+      let stored = {};
+      try {
+        stored = JSON.parse(window.localStorage.getItem(storageKey) || "{}");
+      } catch {
+        stored = {};
+      }
+      keyword.value = params.get("q") ?? stored.q ?? "";
+      month.value = params.get("month") ?? stored.month ?? "";
+      member.value = params.get("member") ?? stored.member ?? "";
+      theme.value = params.get("theme") ?? stored.theme ?? "";
+      let visibleLimit = 6;
+
+      const saveFilters = () => {
+        const state = { q: keyword.value, month: month.value, member: member.value, theme: theme.value };
+        try {
+          window.localStorage.setItem(storageKey, JSON.stringify(state));
+        } catch {
+          // Storage may be disabled; URL state still works.
+        }
+        const url = new URL(window.location.href);
+        Object.entries(state).forEach(([key, value]) => value ? url.searchParams.set(key, value) : url.searchParams.delete(key));
+        window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+      };
+
+      const render = ({ persist = true } = {}) => {
         const query = normalize(keyword.value).toLocaleLowerCase("ja");
+        const filteredMode = Boolean(query || month.value || member.value || theme.value);
         const filtered = items.filter(item =>
           (!query || item.searchText.includes(query)) &&
           (!month.value || item.month === month.value) &&
           (!member.value || item.members.includes(member.value)) &&
           (!theme.value || item.themes.includes(theme.value))
         );
-        list.replaceChildren(...filtered.map(createCard));
+        const displayed = filteredMode ? filtered : filtered.slice(0, visibleLimit);
+        list.replaceChildren(...displayed.map(createCard));
         if (!filtered.length) {
           const empty = document.createElement("p");
           empty.className = "no-results";
           empty.textContent = "条件に一致する議事録はありません。";
           list.append(empty);
         }
-        status.textContent = `${filtered.length}件 / 全${items.length}件`;
+        status.textContent = filteredMode ? `${filtered.length}件 / 全${items.length}件` : `${displayed.length}件表示 / 全${items.length}件`;
+        loadMore.classList.toggle("is-visible", !filteredMode && displayed.length < items.length);
+        if (!filteredMode && displayed.length < items.length) {
+          loadMore.textContent = `さらに${Math.min(6, items.length - displayed.length)}件表示`;
+        }
+        if (persist) saveFilters();
       };
-      [keyword, month, member, theme].forEach(control => control.addEventListener(control === keyword ? "input" : "change", render));
+      [keyword, month, member, theme].forEach(control => control.addEventListener(control === keyword ? "input" : "change", () => {
+        visibleLimit = 6;
+        render();
+      }));
       clear.addEventListener("click", () => {
         keyword.value = "";
         month.value = "";
         member.value = "";
         theme.value = "";
+        visibleLimit = 6;
         render();
         keyword.focus();
       });
-      render();
+      loadMore.addEventListener("click", () => {
+        visibleLimit += 6;
+        render({ persist: false });
+      });
+      renderThemeMap(items, themeMap, selectedTheme => {
+        theme.value = selectedTheme;
+        visibleLimit = 6;
+        render();
+        document.querySelector("#archive-keyword")?.focus({ preventScroll: true });
+        document.querySelector("#archive")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+      });
+      render({ persist: false });
+      renderPulse(items);
       renderTimeline(items, timeline);
+      renderMonthly(items, monthly);
     } catch (error) {
       console.error(error);
       status.textContent = "検索機能を読み込めませんでした。通常の一覧から閲覧できます。";
       timeline.innerHTML = "<p class=\"archive-status\">変化のタイムラインを読み込めませんでした。</p>";
+      monthly.innerHTML = "<p class=\"archive-status\">月次レビューを読み込めませんでした。</p>";
+      themeMap.innerHTML = "<p class=\"archive-status\">テーマを読み込めませんでした。</p>";
     }
   };
 

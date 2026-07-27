@@ -41,6 +41,12 @@ a{color:inherit;text-decoration:none}
 .hero-note>div{padding:28px 32px}
 .hero-note>div+div{border-left:1px solid var(--line)}
 .hero-note p{margin:7px 0 0;color:var(--muted)}
+.research-pulse{display:grid;grid-template-columns:repeat(4,1fr);margin-top:18px;border-radius:16px;overflow:hidden;background:rgba(255,250,243,.82);box-shadow:0 12px 36px rgba(50,42,64,.08)}
+.pulse-item{min-height:132px;padding:24px;border-left:1px solid var(--line)}
+.pulse-item:first-child{border-left:0}
+.pulse-label{display:block;margin-bottom:16px;color:var(--rose);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.pulse-value{display:block;font-family:Georgia,"Times New Roman","YuMincho",serif;font-size:27px;line-height:1.2}
+.pulse-note{display:block;margin-top:7px;color:var(--muted);font-size:12px}
 .section{padding:96px 0;border-top:1px solid var(--line)}
 .section-head{display:grid;grid-template-columns:180px 1fr;gap:28px;margin-bottom:48px}
 .section-head h2{margin:-10px 0 0;font-size:clamp(42px,6vw,78px);line-height:1;letter-spacing:-.055em;font-weight:400}
@@ -89,6 +95,9 @@ a{color:inherit;text-decoration:none}
 .field input:focus,.field select:focus{border-color:var(--violet);box-shadow:0 0 0 3px rgba(105,86,168,.12)}
 .archive-results{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:18px;color:var(--muted);font-size:13px}
 .clear-filters{border:0;padding:0;background:none;color:var(--violet);font:inherit;font-weight:700;cursor:pointer}
+.archive-actions{display:flex;align-items:center;gap:16px}
+.load-more{display:none;margin:28px auto 0;padding:12px 22px;border:1px solid var(--line);border-radius:999px;background:var(--paper-light);color:var(--violet);font:inherit;font-weight:700;cursor:pointer}
+.load-more.is-visible{display:block}
 .archive-status{min-height:1.5em}
 .archive-card{border-bottom:1px solid var(--line)}
 .archive-card-head{width:100%;display:grid;grid-template-columns:160px minmax(0,1fr) auto;gap:24px;align-items:center;padding:26px 0;border:0;background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer}
@@ -108,12 +117,32 @@ a{color:inherit;text-decoration:none}
 .no-results{padding:42px 0;color:var(--muted);text-align:center;border-bottom:1px solid var(--line)}
 .change-timeline{position:relative;margin-left:10px;padding-left:38px}
 .change-timeline:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--brand-gradient);opacity:.45}
-.change-entry{position:relative;padding:0 0 40px}
+.change-entry{position:relative;padding:0 0 28px}
 .change-entry:last-child{padding-bottom:0}
 .change-entry:before{content:"";position:absolute;left:-37px;top:7px;width:14px;height:14px;border:3px solid var(--paper);border-radius:50%;background:var(--brand-gradient);box-shadow:0 0 0 1px rgba(105,86,168,.24)}
-.change-entry time{display:block;margin-bottom:7px;color:var(--rose);font-family:Georgia,serif;font-size:14px}
-.change-entry h3{margin:0 0 9px;font-size:22px;font-weight:500;letter-spacing:-.03em}
-.change-entry p{max-width:780px;margin:0;color:var(--muted)}
+.change-entry summary{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:18px;align-items:start;list-style:none;cursor:pointer}
+.change-entry summary::-webkit-details-marker{display:none}
+.change-entry time{display:block;color:var(--rose);font-family:Georgia,serif;font-size:14px}
+.change-title h3{margin:0 0 7px;font-size:22px;font-weight:500;letter-spacing:-.03em}
+.change-title p{margin:0;color:var(--muted)}
+.change-more{width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--violet);transition:transform .25s}
+.change-entry[open] .change-more{transform:rotate(45deg)}
+.change-full{max-width:800px;margin:18px 0 0 138px;padding:18px 22px;border-left:2px solid var(--rose);background:rgba(255,250,243,.65);color:var(--muted)}
+.theme-map{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;min-height:280px;padding:32px;border-radius:20px;background:radial-gradient(circle at center,rgba(105,86,168,.09),transparent 64%)}
+.theme-node{--node-size:110px;width:var(--node-size);height:var(--node-size);display:grid;place-items:center;padding:12px;border:1px solid rgba(105,86,168,.2);border-radius:50%;background:rgba(255,250,243,.88);color:var(--violet);font:inherit;font-weight:700;text-align:center;cursor:pointer;box-shadow:0 12px 32px rgba(50,42,64,.08);transition:transform .25s,box-shadow .25s}
+.theme-node:hover,.theme-node:focus-visible{transform:translateY(-5px) scale(1.03);box-shadow:0 18px 40px rgba(50,42,64,.14)}
+.theme-node small{display:block;color:var(--muted);font-size:10px;font-weight:500}
+.monthly-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.month-review{border:1px solid var(--line);border-radius:16px;background:rgba(255,250,243,.72);overflow:hidden}
+.month-review summary{display:grid;grid-template-columns:100px 1fr auto;gap:18px;align-items:center;padding:22px;list-style:none;cursor:pointer}
+.month-review summary::-webkit-details-marker{display:none}
+.month-review time{font-family:Georgia,serif;color:var(--rose)}
+.month-review h3{margin:0;font-size:19px;font-weight:500}
+.month-review-count{color:var(--muted);font-size:12px}
+.month-review-body{padding:0 22px 24px}
+.month-review-body p{margin:0 0 16px;color:var(--muted)}
+.month-review-links{display:grid;gap:8px}
+.month-review-links a{display:flex;justify-content:space-between;gap:12px;padding-top:8px;border-top:1px solid var(--line);font-size:13px}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .reveal.is-visible{opacity:1;transform:none}
 .journey-row.reveal{transition-delay:calc(var(--reveal-index,0) * 45ms)}
@@ -136,6 +165,9 @@ a{color:inherit;text-decoration:none}
   .hero-meta{top:18px;left:18px;right:18px}.hero-meta span:last-child{display:none}
   .hero-copy{left:22px;right:22px;bottom:34px}.hero-copy h1{font-size:clamp(48px,15vw,64px)}.hero-copy h1 span{margin-left:.18em}
   .hero-note,.latest-grid{grid-template-columns:1fr}.hero-note>div+div{border-left:0;border-top:1px solid var(--line)}
+  .research-pulse{grid-template-columns:1fr 1fr}
+  .pulse-item:nth-child(odd){border-left:0}
+  .pulse-item:nth-child(n+3){border-top:1px solid var(--line)}
   .section{padding:70px 0}.section-head{grid-template-columns:1fr;gap:18px;margin-bottom:34px}
   .latest-image{min-height:380px}.latest-story{border-left:0;border-top:1px solid var(--line);min-height:520px}
   .journey-row{grid-template-columns:100px 16px 1fr;gap:12px}.journey-row h3{font-size:20px}
@@ -168,12 +200,21 @@ a{color:inherit;text-decoration:none}
   .archive-tools{padding:18px}
   .archive-search{grid-template-columns:1fr}
   .archive-results{align-items:flex-start;flex-direction:column;gap:7px}
+  .archive-actions{width:100%;justify-content:space-between}
   .archive-card-head{padding:22px 0}
   .archive-card-head strong{font-size:16px}
   .archive-card-content{padding-right:0}
   .change-timeline{padding-left:29px}
   .change-entry:before{left:-28px}
+  .change-entry summary{grid-template-columns:1fr auto;gap:8px}
+  .change-entry time{grid-column:1/-1}
   .change-entry h3{font-size:19px}
+  .change-full{margin-left:0;padding:15px 17px}
+  .theme-map{gap:10px;padding:20px 8px}
+  .theme-node{--node-size:96px;font-size:12px}
+  .monthly-grid{grid-template-columns:1fr}
+  .month-review summary{grid-template-columns:82px 1fr;gap:10px}
+  .month-review-count{grid-column:2}
   .footer{justify-content:center;text-align:center}
 }
 @media(prefers-reduced-motion:reduce){
@@ -250,6 +291,12 @@ body{
       <div><div class="kicker">What we do</div><p>AIを学ぶ場から、AIで事業と仕組みをつくる場へ。</p></div>
       <div><div class="kicker">Current focus</div><p>OpenClaw／PO1を軸に、自分たちで所有できる収益源を育てる。</p></div>
     </div>
+    <section class="research-pulse" aria-label="研究会の現在地">
+      <article class="pulse-item"><span class="pulse-label">Meeting Archive</span><strong class="pulse-value" id="pulse-meetings">—</strong><span class="pulse-note">収録済みの定例</span></article>
+      <article class="pulse-item"><span class="pulse-label">Research Period</span><strong class="pulse-value" id="pulse-period">—</strong><span class="pulse-note">最初の記録から現在まで</span></article>
+      <article class="pulse-item"><span class="pulse-label">Current Theme</span><strong class="pulse-value" id="pulse-theme">—</strong><span class="pulse-note">直近の重点テーマ</span></article>
+      <article class="pulse-item"><span class="pulse-label">Next Meeting</span><strong class="pulse-value" id="pulse-next">—</strong><span class="pulse-note">奮起と躍進の集い · 05:00</span></article>
+    </section>
   </div>
 
   <section class="section" id="latest">
@@ -330,6 +377,7 @@ body{
   <section class="section" id="archive">
     <div class="wrap">
       <div class="section-head"><div class="kicker">Milestone Archive</div><div><h2 class="serif">話したことが、<br>道標になる。</h2></div></div>
+      <div class="theme-map" id="theme-map" aria-label="研究テーマから議事録を探す"><p class="archive-status">テーマを読み込んでいます…</p></div>
       <div class="archive-tools" aria-label="議事録の検索と絞り込み">
         <div class="archive-search">
           <div class="field"><label for="archive-keyword">キーワード検索</label><input id="archive-keyword" type="search" placeholder="例：OpenClaw、案件獲得、AI活用"></div>
@@ -337,7 +385,7 @@ body{
           <div class="field"><label for="archive-member">参加者</label><select id="archive-member"><option value="">すべての参加者</option></select></div>
           <div class="field"><label for="archive-theme">テーマ</label><select id="archive-theme"><option value="">すべてのテーマ</option></select></div>
         </div>
-        <div class="archive-results"><span class="archive-status" id="archive-status" aria-live="polite">議事録を読み込んでいます…</span><button class="clear-filters" id="clear-filters" type="button">条件をクリア</button></div>
+        <div class="archive-results"><span class="archive-status" id="archive-status" aria-live="polite">議事録を読み込んでいます…</span><div class="archive-actions"><button class="clear-filters" id="clear-filters" type="button">条件をクリア</button></div></div>
       </div>
       <div class="archive-list">
         <a class="archive-item" href="2026-07-24.html"><time datetime="2026-07-24">2026.07.24</time><strong>学びから、AIで事業と仕組みをつくる段階へ</strong><span aria-hidden="true">→</span></a>
@@ -363,6 +411,7 @@ body{
         <a class="archive-item" href="2026-01-23.html"><time datetime="2026-01-23">2026.01.23</time><strong>AIの効率化を、品質・専門性・顧客価値へ接続する</strong><span aria-hidden="true">→</span></a>
         <a class="archive-item" href="2026-01-16.html"><time datetime="2026-01-16">2026.01.16</time><strong>AIが学べる情報環境と、人間が動ける行動環境をつくる</strong><span aria-hidden="true">→</span></a>
       </div>
+      <button class="load-more" id="load-more" type="button">さらに6件表示</button>
     </div>
   </section>
 
@@ -372,8 +421,15 @@ body{
       <div class="change-timeline" id="change-timeline" aria-live="polite"><p class="archive-status">変化の記録を読み込んでいます…</p></div>
     </div>
   </section>
+
+  <section class="section" id="monthly">
+    <div class="wrap">
+      <div class="section-head"><div class="kicker">Monthly Review</div><div><h2 class="serif">一か月の変化を、<br>ひとつの章として。</h2><p class="intro">週次の記録を月単位でまとめ、重点テーマと到達点を振り返ります。</p></div></div>
+      <div class="monthly-grid" id="monthly-grid" aria-live="polite"><p class="archive-status">月次レビューを読み込んでいます…</p></div>
+    </div>
+  </section>
 </main>
 <footer class="wrap footer"><span>© 2026 RISE &amp; LEAP</span><span>COLLECTIVE RESEARCH JOURNAL</span></footer>
-<script src="assets/site.js?v=20260728-dynamic2" defer></script>
+<script src="assets/site.js?v=20260728-explorer2" defer></script>
 </body>
 </html>
