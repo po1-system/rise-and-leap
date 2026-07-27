@@ -14,7 +14,7 @@
   const normalize = value => (value || "").replace(/\s+/g, " ").trim();
 
   const setupReveal = () => {
-    const targets = [...document.querySelectorAll(".section-head, .latest-grid, .member, .meeting, .journey-row, .hero-note")];
+    const targets = [...document.querySelectorAll(".section-head, .latest-grid, .member, .meeting, .journey-row, .hero-note, .weekly-now")];
     targets.forEach((target, index) => {
       target.classList.add("reveal");
       if (target.classList.contains("journey-row")) target.style.setProperty("--reveal-index", index % 8);
@@ -34,15 +34,18 @@
   };
 
   const setupMotion = () => {
-    if (reducedMotion) return;
     const header = document.querySelector(".site-header");
     const heroImage = document.querySelector(".hero-visual img");
     let previousY = window.scrollY;
     let ticking = false;
     const update = () => {
       const y = window.scrollY;
-      if (header) header.classList.toggle("header-hidden", y > previousY && y > 180);
-      if (heroImage && y < 900) heroImage.style.transform = `translate3d(0,${Math.min(y * 0.045, 28)}px,0) scale(1.025)`;
+      const mobile = window.matchMedia("(max-width: 780px)").matches;
+      if (header) {
+        header.classList.toggle("header-compact", mobile && y > 80);
+        header.classList.toggle("header-hidden", !mobile && y > previousY && y > 180);
+      }
+      if (!reducedMotion && heroImage && y < 900) heroImage.style.transform = `translate3d(0,${Math.min(y * 0.045, 28)}px,0) scale(1.025)`;
       previousY = y;
       ticking = false;
     };
@@ -50,6 +53,38 @@
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(update);
+    }, { passive: true });
+  };
+
+  const setupMobileMenu = () => {
+    const toggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector("#main-menu");
+    if (!toggle || !menu) return;
+    const close = () => {
+      menu.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "Menu";
+    };
+    toggle.addEventListener("click", () => {
+      const open = !menu.classList.contains("is-open");
+      menu.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.textContent = open ? "Close" : "Menu";
+    });
+    menu.addEventListener("click", event => {
+      if (event.target.closest("a")) close();
+    });
+    document.addEventListener("click", event => {
+      if (!event.target.closest(".site-header")) close();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        close();
+        toggle.focus();
+      }
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 780) close();
     }, { passive: true });
   };
 
@@ -429,6 +464,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     setupReveal();
+    setupMobileMenu();
     setupMotion();
     setupArchive();
   });

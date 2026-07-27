@@ -28,6 +28,7 @@ a{color:inherit;text-decoration:none}
 .nav-links{display:flex;gap:28px;font-size:12px;letter-spacing:.08em;color:var(--muted)}
 .nav-links a{transition:color .2s}
 .nav-links a:hover,.nav-links a:focus-visible{color:var(--clay)}
+.menu-toggle{display:none;border:1px solid var(--line);border-radius:999px;padding:8px 13px;background:rgba(255,250,243,.8);color:var(--ink);font:inherit;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
 .hero{padding:24px 0 76px}
 .hero-visual{position:relative;min-height:690px;overflow:hidden;border-radius:2px;background:var(--sand)}
 .hero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 56%}
@@ -47,6 +48,20 @@ a{color:inherit;text-decoration:none}
 .pulse-label{display:block;margin-bottom:16px;color:var(--rose);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 .pulse-value{display:block;font-family:Georgia,"Times New Roman","YuMincho",serif;font-size:27px;line-height:1.2}
 .pulse-note{display:block;margin-top:7px;color:var(--muted);font-size:12px}
+.weekly-now{margin-top:18px;border-radius:20px;overflow:hidden;background:rgba(255,250,243,.88);box-shadow:0 16px 44px rgba(50,42,64,.1)}
+.weekly-head{display:flex;align-items:end;justify-content:space-between;gap:20px;padding:24px 28px;border-bottom:1px solid var(--line)}
+.weekly-head h2{margin:5px 0 0;font-size:clamp(28px,4vw,44px);line-height:1.05;font-weight:400;letter-spacing:-.04em}
+.weekly-head time{color:var(--muted);font-family:Georgia,serif;font-size:13px}
+.weekly-grid{display:grid;grid-template-columns:1.15fr 1fr 1fr}
+.weekly-card{min-height:190px;padding:24px 28px}
+.weekly-card+.weekly-card{border-left:1px solid var(--line)}
+.weekly-card h3{margin:0 0 12px;color:var(--rose);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.weekly-card p{margin:0;font-size:16px}
+.weekly-card ul{margin:0;padding-left:18px;color:var(--muted);font-size:13px}
+.weekly-card li+li{margin-top:6px}
+.weekly-link{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 28px;background:linear-gradient(90deg,rgba(22,142,196,.08),rgba(217,95,141,.08),rgba(255,139,74,.08));color:var(--violet);font-weight:700}
+.weekly-link span:last-child{font-size:22px;transition:transform .2s}
+.weekly-link:hover span:last-child,.weekly-link:focus-visible span:last-child{transform:translateX(6px)}
 .section{padding:96px 0;border-top:1px solid var(--line)}
 .section-head{display:grid;grid-template-columns:180px 1fr;gap:28px;margin-bottom:48px}
 .section-head h2{margin:-10px 0 0;font-size:clamp(42px,6vw,78px);line-height:1;letter-spacing:-.055em;font-weight:400}
@@ -155,10 +170,17 @@ a{color:inherit;text-decoration:none}
 @media(max-width:780px){
   .wrap{width:min(100% - 28px,1180px)}
   .brand{width:170px;height:44px}.brand img{width:170px;transform:translateY(-19px)}
-  .nav{height:auto;min-height:66px;flex-wrap:wrap;justify-content:center;padding:8px 0 10px;gap:2px}
-  .brand{flex:0 0 100%;margin:auto}
-  .nav-links{width:100%;justify-content:center;flex-wrap:wrap;gap:6px 14px;line-height:1.4}
-  .nav-links a:first-child{display:inline}
+  .site-header{position:sticky;top:0}
+  .nav{height:66px;min-height:66px;flex-wrap:nowrap;justify-content:space-between;padding:0;gap:14px}
+  .brand{flex:0 1 auto;margin:0}
+  .menu-toggle{display:block;flex:0 0 auto}
+  .nav-links{position:absolute;top:calc(100% + 1px);left:14px;right:14px;width:auto;display:grid;gap:0;padding:10px;border:1px solid var(--line);border-radius:14px;background:rgba(255,250,243,.98);box-shadow:0 18px 44px rgba(50,42,64,.16);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .2s,transform .2s,visibility .2s}
+  .nav-links.is-open{opacity:1;visibility:visible;transform:none}
+  .nav-links a{padding:11px 12px;border-radius:9px}
+  .nav-links a:hover,.nav-links a:focus-visible{background:rgba(105,86,168,.07)}
+  .site-header.header-compact .nav{height:54px;min-height:54px}
+  .site-header.header-compact .brand{width:154px;height:39px}
+  .site-header.header-compact .brand img{width:154px;transform:translateY(-17px)}
   .hero{padding-top:14px}.hero-visual{min-height:620px}
   .hero-visual img{object-position:62% center}
   .hero-visual:after{background:linear-gradient(90deg,rgba(39,34,26,.64),rgba(39,34,26,.05)),linear-gradient(0deg,rgba(25,24,20,.48),transparent 55%)}
@@ -168,6 +190,11 @@ a{color:inherit;text-decoration:none}
   .research-pulse{grid-template-columns:1fr 1fr}
   .pulse-item:nth-child(odd){border-left:0}
   .pulse-item:nth-child(n+3){border-top:1px solid var(--line)}
+  .weekly-head{align-items:flex-start;flex-direction:column;padding:22px}
+  .weekly-grid{grid-template-columns:1fr}
+  .weekly-card{min-height:0;padding:22px}
+  .weekly-card+.weekly-card{border-left:0;border-top:1px solid var(--line)}
+  .weekly-link{padding:17px 22px}
   .section{padding:70px 0}.section-head{grid-template-columns:1fr;gap:18px;margin-bottom:34px}
   .latest-image{min-height:380px}.latest-story{border-left:0;border-top:1px solid var(--line);min-height:520px}
   .journey-row{grid-template-columns:100px 16px 1fr;gap:12px}.journey-row h3{font-size:20px}
@@ -271,7 +298,8 @@ body{
 <header class="site-header">
   <div class="wrap nav">
     <a class="brand" href="#top" aria-label="Rise & Leap Gathering ホーム"><img src="assets/rise-and-leap-logo.png?v=20260725-transparent" alt="Rise & Leap Gathering — 奮起と躍進の集い"></a>
-    <nav class="nav-links" aria-label="メインナビゲーション">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Menu</button>
+    <nav class="nav-links" id="main-menu" aria-label="メインナビゲーション">
       <a href="#latest">Latest Story</a><a href="#journey">Our Journey</a><a href="#members">Members</a><a href="#meetings">Meetings</a><a href="#archive">Milestone Archive</a>
     </nav>
   </div>
@@ -296,6 +324,18 @@ body{
       <article class="pulse-item"><span class="pulse-label">Research Period</span><strong class="pulse-value" id="pulse-period">—</strong><span class="pulse-note">最初の記録から現在まで</span></article>
       <article class="pulse-item"><span class="pulse-label">Current Theme</span><strong class="pulse-value" id="pulse-theme">—</strong><span class="pulse-note">直近の重点テーマ</span></article>
       <article class="pulse-item"><span class="pulse-label">Next Meeting</span><strong class="pulse-value" id="pulse-next">—</strong><span class="pulse-note">奮起と躍進の集い · 05:00</span></article>
+    </section>
+    <section class="weekly-now" aria-labelledby="weekly-title">
+      <div class="weekly-head">
+        <div><div class="kicker">This Week at Rise &amp; Leap</div><h2 class="serif" id="weekly-title">今週の現在地。</h2></div>
+        <time datetime="2026-07-24">Updated 2026.07.24</time>
+      </div>
+      <div class="weekly-grid">
+        <article class="weekly-card"><h3>Now · 取り組んでいること</h3><p>OpenClaw／PO1の開発を続けながら、NFT市場を入口に、自分たちで保有できる事業と収益源を検証する。</p></article>
+        <article class="weekly-card"><h3>Decided · 前回決まったこと</h3><ul><li>NFTを最初の実践テーマにする</li><li>調査から小さな実験へ進める</li><li>受託以外の収益源を育てる</li></ul></article>
+        <article class="weekly-card"><h3>Next · 次回までの動き</h3><ul><li>健太郎：市場・販売可能性の調査</li><li>晏門：収益化アイデアと企画検討</li><li>共同：優先順位と実験を決める</li></ul></article>
+      </div>
+      <a class="weekly-link" href="2026-07-24.html"><span>最新の議事録で背景を読む</span><span aria-hidden="true">→</span></a>
     </section>
   </div>
 
@@ -430,6 +470,6 @@ body{
   </section>
 </main>
 <footer class="wrap footer"><span>© 2026 RISE &amp; LEAP</span><span>COLLECTIVE RESEARCH JOURNAL</span></footer>
-<script src="assets/site.js?v=20260728-explorer2" defer></script>
+<script src="assets/site.js?v=20260728-reading" defer></script>
 </body>
 </html>

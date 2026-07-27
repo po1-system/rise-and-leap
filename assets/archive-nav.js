@@ -10,6 +10,74 @@
   ];
   const normalize = value => (value || "").replace(/\s+/g, " ").trim();
 
+  const setupReadingTools = () => {
+    const main = document.querySelector("main");
+    if (!main) return;
+    const sections = [...main.querySelectorAll(":scope > .feature, :scope > .section")]
+      .filter(section => !section.classList.contains("closing") && !section.classList.contains("archive-navigation"))
+      .map((section, index) => {
+        const heading = section.querySelector("h2");
+        if (!heading) return null;
+        if (!section.id) section.id = `archive-section-${index + 1}`;
+        return { section, heading, id: section.id, label: normalize(heading.textContent) };
+      })
+      .filter(Boolean);
+    if (!sections.length) return;
+
+    const progress = document.createElement("div");
+    progress.className = "reading-progress";
+    progress.setAttribute("role", "progressbar");
+    progress.setAttribute("aria-label", "議事録の読書進捗");
+    progress.setAttribute("aria-valuemin", "0");
+    progress.setAttribute("aria-valuemax", "100");
+    progress.setAttribute("aria-valuenow", "0");
+    progress.innerHTML = '<span class="reading-progress-bar"></span>';
+    document.body.prepend(progress);
+
+    const toc = document.createElement("nav");
+    toc.className = "archive-toc";
+    toc.setAttribute("aria-label", "この議事録の目次");
+    const inner = document.createElement("div");
+    inner.className = "archive-toc-inner";
+    const label = document.createElement("span");
+    label.className = "archive-toc-label";
+    label.textContent = "On this page";
+    const links = document.createElement("div");
+    links.className = "archive-toc-links";
+    sections.forEach(({ id, label: text }) => {
+      const link = document.createElement("a");
+      link.href = `#${id}`;
+      link.textContent = text;
+      links.append(link);
+    });
+    inner.append(label, links);
+    toc.append(inner);
+    main.before(toc);
+
+    let ticking = false;
+    const update = () => {
+      const start = main.offsetTop;
+      const distance = Math.max(1, main.offsetHeight - window.innerHeight);
+      const value = Math.max(0, Math.min(100, ((window.scrollY - start) / distance) * 100));
+      progress.style.setProperty("--reading-progress", `${value}%`);
+      progress.setAttribute("aria-valuenow", String(Math.round(value)));
+      const marker = window.scrollY + Math.min(window.innerHeight * 0.3, 220);
+      let activeId = sections[0].id;
+      sections.forEach(({ section, id }) => {
+        if (section.offsetTop <= marker) activeId = id;
+      });
+      links.querySelectorAll("a").forEach(link => link.classList.toggle("is-active", link.getAttribute("href") === `#${activeId}`));
+      ticking = false;
+    };
+    window.addEventListener("scroll", () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    update();
+  };
+
   const scoreRelated = (currentText, candidateTitle, distance) => {
     const themes = rules.filter(([, pattern]) => pattern.test(currentText)).map(([name]) => name);
     const candidateThemes = rules.filter(([, pattern]) => pattern.test(candidateTitle)).map(([name]) => name);
@@ -83,5 +151,8 @@
     }
   };
 
-  document.addEventListener("DOMContentLoaded", setupNavigation);
+  document.addEventListener("DOMContentLoaded", () => {
+    setupReadingTools();
+    setupNavigation();
+  });
 })();

@@ -251,7 +251,22 @@ footer{position:relative;border:0}footer:before{content:"";position:absolute;top
 .archive-related-links a{padding:15px;border-radius:10px;background:rgba(105,86,168,.06)}
 .archive-related-links time{display:block;margin-bottom:6px;color:var(--rose);font-family:Georgia,serif;font-size:12px}
 .archive-related-links strong{font-size:13px;font-weight:500}
+.reading-progress{--reading-progress:0%;position:fixed;z-index:60;left:0;right:0;top:0;height:4px;background:rgba(105,86,168,.08);pointer-events:none}
+.reading-progress-bar{display:block;width:var(--reading-progress);height:100%;background:var(--brand-gradient);box-shadow:0 0 12px rgba(217,95,141,.32);transition:width .12s linear}
+.archive-toc{position:sticky;z-index:18;top:78px;width:min(1200px,calc(100% - 28px));margin:0 auto 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,250,243,.94);backdrop-filter:blur(16px);box-shadow:0 10px 28px rgba(50,42,64,.08)}
+.archive-toc-inner{display:flex;align-items:center;gap:20px;padding:11px 16px}
+.archive-toc-label{flex:0 0 auto;color:var(--rose);font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.archive-toc-links{display:flex;align-items:center;gap:5px;min-width:0;overflow-x:auto;scrollbar-width:none}
+.archive-toc-links::-webkit-scrollbar{display:none}
+.archive-toc-links a{flex:0 0 auto;padding:7px 10px;border-radius:999px;color:var(--muted);font-size:11px;transition:color .2s,background .2s}
+.archive-toc-links a:hover,.archive-toc-links a:focus-visible,.archive-toc-links a.is-active{background:rgba(105,86,168,.09);color:var(--violet)}
+main>.feature,main>.section{scroll-margin-top:150px}
 @media(max-width:620px){
+  .archive-toc{top:66px;margin-bottom:14px}
+  .archive-toc-inner{display:block;padding:9px 10px}
+  .archive-toc-label{display:block;margin:0 5px 5px}
+  .archive-toc-links a{padding:6px 9px;font-size:10px}
+  main>.feature,main>.section{scroll-margin-top:135px}
   .archive-navigation{margin-top:52px;padding:24px 18px}
   .archive-navigation-head h2{font-size:27px}
   .archive-siblings,.archive-related-links{grid-template-columns:1fr}
