@@ -58,9 +58,23 @@
     return normalize(heading?.closest(".section")?.querySelector(".content-card p")?.textContent);
   };
 
+  const fetchArchive = async href => {
+    let lastError;
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      try {
+        const response = await fetch(href);
+        if (response.ok) return response;
+        lastError = new Error(`${href}: ${response.status}`);
+      } catch (error) {
+        lastError = error;
+      }
+      await new Promise(resolve => window.setTimeout(resolve, 350 * (attempt + 1)));
+    }
+    throw lastError;
+  };
+
   const parseArchive = async link => {
-    const response = await fetch(link.href);
-    if (!response.ok) throw new Error(`${link.href}: ${response.status}`);
+    const response = await fetchArchive(link.href);
     const doc = new DOMParser().parseFromString(await response.text(), "text/html");
     const date = link.querySelector("time")?.dateTime || link.querySelector("time")?.textContent.replaceAll(".", "-");
     const title = normalize(link.querySelector("strong")?.textContent);
@@ -83,6 +97,40 @@
       change: findChangeText(doc),
       searchText: searchText.toLocaleLowerCase("ja")
     };
+  };
+
+  const minimalArchive = link => {
+    const date = link.querySelector("time")?.dateTime || link.querySelector("time")?.textContent.replaceAll(".", "-");
+    const title = normalize(link.querySelector("strong")?.textContent);
+    return {
+      href: link.getAttribute("href"),
+      date,
+      month: date?.slice(0, 7),
+      title,
+      members: [],
+      themes: [],
+      summary: "",
+      shortSummary: "詳細は議事録ページでご確認ください。",
+      change: "",
+      searchText: title.toLocaleLowerCase("ja")
+    };
+  };
+
+  const loadArchives = async links => {
+    const items = [];
+    for (let index = 0; index < links.length; index += 5) {
+      const batchLinks = links.slice(index, index + 5);
+      const results = await Promise.allSettled(batchLinks.map(parseArchive));
+      results.forEach((result, resultIndex) => {
+        if (result.status === "fulfilled") {
+          items.push(result.value);
+        } else {
+          console.warn(result.reason);
+          items.push(minimalArchive(batchLinks[resultIndex]));
+        }
+      });
+    }
+    return items;
   };
 
   const makeChip = text => {
@@ -190,7 +238,7 @@
     if (!list || !timeline || !status) return;
     const sourceLinks = [...list.querySelectorAll("a.archive-item")];
     try {
-      const items = await Promise.all(sourceLinks.map(parseArchive));
+      const items = await loadArchives(sourceLinks);
       const keyword = document.querySelector("#archive-keyword");
       const month = document.querySelector("#archive-month");
       const member = document.querySelector("#archive-member");
