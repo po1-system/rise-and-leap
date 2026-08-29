@@ -288,10 +288,33 @@ body{
 .archive-item{transition:background .2s,padding .2s}
 .archive-item:hover,.archive-item:focus-visible{background:linear-gradient(90deg,rgba(22,142,196,.08),rgba(217,95,141,.07),rgba(255,139,74,.06));padding-left:18px;padding-right:18px}
 .footer{position:relative;border:0}.footer:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--brand-gradient);opacity:.6}
+.scroll-journey{position:relative;margin:0 0 64px}
+.scroll-journey-sticky{position:relative;min-height:620px;padding:42px 0;overflow:hidden;border:1px solid var(--line);border-radius:22px;background:linear-gradient(135deg,rgba(255,250,243,.95),rgba(230,240,242,.72));box-shadow:0 20px 52px rgba(50,42,64,.1)}
+.scroll-journey-sticky:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 88% 14%,rgba(255,139,74,.17),transparent 28%),radial-gradient(circle at 12% 88%,rgba(22,142,196,.14),transparent 34%);pointer-events:none}
+.journey-progress{position:absolute;z-index:2;top:38px;left:clamp(24px,4vw,52px);right:clamp(24px,4vw,52px);display:flex;align-items:center;justify-content:space-between;gap:22px;color:var(--muted);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.journey-progress-track{position:relative;flex:1;max-width:330px;height:2px;background:rgba(105,86,168,.17)}
+.journey-progress-fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--brand-gradient);transform:scaleX(1);transform-origin:left center}
+.journey-stage-copy{position:relative;z-index:1;margin:88px clamp(24px,7vw,92px) 0;max-width:52%}
+.journey-stage-copy .kicker{margin-bottom:17px}.journey-stage-copy h3{margin:0;font-family:Georgia,"Times New Roman","YuMincho",serif;font-size:clamp(50px,7vw,100px);line-height:.85;font-weight:400;letter-spacing:-.07em}.journey-stage-copy p{max-width:470px;margin:23px 0 0;color:var(--muted);font-size:16px}
+.journey-months{position:relative;z-index:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:36px clamp(24px,5vw,72px) 0}
+.journey-month{display:flex;flex-direction:column;justify-content:center;min-height:230px;padding:26px;border:1px solid rgba(105,86,168,.18);border-radius:14px;background:rgba(255,250,243,.62)}
+.journey-month time{display:block;margin-bottom:15px;color:var(--rose);font-family:Georgia,"Times New Roman",serif;font-size:15px;letter-spacing:.14em}.journey-month h3{margin:0;color:var(--ink);font-size:clamp(26px,3.2vw,43px);line-height:1.12;font-weight:500;letter-spacing:-.045em}.journey-month p{margin:16px 0 0;color:var(--muted);font-size:15px}.journey-month .journey-concept{display:inline-flex;align-self:flex-start;margin-top:22px;padding:7px 11px;border-radius:999px;background:rgba(105,86,168,.09);color:var(--violet);font-size:11px;font-weight:700;letter-spacing:.05em}
+html.gsap-scroll-ready .scroll-journey-sticky{padding:0}
+html.gsap-scroll-ready .journey-stage-copy{position:absolute;left:clamp(24px,7vw,92px);bottom:clamp(42px,8vw,78px);margin:0}
+html.gsap-scroll-ready .journey-months{position:absolute;display:block;top:112px;right:clamp(24px,5vw,72px);bottom:42px;width:min(42%,430px);margin:0}
+html.gsap-scroll-ready .journey-month{position:absolute;inset:0;min-height:0;padding:30px;border:0;border-left:1px solid rgba(105,86,168,.24);border-radius:0;background:transparent;opacity:0;visibility:hidden;transform:translate3d(0,34px,0)}
+html.gsap-scroll-ready .journey-month:first-child{opacity:1;visibility:visible;transform:none}
+html.gsap-scroll-ready .journey-progress-fill{transform:scaleX(.03)}
+.archive-tools,.theme-map,.monthly-grid,.members,.schedule{will-change:transform}
+.change-timeline:before{transform:scaleY(var(--timeline-progress,1));transform-origin:top center}
+html.gsap-scroll-ready .change-timeline{--timeline-progress:.03}
+html.gsap-scroll-ready .hero-visual img{transition:none}
 @media(max-width:780px){
   .brand{width:190px;height:48px}.brand img{width:190px;transform:translateY(-21px)}
   .hero-visual{border-radius:16px}.section:before{width:calc(100% - 28px)}
+  .scroll-journey{margin-bottom:42px}.scroll-journey-sticky{min-height:0;padding:24px 0;border-radius:18px}.journey-progress{position:relative;top:auto;left:auto;right:auto;margin:0 24px 24px}.journey-progress-track{max-width:none}.journey-stage-copy,html.gsap-scroll-ready .journey-stage-copy{position:relative;left:auto;bottom:auto;max-width:none;margin:0;padding:0 24px}.journey-stage-copy h3{font-size:48px}.journey-months,html.gsap-scroll-ready .journey-months{position:relative;display:block;top:auto;right:auto;bottom:auto;width:auto;margin:28px 0 0}.journey-month,html.gsap-scroll-ready .journey-month{position:relative;inset:auto;display:flex;min-height:0;padding:24px;border:0;border-top:1px solid rgba(105,86,168,.17);border-radius:0;background:transparent;opacity:1;visibility:visible;transform:none}.journey-month h3{font-size:29px}.journey-month p{font-size:14px}
 }
+@media(prefers-reduced-motion:no-preference) and (min-width:781px){.journey-month{will-change:transform,opacity}}
 </style>
 </head>
 <body>
@@ -307,9 +330,9 @@ body{
 <main id="top">
   <div class="wrap hero">
     <section class="hero-visual" aria-labelledby="hero-title">
-      <img src="assets/featured-journey.jpg?v=20260725-gathering-photo" alt="夕日の水辺で飛び跳ねるRise & Leapの3人と、その姿を映す水面">
+      <img class="hero-parallax-image" src="assets/featured-journey.jpg?v=20260725-gathering-photo" alt="夕日の水辺で飛び跳ねるRise & Leapの3人と、その姿を映す水面">
       <div class="hero-meta"><span>Collective Research Journal</span><span>Established 2026 · Japan</span></div>
-      <div class="hero-copy">
+      <div class="hero-copy hero-scroll-copy">
         <div class="kicker" style="color:#e8c2a4">Rise &amp; Leap</div>
         <h1 id="hero-title" class="serif">奮起と<span>躍進の集い</span></h1>
         <p>問いを持ち寄り、考え、試し、次の景色へ。</p>
@@ -362,6 +385,22 @@ body{
       <div class="section-head">
         <div class="kicker">Our Journey</div>
         <div><h2 class="serif">研究会は、<br>少しずつ変わっていく。</h2><p class="intro">話すことから、試すことへ。現在の記録から見える変化を、これからも時系列で積み重ねていきます。</p></div>
+      </div>
+      <div class="scroll-journey" aria-label="2026年の研究会の歩み">
+        <div class="scroll-journey-sticky">
+          <div class="journey-progress"><span>2026 · Journey</span><span class="journey-progress-track" aria-hidden="true"><span class="journey-progress-fill"></span></span><span class="journey-progress-label">January</span></div>
+          <div class="journey-stage-copy"><div class="kicker">A year in progress</div><h3 class="serif">2026</h3><p>対話を重ねるたび、研究会は「学ぶ場」から「仕組みをつくり、成果を残す場」へ変化してきました。</p></div>
+          <div class="journey-months">
+            <article class="journey-month" data-month="01"><time datetime="2026-01">2026.01</time><h3>人とAIが、学び続けられる環境へ。</h3><p>行動計画と案件獲得を実践へ移し、人間とAIが同じ判断材料を共有する土台をつくった。</p><span class="journey-concept">行動環境</span></article>
+            <article class="journey-month" data-month="02"><time datetime="2026-02">2026.02</time><h3>AIを、再利用できる労働基盤へ。</h3><p>情報アーキテクチャと人間承認を整え、OpenClawを安全に実運用へ近づけた。</p><span class="journey-concept">安全な自律性</span></article>
+            <article class="journey-month" data-month="03"><time datetime="2026-03">2026.03</time><h3>最初の自動処理が、現実に動く。</h3><p>実行・報告・検証の循環をつくり、AIと人間が改善できる構造へ進んだ。</p><span class="journey-concept">検証可能性</span></article>
+            <article class="journey-month" data-month="04"><time datetime="2026-04">2026.04</time><h3>説明不要で、先回りする仕組みへ。</h3><p>OpenClawを通知から文脈維持型のAI業務基盤へ再定義し、止まりにくさを追求した。</p><span class="journey-concept">文脈の継続</span></article>
+            <article class="journey-month" data-month="05"><time datetime="2026-05">2026.05</time><h3>途中式を、使うほど賢くなる資産へ。</h3><p>意図・仮説・判断・修正を残し、AI出力を本人の価値として使える運用へ変えた。</p><span class="journey-concept">生成過程の資産化</span></article>
+            <article class="journey-month" data-month="06"><time datetime="2026-06">2026.06</time><h3>市場の反応を、次の判断へ。</h3><p>応募・面談・見送りを数値と理由で管理し、求められる市場を見つけ始めた。</p><span class="journey-concept">営業資産</span></article>
+            <article class="journey-month" data-month="07"><time datetime="2026-07">2026.07</time><h3>量を越え、改善と監督へ。</h3><p>AIを影武者として使い、人間が品質と信頼を握るフェーズへ移った。</p><span class="journey-concept">人間の最終責任</span></article>
+            <article class="journey-month" data-month="08"><time datetime="2026-08">2026.08</time><h3>成果が出る構造を、先に整える。</h3><p>生活の実績を測り、信頼を積み、AIを安全に動かすための条件を一つずつ揃えた。</p><span class="journey-concept">成果の前提条件</span></article>
+          </div>
+        </div>
       </div>
       <div class="journey-list">
         <article class="journey-row"><time class="journey-date" datetime="2026-08-21">2026.08</time><div class="journey-mark"></div><div><h3>成果を生む構造を、先に整える</h3><p>実績を測り、入りやすい仕事から信頼を積み、承認の正当性を確かめる安全設計へ進んだ。</p></div></article>
@@ -476,6 +515,9 @@ body{
   </section>
 </main>
 <footer class="wrap footer"><span>© 2026 RISE &amp; LEAP</span><span>COLLECTIVE RESEARCH JOURNAL</span></footer>
-<script src="assets/site.js?v=20260728-reading" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="assets/site.js?v=20260829-scroll" defer></script>
+<script src="assets/scroll-journey.js?v=20260829-scroll" defer></script>
 </body>
 </html>

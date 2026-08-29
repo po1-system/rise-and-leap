@@ -45,7 +45,9 @@
         header.classList.toggle("header-compact", mobile && y > 80);
         header.classList.toggle("header-hidden", !mobile && y > previousY && y > 180);
       }
-      if (!reducedMotion && heroImage && y < 900) heroImage.style.transform = `translate3d(0,${Math.min(y * 0.045, 28)}px,0) scale(1.025)`;
+      if (!reducedMotion && heroImage && y < 900 && !document.documentElement.classList.contains("gsap-scroll-ready")) {
+        heroImage.style.transform = `translate3d(0,${Math.min(y * 0.045, 28)}px,0) scale(1.025)`;
+      }
       previousY = y;
       ticking = false;
     };
@@ -453,6 +455,7 @@
       renderPulse(items);
       renderTimeline(items, timeline);
       renderMonthly(items, monthly);
+      document.dispatchEvent(new CustomEvent("archive:rendered"));
     } catch (error) {
       console.error(error);
       status.textContent = "検索機能を読み込めませんでした。通常の一覧から閲覧できます。";
