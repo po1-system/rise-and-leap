@@ -315,6 +315,23 @@ html.gsap-scroll-ready .hero-visual img{transition:none}
   .scroll-journey{margin-bottom:42px}.scroll-journey-sticky{min-height:0;padding:24px 0;border-radius:18px}.journey-progress{position:relative;top:auto;left:auto;right:auto;margin:0 24px 24px}.journey-progress-track{max-width:none}.journey-stage-copy,html.gsap-scroll-ready .journey-stage-copy{position:relative;left:auto;bottom:auto;max-width:none;margin:0;padding:0 24px}.journey-stage-copy h3{font-size:48px}.journey-months,html.gsap-scroll-ready .journey-months{position:relative;display:block;top:auto;right:auto;bottom:auto;width:auto;margin:28px 0 0}.journey-month,html.gsap-scroll-ready .journey-month{position:relative;inset:auto;display:flex;min-height:0;padding:24px;border:0;border-top:1px solid rgba(105,86,168,.17);border-radius:0;background:transparent;opacity:1;visibility:visible;transform:none}.journey-month h3{font-size:29px}.journey-month p{font-size:14px}
 }
 @media(prefers-reduced-motion:no-preference) and (min-width:781px){.journey-month{will-change:transform,opacity}}
+
+/* Interactive documentary layer */
+.documentary-intro{position:relative;overflow:hidden;background:linear-gradient(138deg,#24243a 0%,#332d50 46%,#243d54 100%);color:#fffaf3}
+.documentary-intro:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--pointer-x,72%) var(--pointer-y,22%),rgba(255,197,96,.2),transparent 18rem),radial-gradient(circle at 14% 86%,rgba(102,189,216,.18),transparent 24rem);transition:background .3s ease}
+.documentary-intro:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.44;background-image:radial-gradient(rgba(255,255,255,.78) 1px,transparent 1.4px),radial-gradient(rgba(255,194,125,.65) 1px,transparent 1.4px);background-size:66px 66px,109px 109px;background-position:8px 20px,44px 52px;mask-image:linear-gradient(to bottom,transparent,black 18%,black 78%,transparent)}
+.documentary-intro .section-head,.act-history,.evolution,.current-state,.knowledge-universe,.documentary-quote{position:relative;z-index:1}
+.documentary-intro .section-head{padding-top:96px}.documentary-intro .section-head h2{color:#fffaf3}.documentary-intro .section-head .intro{color:rgba(255,250,243,.72)}.documentary-intro .kicker{color:#ffc57d}
+.act-history{min-height:610px;border:1px solid rgba(255,255,255,.18);border-radius:22px;background:rgba(255,255,255,.07);backdrop-filter:blur(10px);overflow:hidden}
+.act-rail{position:absolute;z-index:2;top:31px;left:clamp(24px,4vw,52px);right:clamp(24px,4vw,52px);display:flex;align-items:center;justify-content:space-between;gap:20px;color:rgba(255,250,243,.7);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.act-rail-track{position:relative;flex:1;max-width:400px;height:1px;background:rgba(255,255,255,.25)}.act-rail-fill{position:absolute;inset:0 auto 0 0;width:100%;background:var(--brand-gradient);transform:scaleX(0);transform-origin:left center}
+.act-cards{position:relative;height:100%;min-height:610px}.act-card{position:absolute;inset:0;display:grid;grid-template-columns:1.12fr .88fr;align-items:end;gap:48px;padding:clamp(92px,10vw,126px) clamp(28px,7vw,88px) clamp(40px,6vw,72px)}.act-card:not(:first-child){opacity:0;visibility:hidden}.act-number{display:block;margin-bottom:18px;color:#ffc57d;font-size:11px;font-weight:700;letter-spacing:.2em}.act-card h3{max-width:680px;margin:0;font-family:Georgia,"Times New Roman","YuMincho",serif;font-size:clamp(48px,6.5vw,90px);line-height:.9;font-weight:400;letter-spacing:-.07em}.act-card p{max-width:620px;margin:24px 0 0;color:rgba(255,250,243,.75);font-size:16px}.act-details{align-self:center;padding:24px;border-left:1px solid rgba(255,255,255,.22);background:linear-gradient(90deg,rgba(255,255,255,.08),transparent)}.act-details time,.act-details strong{display:block}.act-details time{color:#ffc57d;font-family:Georgia,serif;font-size:13px;letter-spacing:.1em}.act-details strong{margin:12px 0;font-size:18px}.act-details span{display:inline-block;margin-top:10px;padding:6px 10px;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#d8eff7;font-size:11px}
+.documentary-quote{padding:114px 0;background:#24243a;color:#fffaf3;text-align:center}.documentary-quote .quote-date{display:block;color:#ffc57d;font-size:10px;font-weight:700;letter-spacing:.18em}.documentary-quote blockquote{max-width:900px;margin:26px auto 18px;font-family:Georgia,"Times New Roman","YuMincho",serif;font-size:clamp(33px,5vw,68px);line-height:1.15;letter-spacing:-.055em}.documentary-quote cite{color:rgba(255,250,243,.64);font-style:normal;font-size:13px}
+.evolution-grid{position:relative;display:grid;gap:18px}.evolution-lane{position:relative;display:grid;grid-template-columns:190px 1fr;gap:28px;padding:25px 0;border-top:1px solid var(--line);cursor:pointer}.evolution-lane:last-child{border-bottom:1px solid var(--line)}.evolution-lane:after{content:"";position:absolute;left:218px;right:0;bottom:-1px;height:2px;background:var(--brand-gradient);transform:scaleX(var(--lane-progress,0));transform-origin:left center}.evolution-lane.is-focused{background:linear-gradient(90deg,rgba(22,142,196,.08),rgba(217,95,141,.06),transparent)}.evolution-person{padding-left:16px;border-left:3px solid var(--violet)}.evolution-person button{border:0;padding:0;background:none;color:var(--ink);font:inherit;font-size:22px;font-weight:600;cursor:pointer}.evolution-person small{display:block;margin-top:5px;color:var(--muted);font-size:11px}.evolution-steps{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.evolution-step{position:relative;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,250,243,.8);font-size:13px;box-shadow:0 7px 20px rgba(50,42,64,.05);transition:transform .25s,box-shadow .25s}.evolution-step:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(50,42,64,.12)}.evolution-step:not(:last-child):after{content:"→";position:absolute;left:100%;top:50%;width:11px;color:var(--rose);transform:translate(3px,-50%)}.evolution-connection{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin:10px 0 -4px;color:var(--violet);font-size:12px}.evolution-connection:before{content:"";width:64px;height:1px;background:var(--brand-gradient)}
+.current-state-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:rgba(255,250,243,.75);box-shadow:0 15px 42px rgba(50,42,64,.08)}.current-card{min-height:305px;padding:28px}.current-card+.current-card{border-left:1px solid var(--line)}.current-card .person-label{display:block;margin-bottom:26px;color:var(--rose);font-size:11px;font-weight:700;letter-spacing:.13em}.current-card h3{margin:0 0 22px;font-size:28px;font-weight:500}.current-card dl{display:grid;gap:15px;margin:0}.current-card dt{color:var(--violet);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.current-card dd{margin:4px 0 0;color:var(--muted);font-size:14px}
+.knowledge-universe{position:relative;min-height:560px;overflow:hidden;border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 50% 44%,rgba(105,86,168,.13),transparent 32%),linear-gradient(145deg,rgba(255,250,243,.93),rgba(224,237,240,.7))}.knowledge-universe:before{content:"";position:absolute;inset:0;opacity:.45;background-image:linear-gradient(120deg,transparent 49.8%,rgba(105,86,168,.16) 50%,transparent 50.2%),linear-gradient(65deg,transparent 49.8%,rgba(217,95,141,.14) 50%,transparent 50.2%);background-size:260px 210px,310px 260px}.knowledge-head{position:relative;z-index:2;padding:34px}.knowledge-head h3{margin:5px 0 0;font-family:Georgia,serif;font-size:clamp(32px,4vw,52px);font-weight:400;letter-spacing:-.05em}.knowledge-nodes{position:relative;z-index:2;min-height:360px}.knowledge-node{--x:50%;--y:50%;position:absolute;left:var(--x);top:var(--y);width:clamp(92px,11vw,144px);aspect-ratio:1;transform:translate(-50%,-50%);border:1px solid rgba(105,86,168,.28);border-radius:50%;background:rgba(255,250,243,.92);box-shadow:0 14px 34px rgba(50,42,64,.11);color:var(--violet);font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:transform .3s,box-shadow .3s}.knowledge-node:hover,.knowledge-node:focus-visible,.knowledge-node.is-active{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 20px 46px rgba(50,42,64,.2);outline:none}.knowledge-detail{position:absolute;z-index:3;right:24px;bottom:24px;max-width:390px;padding:18px 20px;border-left:3px solid var(--rose);background:rgba(37,36,58,.94);color:#fffaf3;box-shadow:0 14px 30px rgba(37,36,58,.22)}.knowledge-detail[hidden]{display:none}.knowledge-detail strong,.knowledge-detail span{display:block}.knowledge-detail strong{margin-bottom:5px}.knowledge-detail span{color:rgba(255,250,243,.72);font-size:13px}
+@media(max-width:780px){.documentary-intro .section-head{padding-top:70px}.act-history{min-height:0;border-radius:18px}.act-rail{position:relative;top:auto;left:auto;right:auto;padding:22px 22px 0}.act-cards{min-height:0}.act-card,.act-card:not(:first-child){position:relative;display:block;padding:42px 24px 28px;opacity:1;visibility:visible}.act-card+.act-card{border-top:1px solid rgba(255,255,255,.14)}.act-card h3{font-size:42px}.act-card p{font-size:14px}.act-details{margin-top:24px;padding:18px 0;border-left:0;border-top:1px solid rgba(255,255,255,.22)}.documentary-quote{padding:82px 20px}.evolution-lane{grid-template-columns:1fr;gap:18px;padding:23px 0}.evolution-lane:after{left:0}.evolution-person{padding-left:12px}.evolution-steps{gap:8px}.evolution-step{font-size:12px}.evolution-connection{justify-content:flex-start}.current-state-grid{grid-template-columns:1fr}.current-card{min-height:0}.current-card+.current-card{border-left:0;border-top:1px solid var(--line)}.knowledge-universe{min-height:640px}.knowledge-head{padding:25px}.knowledge-nodes{min-height:450px}.knowledge-node{width:92px;font-size:11px}.knowledge-detail{left:16px;right:16px;bottom:16px;max-width:none}.knowledge-universe:before{opacity:.28}}
+@media(prefers-reduced-motion:reduce){.documentary-intro:before,.knowledge-node,.evolution-step{transition:none!important}}
+.knowledge-search{margin-top:12px;border:0;padding:0;background:none;color:#ffc57d;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
 </style>
 </head>
 <body>
@@ -434,6 +451,76 @@ html.gsap-scroll-ready .hero-visual img{transition:none}
     </div>
   </section>
 
+  <section class="section documentary-intro" id="acts" aria-labelledby="acts-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">ACT HISTORY</div>
+        <div><h2 class="serif" id="acts-title">会話が、次の行動を<br>生んできた。</h2><p class="intro">月ごとの記録を、研究会が変わった五つの章として辿ります。ひとつの対話が、別の誰かの実装や選択につながっています。</p></div>
+      </div>
+      <div class="act-history" aria-label="Rise & Leapの五つの章">
+        <div class="act-rail"><span>2026 · Documentary</span><span class="act-rail-track" aria-hidden="true"><span class="act-rail-fill"></span></span><span class="act-rail-label">ACT 01</span></div>
+        <div class="act-cards">
+          <article class="act-card"><div><span class="act-number">ACT 01 · JANUARY</span><h3>AIを<br>使い始めた。</h3><p>行動計画と案件獲得を実践へ移し、人間とAIが同じ判断材料を持つための最初の環境をつくった。</p></div><div class="act-details"><time datetime="2026-01-16">2026.01.16 — 01.30</time><strong>人とAIが学び続けられる環境へ</strong><span>行動環境 · 自助モデル</span></div></article>
+          <article class="act-card"><div><span class="act-number">ACT 02 · FEBRUARY — MARCH</span><h3>仕事に<br>使い始めた。</h3><p>情報構造、案件判断、最初の自動処理。AIを試す段階から、実務の中で検証する段階へ移った。</p></div><div class="act-details"><time datetime="2026-02-06">2026.02 — 03</time><strong>OpenClawが初めて現実に動く</strong><span>情報設計 · 検証可能性</span></div></article>
+          <article class="act-card"><div><span class="act-number">ACT 03 · APRIL — MAY</span><h3>AIに<br>任せ始めた。</h3><p>仕事の文脈と途中式を残し、AIの出力を「本人の価値」として使える運用へ変えていった。</p></div><div class="act-details"><time datetime="2026-04-30">2026.04.30 — 05.28</time><strong>説明不要で、先回りする仕組みへ</strong><span>文脈 · 途中式</span></div></article>
+          <article class="act-card"><div><span class="act-number">ACT 04 · JUNE — JULY</span><h3>AIを安全に<br>動かす仕組みを<br>作り始めた。</h3><p>市場の反応、品質、信頼、人間の最終責任を残しながら、AIを「影武者」として使う条件を定めた。</p></div><div class="act-details"><time datetime="2026-06-04">2026.06 — 07</time><strong>量を越え、改善と監督へ</strong><span>人間承認 · 最終責任</span></div></article>
+          <article class="act-card"><div><span class="act-number">ACT 05 · AUGUST</span><h3>AIそのものを<br>育てる環境を<br>考え始めた。</h3><p>生活の実績、承認の正当性、評価データベース。成果を急がず、成果が自然に出る構造へ目を向け始めた。</p></div><div class="act-details"><time datetime="2026-08-21">2026.08.13 — 08.21</time><strong>結果を生む構造を、先に整える</strong><span>自分軸 · 評価DB</span></div></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="documentary-quote" aria-label="重要発言">
+    <div class="wrap">
+      <span class="quote-date">2026.04.30 · KEY SCENE</span>
+      <blockquote>AIを速くするだけでは仕事は速くならない。<br>仕事の文脈を、説明し直さなくてよい状態にする。</blockquote>
+      <cite>奮起と躍進の集い — 文脈維持型AI業務基盤への転換</cite>
+    </div>
+  </section>
+
+  <section class="section" id="evolution">
+    <div class="wrap">
+      <div class="section-head"><div class="kicker">Personal Evolution</div><div><h2 class="serif">三人の変化が、<br>互いの変化をつくる。</h2><p class="intro">名前を選ぶとその軌跡を強調できます。細い接続線は、ある人の議論が別の人の行動へつながった地点です。</p></div></div>
+      <div class="evolution-grid" aria-label="三人の成長の軌跡">
+        <article class="evolution-lane" data-person="健太郎さん"><div class="evolution-person"><button type="button" aria-pressed="false">健太郎さん</button><small>仕組みを実装し、運用へつなぐ</small></div><div class="evolution-steps"><span class="evolution-step">AppSheet</span><span class="evolution-step">GAS</span><span class="evolution-step">OpenClaw</span><span class="evolution-step">Memory</span><span class="evolution-step">Approval</span><span class="evolution-step">AI Vidas</span></div></article>
+        <div class="evolution-connection">晏門さんの文脈設計 → 健太郎さんのOpenClaw実装</div>
+        <article class="evolution-lane" data-person="和雄さん"><div class="evolution-person"><button type="button" aria-pressed="false">和雄さん</button><small>仕事に入り、改善を実績へ変える</small></div><div class="evolution-steps"><span class="evolution-step">求人調査</span><span class="evolution-step">応募</span><span class="evolution-step">面談</span><span class="evolution-step">ミショナ</span><span class="evolution-step">業務改善</span><span class="evolution-step">人事領域</span></div></article>
+        <div class="evolution-connection">健太郎さんの時間設計 → 和雄さんの生活実績の記録</div>
+        <article class="evolution-lane" data-person="晏門さん"><div class="evolution-person"><button type="button" aria-pressed="false">晏門さん</button><small>問いを、再現できる判断へ変える</small></div><div class="evolution-steps"><span class="evolution-step">AI活用</span><span class="evolution-step">逆算</span><span class="evolution-step">途中式</span><span class="evolution-step">文脈設計</span><span class="evolution-step">評価DB</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="current-state">
+    <div class="wrap">
+      <div class="section-head"><div class="kicker">Current State · August 2026</div><div><h2 class="serif">今、この研究会は<br>ここにいる。</h2><p class="intro">過去を積み重ねた先で、それぞれが向き合っている現在の問いと、次の一手です。</p></div></div>
+      <div class="current-state-grid">
+        <article class="current-card"><span class="person-label">KENTARO NAKAMURA</span><h3>安全な自律性。</h3><dl><div><dt>Now</dt><dd>OpenClawの承認情報・対象・期限・重複を照合する安全設計。</dd></div><div><dt>Challenge</dt><dd>自動化を進めながら、人間が判断すべき境界を明確にする。</dd></div><div><dt>Next</dt><dd>最終承認DBと限定的な更新処理を検証する。</dd></div></dl></article>
+        <article class="current-card"><span class="person-label">KAZUO NAKAMURA</span><h3>続けられる成果。</h3><dl><div><dt>Now</dt><dd>生活・本業・ミショナ・案件活動の実績時間を記録する。</dd></div><div><dt>Challenge</dt><dd>夜勤寄りの生活でも、案件と家庭を両立できる時間設計をつくる。</dd></div><div><dt>Next</dt><dd>人事業務の手作業を改善し、数値で示せる実績へ変える。</dd></div></dl></article>
+        <article class="current-card"><span class="person-label">AMON KOBA</span><h3>評価を学習資産へ。</h3><dl><div><dt>Now</dt><dd>プロンプトではなく、人間の評価事例をAIに参照させる仮説を検証する。</dd></div><div><dt>Challenge</dt><dd>品質の基礎水準と個人の好みを分けて、再現可能に扱う。</dd></div><div><dt>Next</dt><dd>評価データベース方式を小さく試し、判断の傾向を蓄積する。</dd></div></dl></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="knowledge">
+    <div class="wrap">
+      <div class="section-head"><div class="kicker">Knowledge Universe</div><div><h2 class="serif">話すほど、概念が<br>つながっていく。</h2><p class="intro">概念を選ぶと、その誕生と発展を表示し、関連する議事録を検索できます。</p></div></div>
+      <div class="knowledge-universe">
+        <div class="knowledge-head"><div class="kicker">Tap a concept</div><h3>Ideas in motion.</h3></div>
+        <div class="knowledge-nodes">
+          <button class="knowledge-node" type="button" style="--x:22%;--y:25%" data-term="自助モデル" data-query="AI" data-origin="2026.01 · 三人の働き方を設計する最初の視点" data-detail="AIを使って、人が自分で前へ進める環境をつくる考え方。">自助モデル</button>
+          <button class="knowledge-node" type="button" style="--x:49%;--y:20%" data-term="途中式" data-query="途中式" data-origin="2026.05 · 晏門さんの議論から" data-detail="結果だけでなく、意図・仮説・判断・修正を残すことで、AIとの仕事を資産に変える。">途中式</button>
+          <button class="knowledge-node" type="button" style="--x:78%;--y:28%" data-term="文脈" data-query="OpenClaw" data-origin="2026.04.30 · OpenClawの再定義" data-detail="毎回説明し直さず、仕事の背景や判断材料をAIと共有し続ける。">文脈</button>
+          <button class="knowledge-node" type="button" style="--x:30%;--y:63%" data-term="自分軸" data-query="時間" data-origin="2026.08.13 · 和雄さんの時間設計" data-detail="仕事のシフトに人生を合わせず、人生の予定を先に決めて仕事を配置する。">自分軸</button>
+          <button class="knowledge-node" type="button" style="--x:57%;--y:57%" data-term="承認" data-query="承認" data-origin="2026.02 → 08 · OpenClawの安全設計" data-detail="承認の存在だけでなく、誰が・何を・いつ認めたかの正当性まで照合する。">承認の<br>正当性</button>
+          <button class="knowledge-node" type="button" style="--x:82%;--y:68%" data-term="評価" data-query="評価" data-origin="2026.08.21 · 晏門さんの仮説" data-detail="人間が採点した良い例・悪い例・理由を蓄積し、AIの品質を育てる。">評価DB</button>
+          <button class="knowledge-node" type="button" style="--x:13%;--y:82%" data-term="AI" data-query="AI" data-origin="2026.01 — 継続する中心テーマ" data-detail="十人分の労働力を目指すのではなく、人間の判断と関係を強める影武者として使う。">AIの<br>影武者</button>
+        </div>
+        <div class="knowledge-detail" id="knowledge-detail" aria-live="polite" hidden><strong></strong><span></span></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="members">
     <div class="wrap">
       <div class="section-head"><div class="kicker">Members · 03</div><div><h2 class="serif">異なる視点を、<br>ひとつのテーブルへ。</h2></div></div>
@@ -519,5 +606,6 @@ html.gsap-scroll-ready .hero-visual img{transition:none}
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 <script src="assets/site.js?v=20260829-scroll" defer></script>
 <script src="assets/scroll-journey.js?v=20260829-scroll" defer></script>
+<script src="assets/documentary.js?v=20260829-documentary" defer></script>
 </body>
 </html>

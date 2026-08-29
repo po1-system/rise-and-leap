@@ -10,16 +10,50 @@
   ];
   const normalize = value => (value || "").replace(/\s+/g, " ").trim();
 
+  const storyLabel = label => {
+    if (/概要|要点|summary/i.test(label)) return "OVERVIEW";
+    if (/議題|論点|topics|discussion/i.test(label)) return "DISCUSSION";
+    if (/決定|decisions|principles/i.test(label)) return "DECISION";
+    if (/担当|actions/i.test(label)) return "ACTION";
+    if (/前回|previous/i.test(label)) return "CHANGE";
+    if (/歴史|historical/i.test(label)) return "HISTORY";
+    return label.replace(/[^A-Za-z]/g, "").slice(0, 12).toUpperCase() || "STORY";
+  };
+
+  const setupAIInterpretation = main => {
+    if (main.querySelector(".ai-interpretation")) return;
+    const sections = [...main.querySelectorAll(":scope > .feature, :scope > .section")];
+    const findText = pattern => normalize(sections.find(section => pattern.test(normalize(section.querySelector("h2")?.textContent)))?.textContent);
+    const history = findText(/歴史|historical/i);
+    const change = findText(/前回|previous/i);
+    const title = normalize(document.querySelector(".hero h1, .archive-hero h1, h1")?.textContent) || "この回";
+    const lead = (history || change || normalize(main.textContent)).replace(/^(歴史的な位置づけ|前回からの変化)\s*/, "").slice(0, 230);
+    const interpretation = document.createElement("section");
+    interpretation.className = "section ai-interpretation";
+    interpretation.innerHTML = `
+      <div class="section-kicker">AI Interpretation</div>
+      <h2>会話を、歴史の流れとして読む。</h2>
+      <p class="ai-interpretation-lead">${lead}</p>
+      <div class="ai-interpretation-grid">
+        <div><span>TURNING POINT</span><p>${title}で、次の行動を決める前提が更新された。</p></div>
+        <div><span>CONNECTION</span><p>${change ? "前回からの変化を、具体的な方法と実行へつないだ。" : "これまでの議論を、次の実践へつなぐ位置にある。"}</p></div>
+        <div><span>NEXT TRACE</span><p>次の記録では、この回で定めた判断や行動が、どのような実績へ変わったかを追える。</p></div>
+      </div>`;
+    main.append(interpretation);
+  };
+
   const setupReadingTools = () => {
     const main = document.querySelector("main");
     if (!main) return;
+    setupAIInterpretation(main);
     const sections = [...main.querySelectorAll(":scope > .feature, :scope > .section")]
       .filter(section => !section.classList.contains("closing") && !section.classList.contains("archive-navigation"))
       .map((section, index) => {
         const heading = section.querySelector("h2");
         if (!heading) return null;
         if (!section.id) section.id = `archive-section-${index + 1}`;
-        return { section, heading, id: section.id, label: normalize(heading.textContent) };
+        section.classList.add("story-reveal");
+        return { section, heading, id: section.id, label: normalize(heading.textContent), story: storyLabel(normalize(heading.textContent)) };
       })
       .filter(Boolean);
     if (!sections.length) return;
@@ -54,6 +88,33 @@
     toc.append(inner);
     main.before(toc);
 
+    const rail = document.createElement("nav");
+    rail.className = "archive-rail";
+    rail.setAttribute("aria-label", "ストーリーの現在地");
+    const railLinks = document.createElement("div");
+    railLinks.className = "archive-rail-links";
+    sections.forEach(({ id, story }) => {
+      const link = document.createElement("a");
+      link.href = `#${id}`;
+      link.textContent = story;
+      railLinks.append(link);
+    });
+    rail.append(railLinks);
+    document.body.append(rail);
+
+    if (!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -5% 0px" });
+      sections.forEach(({ section }) => observer.observe(section));
+    } else {
+      sections.forEach(({ section }) => section.classList.add("is-visible"));
+    }
+
     let ticking = false;
     const update = () => {
       const start = main.offsetTop;
@@ -67,6 +128,7 @@
         if (section.offsetTop <= marker) activeId = id;
       });
       links.querySelectorAll("a").forEach(link => link.classList.toggle("is-active", link.getAttribute("href") === `#${activeId}`));
+      railLinks.querySelectorAll("a").forEach(link => link.classList.toggle("is-active", link.getAttribute("href") === `#${activeId}`));
       ticking = false;
     };
     window.addEventListener("scroll", () => {
