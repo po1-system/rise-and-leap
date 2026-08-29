@@ -5,38 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Rise & Leapは、三人の思考・行動・研究・意思決定のつながりを探索するデジタルアーカイブです。">
 <title>Rise &amp; Leap｜Research Headquarters</title>
-<link rel="stylesheet" href="assets/portal.css?v=20260829-hq">
+<link rel="stylesheet" href="assets/portal.css?v=20260830-space">
+<link rel="stylesheet" href="assets/space-prototype.css?v=20260830-space">
 </head>
 <body>
 <header class="site-header">
   <div class="wrap nav">
     <a class="brand" href="#now" aria-label="Rise & Leap ホーム"><img src="assets/rise-and-leap-logo.png?v=20260725-transparent" alt="Rise & Leap Gathering — 奮起と躍進の集い"></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">MENU</button>
-    <nav class="nav-links" id="main-menu" aria-label="メインナビゲーション"><a href="#now">NOW</a><a href="#stories">STORIES</a><a href="#people">PEOPLE</a><a href="#timeline">TIMELINE</a><a href="#archive">ARCHIVE</a><a href="#search">SEARCH</a></nav>
+    <nav class="nav-links" id="main-menu" aria-label="メインナビゲーション"><a href="#now">EXPLORE</a><a href="#stories">STORY</a><a href="#timeline">TIME</a><a href="#people">PEOPLE</a><a href="#archive">READ</a><a href="#search">SEARCH</a></nav>
   </div>
 </header>
 
 <main class="portal-main">
-  <section class="now" id="now" aria-labelledby="now-title">
-    <div class="wrap">
-      <div class="now-grid">
-        <div><div class="label">Current State — August 2026</div><h1 class="serif" id="now-title">Now,<span>we build the conditions.</span></h1><p class="now-intro">奮起と躍進の集いは、AIを試す研究会から、仕事・仕組み・判断を自分たちで育てる実践の場へ。過去の会話は、いま動いている三人の判断に接続されています。</p></div>
-        <aside class="now-side"><div class="label">Current phase</div><strong id="system-phase">SAFE EXECUTION</strong><p>人間の判断を残しながら、AI・業務・生活が続く構造をつくる。</p></aside>
-      </div>
-      <div class="system-pulse" aria-label="System Pulse"><div class="pulse"><span>LATEST MEETING</span><strong id="system-latest">—</strong></div><div class="pulse"><span>MEETING COUNT</span><strong id="now-meeting-count">—</strong></div><div class="pulse"><span>OPENCLAW</span><strong>APPROVAL VALIDATION</strong></div><div class="pulse"><span>KAZUO</span><strong>WORKFLOW DESIGN</strong></div><div class="pulse"><span>NEW CONCEPT</span><strong>EVALUATION DATABASE</strong></div></div>
+  <section class="research-space" id="now" aria-labelledby="now-title" data-focus="">
+    <div class="space-atmosphere" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="space-photo" aria-hidden="true"></div>
+    <div class="wrap research-space-inner">
+      <div class="space-topline"><span class="label">RISE &amp; LEAP RESEARCH SPACE</span><div class="mode-switch" role="group" aria-label="閲覧モード"><button type="button" data-view-mode="explore" class="is-active">EXPLORE</button><button type="button" data-view-mode="read">READ</button></div></div>
+      <div class="space-intro"><p class="space-kicker">CURRENT STATE — AUGUST 2026</p><h1 class="serif" id="now-title">三人の会話は、<br><em>いまも構造をつくっている。</em></h1><p>AI、仕事、生活、判断。記録された会話をたどりながら、三人が何を試し、どこで考え方を変えたかを探索する。</p></div>
+      <div class="space-topics" id="space-topics" aria-label="現在研究しているテーマ"></div>
+      <div class="space-people" id="space-people" aria-label="三人の研究者"></div>
+      <div class="space-status" aria-label="現在地"><div><span>LATEST MEETING</span><strong id="system-latest">—</strong></div><div><span>MEETING COUNT</span><strong id="now-meeting-count">—</strong></div><div><span>CURRENT PHASE</span><strong id="system-phase">SAFE EXECUTION</strong></div></div>
+      <a class="space-scroll-cue" href="#timeline"><span>SCROLL TO TRACE THE RESEARCH</span><i aria-hidden="true"></i></a>
     </div>
   </section>
 
-  <section class="portal-section" aria-labelledby="now-people-title">
-    <div class="wrap"><div class="section-heading"><div class="label">Three roles</div><div><h2 class="serif" id="now-people-title">同じ会議を、<br>異なる役割から動かす。</h2></div></div><div class="now-people"><article class="now-person"><span>BUILDER · 健太郎さん</span><h3>OpenClaw</h3><p>Approval / AI Vidas / Archive</p><b>Build · Experiment · Visualize</b></article><article class="now-person"><span>OPERATOR · 和雄さん</span><h3>Missiona</h3><p>HR / Workflow / Career</p><b>Work · Apply · Improve</b></article><article class="now-person"><span>ARCHITECT · 晏門さん</span><h3>AI Quality</h3><p>Context / Evaluation / Structure</p><b>Design · Question · Structure</b></article></div></div>
+  <section class="portal-section time-travel" id="timeline" aria-labelledby="timeline-title">
+    <div class="wrap"><div class="section-heading"><div class="label">Time layers</div><div><h2 class="serif" id="timeline-title">現在の理由を、<br>地層のように遡る。</h2><p>最新の判断から始めて、ひと月ずつ過去へ。いま見えている構造が、どの会話から生まれたかを追います。</p></div></div><div class="time-travel-list" id="time-travel-list" aria-live="polite"></div></div>
   </section>
 
-  <section class="portal-section time-travel" id="timeline" aria-labelledby="timeline-title">
-    <div class="wrap"><div class="section-heading"><div class="label">Time travel</div><div><h2 class="serif" id="timeline-title">現在の理由を、<br>過去へ遡る。</h2><p>最新の判断から始めて、ひと月ずつ過去へ。いま見えている構造が、どの会話から生まれたかを追います。</p></div></div><div class="time-travel-list" id="time-travel-list" aria-live="polite"></div></div>
-  </section>
+  <section class="quote-takeover" aria-label="プロジェクトを変えた言葉"><div class="quote-takeover-inner" id="prototype-quote"></div></section>
 
   <section class="portal-section stories" id="stories" aria-labelledby="stories-title">
-    <div class="wrap"><div class="section-heading"><div class="label">Stories</div><div><h2 class="serif" id="stories-title">日付ではなく、<br>考え方の線をたどる。</h2><p>ひとつのテーマが、実装・仕事・考え方へどう接続したか。ポイントを選ぶと元の議事録を読めます。</p></div></div><div class="stories-list" id="stories-list" aria-live="polite"></div></div>
+    <div class="wrap"><div class="section-heading"><div class="label">Story prototype — 01</div><div><h2 class="serif" id="stories-title">AIを動かす前に、<br>動いてもいい条件をつくる。</h2><p>最初のプロトタイプはOpenClawの系譜です。概念が実装・文脈・承認へどうつながったかを、ひとつの線として読みます。</p></div></div><div class="stories-list" id="stories-list" aria-live="polite"></div></div>
   </section>
 
   <section class="portal-section people-command" id="people" aria-labelledby="people-title">
@@ -84,7 +86,9 @@
 <footer class="wrap footer">RISE &amp; LEAP · COLLECTIVE RESEARCH HEADQUARTERS · 2026</footer>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-<script src="assets/site.js?v=20260829-hq" defer></script>
-<script src="assets/portal.js?v=20260829-hq" defer></script>
+<script src="assets/research-data.js?v=20260830-space" defer></script>
+<script src="assets/site.js?v=20260830-space" defer></script>
+<script src="assets/portal.js?v=20260830-space" defer></script>
+<script src="assets/space-prototype.js?v=20260830-space" defer></script>
 </body>
 </html>

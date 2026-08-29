@@ -2,12 +2,8 @@
   "use strict";
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const storyDefinitions = [
-    { id: "openclaw", name: "OPENCLAW STORY", subtitle: "AIを安全に動かすまで", query: /OpenClaw|承認|文脈|API|自動処理/i, dates: ["2026-02-06", "2026-02-20", "2026-03-06", "2026-04-30", "2026-06-11", "2026-08-21"] },
-    { id: "kazuo", name: "KAZUO CAREER STORY", subtitle: "仕事に入り、改善を実績に変えるまで", query: /案件|応募|面談|ミショナ|人事|キャリア|生活/i, dates: ["2026-01-16", "2026-03-27", "2026-05-14", "2026-06-18", "2026-08-13", "2026-08-21"] },
-    { id: "thinking", name: "AI THINKING STORY", subtitle: "考え方を仕組みへ変えるまで", query: /逆算|途中式|文脈|評価|承認|AI/i, dates: ["2026-01-30", "2026-04-30", "2026-05-14", "2026-06-04", "2026-07-31", "2026-08-21"] }
-  ];
-  const monthDefinitions = {
+  const research = window.RiseLeapResearch || {};
+  const fallbackMonths = {
     "2026-08": ["AUG 2026", "SAFE EXECUTION", "APPROVAL · EVALUATION · WORKFLOW", "成果を急がず、成果が自然に出る生活・安全・評価の基盤を整えた。"],
     "2026-07": ["JUL 2026", "HUMAN IN THE LOOP", "QUALITY · TRUST · SUPERVISION", "AIを影武者として使い、人間が品質と信頼を握る段階へ。"],
     "2026-06": ["JUN 2026", "MARKET SIGNALS", "CONTEXT · RESPONSE · FEEDBACK", "市場の反応と途中経過を、次の判断に変える仕組みを探った。"],
@@ -17,19 +13,11 @@
     "2026-02": ["FEB 2026", "AUTONOMY", "AGENT · HUMAN APPROVAL · STRUCTURE", "AI労働基盤を、人間の承認と再利用可能な構造で捉え始めた。"],
     "2026-01": ["JAN 2026", "THE FIRST QUESTION", "SELF-HELP · ACTION · AI", "AIを使って、人が自分で前へ進める環境をつくるところから始まった。"]
   };
-  const people = [
-    { id: "kentaro", name: "中村健太郎", display: "KENTARO", role: "Builder", verbs: "Build / Experiment / Visualize", now: "OpenClaw / Approval / AI Vidas / Archive", quote: "AIを速くするだけでは仕事は速くならない。", concepts: "OpenClaw · 文脈 · 承認" },
-    { id: "kazuo", name: "中村和雄", display: "KAZUO", role: "Operator", verbs: "Work / Apply / Improve", now: "Missiona / HR / Workflow / Career", quote: "人生を先に決めて、その中に仕事を入れる。", concepts: "自分軸 · 実績 · 改善" },
-    { id: "amon", name: "木場晏門", display: "AMON", role: "Architect", verbs: "Design / Question / Structure", now: "AI Quality / Context / Evaluation / Structure", quote: "欲しい結果を直接取りに行くより、その構造を先に作る。", concepts: "逆算 · 途中式 · 評価DB" }
-  ];
-  const quotes = [
-    { date: "2026.08.21", speaker: "晏門さん", quote: "欲しい結果を直接取りに行くより、その結果が出る構造を先に作る。", href: "2026-08-21.html" },
-    { date: "2026.08.13", speaker: "健太郎さん", quote: "予定が空いたら人生を入れるのではなく、人生を先に決めて、その中に仕事を入れる。", href: "2026-08-13.html" },
-    { date: "2026.04.30", speaker: "健太郎さん", quote: "AIを速くするだけでは仕事は速くならない。仕事の文脈を、説明し直さなくてよい状態にする。", href: "2026-04-30.html" }
-  ];
-  const concepts = [
-    ["自助モデル", "2026.01", "AI", "人が自分で前へ進める環境"], ["途中式", "2026.05", "途中式", "意図・仮説・判断・修正を残す"], ["文脈", "2026.04", "OpenClaw", "AIと仕事の背景を共有し続ける"], ["逆算", "2026.06", "目標", "未来から届く構造を設計する"], ["自分軸", "2026.08", "時間", "人生を先に決めて仕事を配置する"], ["承認の正当性", "2026.08", "承認", "誰が何を認めたかを照合する"], ["評価データベース", "2026.08", "評価", "人間の評価をAIの学習資産にする"]
-  ];
+  const storyDefinitions = research.stories || [];
+  const monthDefinitions = research.months || fallbackMonths;
+  const people = research.people || [];
+  const quotes = research.quotes || [];
+  const concepts = research.concepts || [];
   const escape = value => String(value).replace(/[&<>"]/g, character => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[character]));
 
   const itemForDate = (items, date) => items.find(item => item.date === date);
@@ -48,7 +36,8 @@
   const renderStories = items => {
     const container = document.querySelector("#stories-list");
     if (!container) return;
-    container.innerHTML = storyDefinitions.map(definition => {
+    const definitions = research.prototypeStories?.length ? storyDefinitions.filter(definition => research.prototypeStories.includes(definition.id)) : storyDefinitions;
+    container.innerHTML = definitions.map(definition => {
       const anchorPoints = definition.dates.map(date => itemForDate(items, date)).filter(Boolean);
       const latestAnchor = definition.dates.at(-1);
       const futurePoints = items.filter(item => item.date > latestAnchor && definition.query.test([item.title, item.summary, item.shortSummary].join(" ")));
