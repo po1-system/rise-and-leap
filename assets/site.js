@@ -455,7 +455,7 @@
       renderPulse(items);
       renderTimeline(items, timeline);
       renderMonthly(items, monthly);
-      document.dispatchEvent(new CustomEvent("archive:rendered"));
+      document.dispatchEvent(new CustomEvent("archive:rendered", { detail: { items } }));
     } catch (error) {
       console.error(error);
       status.textContent = "検索機能を読み込めませんでした。通常の一覧から閲覧できます。";

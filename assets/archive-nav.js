@@ -13,7 +13,8 @@
   const storyLabel = label => {
     if (/概要|要点|summary/i.test(label)) return "OVERVIEW";
     if (/議題|論点|topics|discussion/i.test(label)) return "DISCUSSION";
-    if (/決定|decisions|principles/i.test(label)) return "DECISION";
+    if (/決定|decisions/i.test(label)) return "DECISIONS";
+    if (/principles|重要概念/i.test(label)) return "CONCEPTS";
     if (/担当|actions/i.test(label)) return "ACTION";
     if (/前回|previous/i.test(label)) return "CHANGE";
     if (/歴史|historical/i.test(label)) return "HISTORY";
@@ -47,7 +48,7 @@
     if (!main) return;
     setupAIInterpretation(main);
     const sections = [...main.querySelectorAll(":scope > .feature, :scope > .section")]
-      .filter(section => !section.classList.contains("closing") && !section.classList.contains("archive-navigation"))
+      .filter(section => !section.classList.contains("closing") && !section.classList.contains("archive-navigation") && !section.classList.contains("ai-interpretation"))
       .map((section, index) => {
         const heading = section.querySelector("h2");
         if (!heading) return null;
@@ -186,6 +187,22 @@
       if (items[currentIndex + 1]) siblings.append(makeSibling(items[currentIndex + 1], "next"));
       navigation.append(siblings);
 
+      const connected = document.createElement("section");
+      connected.className = "connected-to";
+      connected.setAttribute("aria-label", "この会議のつながり");
+      connected.innerHTML = '<div class="section-kicker">Connected To</div><h2>この回は、どこから来て、<br>どこへ続くか。</h2><p>前後の記録を、会話と行動が連続する一つの流れとして読む。</p>';
+      const trace = document.createElement("div");
+      trace.className = "connection-trace";
+      [items[currentIndex - 1], items[currentIndex], items[currentIndex + 1]].filter(Boolean).forEach(item => {
+        const entry = document.createElement(item.href === currentFile ? "div" : "a");
+        entry.className = `connection-node ${item.href === currentFile ? "is-current" : ""}`;
+        if (entry.tagName === "A") entry.href = item.href;
+        const role = item.href === currentFile ? "THIS MEETING" : item.date < items[currentIndex].date ? "FROM" : "NEXT";
+        entry.innerHTML = `<span>${role}</span><time datetime="${item.date}">${item.date.replaceAll("-", ".")}</time><strong>${item.title}</strong>`;
+        trace.append(entry);
+      });
+      connected.append(trace);
+
       const currentText = normalize(document.querySelector("main")?.textContent);
       const related = items
         .map((item, index) => ({ ...item, score: scoreRelated(currentText, item.title, Math.abs(index - currentIndex)) }))
@@ -207,6 +224,9 @@
         relatedBlock.append(links);
         navigation.append(relatedBlock);
       }
+      const interpretation = main.querySelector(".ai-interpretation");
+      if (interpretation) main.insertBefore(connected, interpretation);
+      else main.append(connected);
       main.append(navigation);
     } catch (error) {
       console.warn("Archive navigation could not be loaded.", error);
