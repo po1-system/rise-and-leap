@@ -4,42 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Rise & Leapは、三人の思考・行動・研究・意思決定のつながりを探索するデジタルアーカイブです。">
-<title>Rise &amp; Leap｜Research Headquarters</title>
+<title>Rise &amp; Leap｜Research Archive</title>
 <link rel="stylesheet" href="assets/portal.css?v=20260830-space">
-<link rel="stylesheet" href="assets/space-prototype.css?v=20260830-space">
+<link rel="stylesheet" href="assets/research-os.css?v=20260830-os">
 </head>
-<body>
+<body class="research-os">
 <header class="site-header">
   <div class="wrap nav">
     <a class="brand" href="#now" aria-label="Rise & Leap ホーム"><img src="assets/rise-and-leap-logo.png?v=20260725-transparent" alt="Rise & Leap Gathering — 奮起と躍進の集い"></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">MENU</button>
-    <nav class="nav-links" id="main-menu" aria-label="メインナビゲーション"><a href="#now">EXPLORE</a><a href="#stories">STORY</a><a href="#timeline">TIME</a><a href="#people">PEOPLE</a><a href="#archive">READ</a><a href="#search">SEARCH</a></nav>
+    <nav class="nav-links" id="main-menu" aria-label="メインナビゲーション"><a href="#latest">LATEST</a><a href="#recent">SESSIONS</a><a href="#timeline">TIMELINE</a><a href="#people">PEOPLE</a><a href="#knowledge">CONCEPTS</a><a href="#search" data-command-launch>SEARCH</a></nav>
+    <button class="command-open" id="command-search-open" type="button" aria-haspopup="dialog" aria-controls="command-palette">SEARCH <kbd>⌘K</kbd></button>
   </div>
 </header>
 
 <main class="portal-main">
-  <section class="research-space" id="now" aria-labelledby="now-title" data-focus="">
-    <div class="space-atmosphere" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="space-photo" aria-hidden="true"></div>
-    <div class="wrap research-space-inner">
-      <div class="space-topline"><span class="label">RISE &amp; LEAP RESEARCH SPACE</span><div class="mode-switch" role="group" aria-label="閲覧モード"><button type="button" data-view-mode="explore" class="is-active">EXPLORE</button><button type="button" data-view-mode="read">READ</button></div></div>
-      <div class="space-intro"><p class="space-kicker">CURRENT STATE — AUGUST 2026</p><h1 class="serif" id="now-title">三人の会話は、<br><em>いまも構造をつくっている。</em></h1><p>AI、仕事、生活、判断。記録された会話をたどりながら、三人が何を試し、どこで考え方を変えたかを探索する。</p></div>
-      <div class="space-topics" id="space-topics" aria-label="現在研究しているテーマ"></div>
-      <div class="space-people" id="space-people" aria-label="三人の研究者"></div>
-      <div class="space-status" aria-label="現在地"><div><span>LATEST MEETING</span><strong id="system-latest">—</strong></div><div><span>MEETING COUNT</span><strong id="now-meeting-count">—</strong></div><div><span>CURRENT PHASE</span><strong id="system-phase">SAFE EXECUTION</strong></div></div>
-      <a class="space-scroll-cue" href="#timeline"><span>SCROLL TO TRACE THE RESEARCH</span><i aria-hidden="true"></i></a>
+  <section class="latest-session" id="latest" aria-labelledby="latest-title">
+    <div class="wrap latest-grid">
+      <div class="latest-copy"><div class="eyebrow">RISE &amp; LEAP / RESEARCH ARCHIVE</div><div class="session-label">LATEST SESSION</div><time id="latest-date" datetime="2026-08-21">2026.08.21</time><h1 class="serif" id="latest-title">最新の議事録を読み込んでいます。</h1><p id="latest-summary">研究会の最新記録を準備しています。</p><div class="latest-metadata"><span id="latest-members">—</span><span id="latest-themes">—</span></div><a class="latest-open" id="latest-open" href="2026-08-21.html">OPEN LATEST SESSION <i aria-hidden="true">→</i></a><div class="latest-links"><a id="latest-previous" href="2026-08-13.html">PREVIOUS <span>—</span></a><a href="#recent">ALL SESSIONS <span>→</span></a></div></div>
+      <div class="latest-visual" aria-hidden="true"><div class="visual-grid"></div><img src="assets/featured-journey.jpg" alt="" fetchpriority="high"><div class="visual-caption"><span>CURRENT PHASE</span><strong id="system-phase">SAFE EXECUTION</strong><span id="system-latest">2026.08.21</span></div></div>
     </div>
   </section>
 
-  <section class="portal-section time-travel" id="timeline" aria-labelledby="timeline-title">
-    <div class="wrap"><div class="section-heading"><div class="label">Time layers</div><div><h2 class="serif" id="timeline-title">現在の理由を、<br>地層のように遡る。</h2><p>最新の判断から始めて、ひと月ずつ過去へ。いま見えている構造が、どの会話から生まれたかを追います。</p></div></div><div class="time-travel-list" id="time-travel-list" aria-live="polite"></div></div>
-  </section>
+  <section class="now-os" id="now" aria-labelledby="now-title"><div class="wrap"><div class="os-heading"><div><span class="eyebrow">NOW / CURRENT RESEARCH</span><h2 class="serif" id="now-title">いま取り組んでいること。</h2></div><p>最新の会話が、三人それぞれの実践へどう接続されているかを一画面にまとめています。</p></div><div class="now-ledger" id="now-ledger" aria-live="polite"></div><div class="system-strip"><span>LATEST <b id="now-meeting-count">—</b></span><span>MEETINGS <b>25</b></span><span>RESEARCH MODE <b>HUMAN + AI</b></span></div></div></section>
 
-  <section class="quote-takeover" aria-label="プロジェクトを変えた言葉"><div class="quote-takeover-inner" id="prototype-quote"></div></section>
+  <section class="recent-sessions" id="recent" aria-labelledby="recent-title"><div class="wrap"><div class="section-line-heading"><div><span class="eyebrow">RECENT SESSIONS</span><h2 class="serif" id="recent-title">すぐに、最近の流れを読む。</h2></div><a href="#archive">OPEN ARCHIVE <i aria-hidden="true">→</i></a></div><div class="recent-list" id="recent-list" aria-live="polite"></div></div></section>
 
-  <section class="portal-section stories" id="stories" aria-labelledby="stories-title">
-    <div class="wrap"><div class="section-heading"><div class="label">Story prototype — 01</div><div><h2 class="serif" id="stories-title">AIを動かす前に、<br>動いてもいい条件をつくる。</h2><p>最初のプロトタイプはOpenClawの系譜です。概念が実装・文脈・承認へどうつながったかを、ひとつの線として読みます。</p></div></div><div class="stories-list" id="stories-list" aria-live="polite"></div></div>
-  </section>
+  <section class="evolution" id="evolution" aria-labelledby="evolution-title"><div class="wrap evolution-grid"><div><span class="eyebrow">EVOLUTION</span><h2 class="serif" id="evolution-title">研究会は、どこからどこへ進んだか。</h2><p>AIを使い始めた会話は、実務への応用、文脈の継承、承認設計、評価データという現在の基盤へつながっています。</p></div><ol class="evolution-steps"><li><b>01</b><span>AIを使い始める</span></li><li><b>02</b><span>仕事に使い始める</span></li><li><b>03</b><span>AIに任せ始める</span></li><li><b>04</b><span>安全に動かす条件をつくる</span></li></ol></div></section>
+
+  <section class="portal-section timeline-os" id="timeline" aria-labelledby="timeline-title"><div class="wrap"><div class="section-line-heading"><div><span class="eyebrow">EXPLORE THE HISTORY / TIMELINE</span><h2 class="serif" id="timeline-title">転換点から、過去をたどる。</h2></div><p>月を選ぶと、その時期を象徴する会議へ進めます。</p></div><div class="time-travel-list" id="time-travel-list" aria-live="polite"></div></div></section>
+
+  <section class="portal-section stories stories-os" id="stories" aria-labelledby="stories-title"><div class="wrap"><div class="section-line-heading"><div><span class="eyebrow">STORY / OPENCLAW</span><h2 class="serif" id="stories-title">概念が実装へ変わるまで。</h2></div><p>探索は選択肢です。必要なときだけ、一本の研究史として読み進められます。</p></div><div class="stories-list" id="stories-list" aria-live="polite"></div></div></section>
 
   <section class="portal-section people-command" id="people" aria-labelledby="people-title">
     <div class="wrap"><div class="section-heading"><div class="label">People</div><div><h2 class="serif" id="people-title">プロフィールではなく、<br>役割の進化を読む。</h2><p>一人を選ぶと、初期状態・転換点・現在地・関連概念を、その人の記録だけから再構成します。</p></div></div><div class="people-layout"><div class="people-list" id="people-list" aria-label="人物を選ぶ"></div><div class="person-detail" id="person-detail" aria-live="polite"></div></div></div>
@@ -83,12 +78,13 @@
       </div><button class="load-more" id="load-more" type="button">さらに表示</button></div></div></div>
   </section>
 </main>
+<dialog class="command-palette" id="command-palette" aria-labelledby="command-title"><form method="dialog" class="command-shell"><div class="command-head"><label id="command-title" for="command-input">SEARCH THE ARCHIVE</label><button type="submit" aria-label="検索を閉じる">ESC</button></div><input id="command-input" type="search" autocomplete="off" placeholder="会議日、人物、OpenClaw、承認、ミショナ、文脈…"><p class="command-hint">会議、人物、テーマ、重要概念を横断検索します。</p><div class="command-results" id="command-results" aria-live="polite"></div></form></dialog>
 <footer class="wrap footer">RISE &amp; LEAP · COLLECTIVE RESEARCH HEADQUARTERS · 2026</footer>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-<script src="assets/research-data.js?v=20260830-space" defer></script>
-<script src="assets/site.js?v=20260830-space" defer></script>
-<script src="assets/portal.js?v=20260830-space" defer></script>
-<script src="assets/space-prototype.js?v=20260830-space" defer></script>
+<script src="assets/research-data.js?v=20260830-os" defer></script>
+<script src="assets/site.js?v=20260830-os" defer></script>
+<script src="assets/portal.js?v=20260830-os" defer></script>
+<script src="assets/research-os.js?v=20260830-os" defer></script>
 </body>
 </html>
