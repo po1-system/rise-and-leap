@@ -1,11 +1,13 @@
 (() => {
   "use strict";
 
+  document.documentElement.classList.add("art-ready");
+
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const research = window.RiseLeapResearch || {};
   const escape = value => String(value || "").replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[character]));
   const featuredTitles = {
-    "2026-08-21": "AIを安全に動かすための承認設計と、高品質なAI出力を生む評価データベース"
+    "2026-08-21": ["AIを安全に動かすための", "承認設計と、高品質な", "AI出力を生む", "評価データベース"]
   };
   let archiveItems = [];
 
@@ -17,10 +19,13 @@
     const latest = sorted[0];
     const previous = sorted[1];
     if (!latest) return;
-    const title = featuredTitles[latest.date] || latest.title;
+    const featuredTitle = featuredTitles[latest.date];
+    const title = featuredTitle ? featuredTitle.join("") : latest.title;
     document.querySelector("#latest-date").dateTime = latest.date;
     document.querySelector("#latest-date").textContent = dateLabel(latest.date);
-    document.querySelector("#latest-title").textContent = title;
+    const titleElement = document.querySelector("#latest-title");
+    titleElement.textContent = title;
+    if (featuredTitle) titleElement.innerHTML = featuredTitle.map(line => `<span>${escape(line)}</span>`).join("");
     document.querySelector("#latest-summary").textContent = latest.shortSummary || latest.summary;
     document.querySelector("#latest-members").textContent = membersLabel(latest);
     document.querySelector("#latest-themes").textContent = latest.themes?.join(" / ") || "AI Research";
@@ -37,17 +42,42 @@
     const container = document.querySelector("#now-ledger");
     if (!container) return;
     const current = [
-      ["01", "KENTARO", "Safe AI Execution", "Approval Validation → Controlled Execution"],
-      ["02", "KAZUO", "Workflow & Career", "Missiona → HR → Workflow Improvement"],
-      ["03", "AMON", "AI Quality", "Prompt → Evaluation Data → Quality Database"]
+      ["kentaro", "01", "KENTARO", "Safe AI Execution", ["OpenClaw", "Approval", "Memory"]],
+      ["kazuo", "02", "KAZUO", "Workflow & Career", ["Missiona", "HR", "Workflow"]],
+      ["amon", "03", "AMON", "AI Quality", ["Context", "AI Quality", "Evaluation"]]
     ];
-    container.innerHTML = current.map(([number, name, title, copy]) => `<article class="now-entry"><span>${number} / ${name}</span><div><h3>${title}</h3><p>${copy}</p></div></article>`).join("");
+    container.innerHTML = `<div class="now-canvas-visual" aria-hidden="true"><img src="assets/featured-journey.jpg" alt=""><span>COLLECTIVE<br>RESEARCH</span></div><div class="now-lines" aria-hidden="true"><i></i><i></i><i></i></div>${current.map(([id, number, name, title, keywords]) => `<article class="now-person-node now-${id}" data-now-person="${id}" tabindex="0"><span>${number} / ${name}</span><h3>${title}</h3><div class="now-keywords">${keywords.map(keyword => `<em>${keyword}</em>`).join("")}</div></article>`).join("")}<p class="now-canvas-note">Hover or focus a person to trace the active research thread.</p>`;
+    const focus = id => id ? container.dataset.focus = id : container.removeAttribute("data-focus");
+    container.querySelectorAll("[data-now-person]").forEach(node => {
+      node.addEventListener("mouseenter", () => focus(node.dataset.nowPerson));
+      node.addEventListener("focus", () => focus(node.dataset.nowPerson));
+      node.addEventListener("mouseleave", () => focus(""));
+      node.addEventListener("blur", () => focus(""));
+    });
   };
 
   const renderRecent = items => {
     const container = document.querySelector("#recent-list");
     if (!container) return;
-    container.innerHTML = items.slice().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5).map(item => `<a class="recent-row" href="${item.href}"><time datetime="${item.date}">${dateLabel(item.date)}</time><strong>${escape(item.title)}</strong><span class="recent-context">${escape(membersLabel(item))} · ${escape(item.themes?.join(" / ") || "Research")}</span><span class="arrow" aria-hidden="true">→</span></a>`).join("");
+    const recent = items.slice().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
+    container.innerHTML = recent.map((item, index) => `<a class="recent-row" href="${item.href}" data-recent-index="${index}" data-recent-date="${escape(dateLabel(item.date))}" data-recent-theme="${escape(item.themes?.slice(0, 2).join(" / ") || "Research")}"><time datetime="${item.date}">${dateLabel(item.date)}</time><strong>${escape(item.title)}</strong><span class="recent-context">${escape(membersLabel(item))} · ${escape(item.themes?.join(" / ") || "Research")}</span><span class="arrow" aria-hidden="true">→</span></a>`).join("");
+    const preview = document.querySelector("#recent-preview");
+    if (!preview) return;
+    const updatePreview = row => {
+      const index = Number(row.dataset.recentIndex || 0);
+      preview.style.setProperty("--recent-index", String(index));
+      preview.style.setProperty("--recent-x", `${50 + index * 3}%`);
+      preview.style.setProperty("--recent-scale", String(1.02 + index * .006));
+      document.querySelector("#recent-preview-date").textContent = row.dataset.recentDate || "";
+      document.querySelector("#recent-preview-theme").textContent = row.dataset.recentTheme || "RESEARCH";
+      preview.classList.remove("is-changing");
+      window.requestAnimationFrame(() => preview.classList.add("is-changing"));
+    };
+    container.querySelectorAll(".recent-row").forEach(row => {
+      row.addEventListener("mouseenter", () => updatePreview(row));
+      row.addEventListener("focus", () => updatePreview(row));
+    });
+    if (container.firstElementChild) updatePreview(container.firstElementChild);
   };
 
   const openArchiveSearch = (query = "") => {
@@ -99,7 +129,21 @@
   const setupReactiveRows = () => {
     if (reduced || !window.IntersectionObserver) return;
     const observer = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle("is-in-view", entry.isIntersecting)), { threshold: .25 });
-    document.querySelectorAll(".evolution-steps li, .timeline-os .time-card").forEach(node => observer.observe(node));
+    document.querySelectorAll(".evolution-steps li, .timeline-os .time-card, .now-canvas, .recent-editorial, .people-layout, .knowledge-layout").forEach(node => observer.observe(node));
+  };
+
+  const setupEditorialMotion = () => {
+    if (reduced || !window.matchMedia("(pointer: fine)").matches) return;
+    const visual = document.querySelector(".latest-visual");
+    const image = visual?.querySelector("img");
+    if (!visual || !image) return;
+    visual.addEventListener("pointermove", event => {
+      const bounds = visual.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width - .5;
+      const y = (event.clientY - bounds.top) / bounds.height - .5;
+      image.style.transform = `scale(1.035) translate(${x * 7}px, ${y * 7}px)`;
+    });
+    visual.addEventListener("pointerleave", () => image.style.transform = "");
   };
 
   const init = items => {
@@ -110,6 +154,7 @@
     setupCommand();
     setupHeader();
     setupReactiveRows();
+    setupEditorialMotion();
   };
 
   document.addEventListener("archive:rendered", event => init(event.detail?.items || []), { once: true });
