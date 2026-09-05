@@ -7,6 +7,7 @@
   const research = window.RiseLeapResearch || {};
   const escape = value => String(value || "").replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[character]));
   const featuredTitles = {
+    "2026-09-04": ["履歴と評価を、", "AIが次の判断へつなぐ"],
     "2026-08-21": ["AIを安全に動かすための", "承認設計と、高品質な", "AI出力を生む", "評価データベース"]
   };
   let archiveItems = [];
