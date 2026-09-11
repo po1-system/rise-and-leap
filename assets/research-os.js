@@ -7,6 +7,7 @@
   const research = window.RiseLeapResearch || {};
   const escape = value => String(value || "").replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[character]));
   const featuredTitles = {
+    "2026-09-11": ["AIが変わったなら、", "目的と要件も問い直す"],
     "2026-09-04": ["履歴と評価を、", "AIが次の判断へつなぐ"],
     "2026-08-21": ["AIを安全に動かすための", "承認設計と、高品質な", "AI出力を生む", "評価データベース"]
   };
@@ -43,9 +44,9 @@
     const container = document.querySelector("#now-ledger");
     if (!container) return;
     const current = [
-      ["kentaro", "01", "KENTARO", "Safe AI Execution", ["OpenClaw", "Approval", "Memory"]],
-      ["kazuo", "02", "KAZUO", "Workflow & Career", ["Missiona", "HR", "Workflow"]],
-      ["amon", "03", "AMON", "AI Quality", ["Context", "AI Quality", "Evaluation"]]
+      ["kentaro", "01", "KENTARO", "Requirements & Execution", ["OpenClaw", "Astra", "Approval"]],
+      ["kazuo", "02", "KAZUO", "Personal PMOS", ["Career Lab", "Direct Outreach", "Missiona"]],
+      ["amon", "03", "AMON", "AI Capability Change", ["Astra", "Organization", "New Outputs"]]
     ];
     container.innerHTML = `<div class="now-canvas-visual" aria-hidden="true"><img src="assets/featured-journey.jpg" alt=""><span>COLLECTIVE<br>RESEARCH</span></div><div class="now-lines" aria-hidden="true"><i></i><i></i><i></i></div>${current.map(([id, number, name, title, keywords]) => `<article class="now-person-node now-${id}" data-now-person="${id}" tabindex="0"><span>${number} / ${name}</span><h3>${title}</h3><div class="now-keywords">${keywords.map(keyword => `<em>${keyword}</em>`).join("")}</div></article>`).join("")}<p class="now-canvas-note">Hover or focus a person to trace the active research thread.</p>`;
     const focus = id => id ? container.dataset.focus = id : container.removeAttribute("data-focus");
