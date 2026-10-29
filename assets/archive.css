@@ -285,3 +285,22 @@ main>.feature,main>.section{scroll-margin-top:150px}
 /* Causal trace between neighbouring meetings */
 .connected-to{margin-top:54px;padding:38px;border-top:2px solid transparent;border-image:var(--brand-gradient) 1;background:rgba(255,250,243,.84);box-shadow:0 14px 42px rgba(50,42,64,.08)}.connected-to h2{margin:7px 0 10px;font-family:Georgia,"Times New Roman","YuMincho",serif;font-size:clamp(28px,4vw,46px);font-weight:400;line-height:1.05;letter-spacing:-.045em}.connected-to>p{margin:0;color:var(--muted);font-size:14px}.connection-trace{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line)}.connection-node{position:relative;display:block;min-height:148px;padding:19px 20px 8px;border-left:1px solid var(--line);transition:background .2s,transform .2s}.connection-node:first-child{border-left:0}.connection-node:not(:last-child):after{content:"→";position:absolute;z-index:1;right:-12px;top:50%;width:23px;height:23px;border-radius:50%;background:var(--paper);color:var(--violet);text-align:center;line-height:23px;transform:translateY(-50%)}.connection-node:hover{background:rgba(105,86,168,.07);transform:translateY(-2px)}.connection-node.is-current{background:linear-gradient(145deg,rgba(22,142,196,.08),rgba(217,95,141,.06),rgba(255,139,74,.05))}.connection-node span,.connection-node time,.connection-node strong{display:block}.connection-node span{color:var(--rose);font-size:9px;font-weight:800;letter-spacing:.13em}.connection-node time{margin-top:12px;font-family:Georgia,serif;font-size:13px}.connection-node strong{margin-top:7px;font-size:14px;font-weight:500;line-height:1.5}
 @media(max-width:620px){.connected-to{margin-top:38px;padding:26px 20px}.connection-trace{grid-template-columns:1fr;margin-top:23px}.connection-node{min-height:0;padding:16px 0;border-left:0;border-top:1px solid var(--line)}.connection-node:first-child{border-top:0}.connection-node:not(:last-child):after{right:auto;left:50%;top:auto;bottom:-12px;transform:translateX(-50%) rotate(90deg)}}
+
+/* Long-form sessions use the shared archive system with a calm reading column. */
+.meeting-detail .topic-grid{grid-template-columns:1fr}
+.meeting-detail .topic{min-height:0;border-left:0;border-top:1px solid var(--line);padding:34px 38px}
+.meeting-detail .topic:first-child{border-top:0}
+.meeting-detail .topic .tag{margin-bottom:12px}
+.meeting-detail .topic h3,.meeting-detail .topic p,.meeting-detail .content-card>p,.meeting-detail .content-card>h3,.meeting-detail .action-owner{max-width:800px;margin-left:auto;margin-right:auto}
+.meeting-detail .topic p{font-size:17px;line-height:2;color:var(--ink)}
+.meeting-detail .topic h3{font-size:23px;line-height:1.5}
+.meeting-detail .content-card h3{margin-top:28px;margin-bottom:12px;line-height:1.6}
+.meeting-detail .content-card h3:first-child{margin-top:0}
+.meeting-detail .aside-card h2{font-size:27px;line-height:1.55}
+.meeting-detail .decision-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+.meeting-detail .action-owner+.action-owner{border-top:1px solid var(--line);padding-top:24px;margin-top:28px}
+.meeting-detail .action-owner small{display:block;color:var(--muted);font-weight:400;font-size:13px}
+.meeting-detail .action-owner li{margin:8px 0;font-size:17px;line-height:1.9}
+.meeting-detail .connection-trace{grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
+.meeting-detail .content-card p,.meeting-detail .topic p{overflow-wrap:break-word;word-break:normal}
+@media(max-width:620px){.meeting-detail .topic{padding:28px 24px}.meeting-detail .topic h3{font-size:21px}.meeting-detail .topic p{font-size:17px;line-height:1.9}.meeting-detail .connection-trace{grid-template-columns:1fr}}

@@ -119,9 +119,9 @@
     const attendeeText = normalize(heroFooter.find(node => /Members|Attendees/i.test(node.querySelector("span")?.textContent || ""))?.textContent);
     const members = memberNames.filter(name => attendeeText.includes(name));
     const summary = normalize(doc.querySelector("#summary .content-card p")?.textContent);
-    const shortSummary = normalize(doc.querySelector("#summary .aside-card p")?.textContent);
+    const shortSummary = normalize(doc.querySelector('meta[name="archive-summary"]')?.content || doc.querySelector("#summary .aside-card p")?.textContent);
     const topics = [...doc.querySelectorAll(".topic")].map(topic => normalize(topic.textContent));
-    const searchText = normalize([title, summary, shortSummary, ...topics].join(" "));
+    const searchText = normalize([date, date?.replaceAll("-", "."), ...members, title, summary, shortSummary, ...topics].join(" "));
     return {
       href: link.getAttribute("href"),
       date,

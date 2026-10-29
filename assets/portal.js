@@ -56,7 +56,7 @@
       const related = items.filter(item => item.members.includes(person.name)).sort((a, b) => a.date.localeCompare(b.date));
       const first = related[0];
       const latest = related.at(-1);
-      detail.innerHTML = `<div class="person-detail-head"><span>${person.role.toUpperCase()}</span><h3>${person.display}</h3><p>${person.now}</p></div><div class="person-detail-grid"><div><span>INITIAL STATE</span><p>${first ? `${first.date.replaceAll("-", ".")} — ${escape(first.title)}` : "記録を読み込み中"}</p></div><div><span>TURNING POINT</span><p>${escape(person.quote)}</p></div><div><span>CURRENT STATE</span><p>${latest ? `${latest.date.replaceAll("-", ".")} — ${escape(latest.title)}` : person.now}</p></div><div><span>RELATED CONCEPTS</span><p>${person.concepts}</p></div></div><div class="person-trace">${related.map(item => `<a href="${item.href}"><time>${item.date.replaceAll("-", ".")}</time><span>${escape(item.title)}</span></a>`).join("")}</div>`;
+      detail.innerHTML = `<div class="person-detail-head"><span>${person.role.toUpperCase()}</span><h3>${person.display}</h3><p>${person.now}</p></div><div class="person-detail-grid"><div><span>INITIAL STATE</span><p>${first ? `${first.date.replaceAll("-", ".")} — ${escape(first.title)}` : "記録を読み込み中"}</p></div><div><span>TURNING POINT / EDITORIAL</span><p>${escape(person.quote)}</p></div><div><span>CURRENT STATE</span><p>${latest ? `${latest.date.replaceAll("-", ".")} — ${escape(latest.title)}` : person.now}</p></div><div><span>RELATED CONCEPTS</span><p>${person.concepts}</p></div></div><div class="person-trace">${related.map(item => `<a href="${item.href}"><time>${item.date.replaceAll("-", ".")}</time><span>${escape(item.title)}</span></a>`).join("")}</div>`;
       cards.querySelectorAll(".person-command").forEach(button => button.classList.toggle("is-active", button.dataset.person === person.name));
     };
     cards.addEventListener("click", event => {
@@ -88,7 +88,7 @@
       if (!button) return;
       const input = document.querySelector("#archive-keyword");
       if (!input) return;
-      input.value = button.dataset.knowledgeSearch;
+      input.value = button.dataset.knowledgeSearch.split("|")[0];
       input.dispatchEvent(new Event("input", { bubbles: true }));
       document.querySelector("#archive")?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
     });
@@ -97,9 +97,9 @@
 
   const renderPulse = items => {
     const latest = items.slice().sort((a, b) => b.date.localeCompare(a.date))[0];
-    document.querySelector("#now-meeting-count").textContent = `${items.length} MEETINGS`;
+    document.querySelector("#now-meeting-count").textContent = String(items.length);
     document.querySelector("#system-latest").textContent = latest ? latest.date.replaceAll("-", ".") : "—";
-    document.querySelector("#system-phase").textContent = "SAFE EXECUTION";
+    document.querySelector("#system-phase").textContent = monthDefinitions[latest?.month]?.[1] || "RESEARCH IN PROGRESS";
   };
 
   const setupScroll = () => {

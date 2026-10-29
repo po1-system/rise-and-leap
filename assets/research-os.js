@@ -7,6 +7,7 @@
   const research = window.RiseLeapResearch || {};
   const escape = value => String(value || "").replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[character]));
   const featuredTitles = {
+    "2026-10-29": ["新たな案件への一歩と、", "AI業務基盤の役割分担"],
     "2026-09-11": ["AIが変わったなら、", "目的と要件も問い直す"],
     "2026-09-04": ["履歴と評価を、", "AIが次の判断へつなぐ"],
     "2026-08-21": ["AIを安全に動かすための", "承認設計と、高品質な", "AI出力を生む", "評価データベース"]
@@ -37,17 +38,20 @@
     previousLink.href = previous?.href || "#recent";
     previousLink.querySelector("span").textContent = previous ? dateLabel(previous.date) : "—";
     document.querySelector("#system-latest").textContent = dateLabel(latest.date);
-    document.querySelector("#now-meeting-count").textContent = `${items.length} SESSIONS`;
+    document.querySelector("#now-meeting-count").textContent = String(items.length);
+    document.querySelector("#now-meeting-date").textContent = dateLabel(latest.date);
+    const month = latest.date.slice(0, 7);
+    document.querySelector("#system-phase").textContent = research.months?.[month]?.[1] || "RESEARCH IN PROGRESS";
+    document.querySelector("#now").dataset.period = `${month.slice(5)} / ${month.slice(0, 4)}`;
+    document.querySelector(".latest-copy").dataset.issue = `LATEST / ${String(items.length).padStart(3, "0")}`;
+    const monthLabel = new Date(`${latest.date}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" }).toUpperCase();
+    document.querySelector(".visual-issue").textContent = `VOL. ${String(items.length).padStart(3, "0")} / ${monthLabel}`;
   };
 
   const renderNow = () => {
     const container = document.querySelector("#now-ledger");
     if (!container) return;
-    const current = [
-      ["kentaro", "01", "KENTARO", "Requirements & Execution", ["OpenClaw", "Astra", "Approval"]],
-      ["kazuo", "02", "KAZUO", "Personal PMOS", ["Career Lab", "Direct Outreach", "Missiona"]],
-      ["amon", "03", "AMON", "AI Capability Change", ["Astra", "Organization", "New Outputs"]]
-    ];
+    const current = (research.currentResearch || []).map(person => [person.id, person.number, person.display, person.title, person.keywords]);
     container.innerHTML = `<div class="now-canvas-visual" aria-hidden="true"><img src="assets/featured-journey.jpg" alt=""><span>COLLECTIVE<br>RESEARCH</span></div><div class="now-lines" aria-hidden="true"><i></i><i></i><i></i></div>${current.map(([id, number, name, title, keywords]) => `<article class="now-person-node now-${id}" data-now-person="${id}" tabindex="0"><span>${number} / ${name}</span><h3>${title}</h3><div class="now-keywords">${keywords.map(keyword => `<em>${keyword}</em>`).join("")}</div></article>`).join("")}<p class="now-canvas-note">Hover or focus a person to trace the active research thread.</p>`;
     const focus = id => id ? container.dataset.focus = id : container.removeAttribute("data-focus");
     container.querySelectorAll("[data-now-person]").forEach(node => {

@@ -6,7 +6,7 @@
 .latest-keywords{position:absolute;z-index:-1;inset:auto 0 5%;display:flex;gap:5vw;white-space:nowrap;transform:translateX(-2vw);font:600 clamp(5.5rem,12vw,12rem)/.78 Arial,sans-serif;letter-spacing:-.085em;color:rgba(62,50,76,.045)}
 .latest-grid{grid-template-columns:minmax(0,1.06fr) minmax(430px,.94fr);gap:clamp(20px,4vw,68px);align-items:stretch}
 .latest-copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:24px 0 18px}
-.latest-copy:before{content:"LATEST / 025";position:absolute;left:-42px;top:52%;transform:rotate(-90deg) translateX(-50%);transform-origin:left top;font:700 8px/1 Arial,sans-serif;letter-spacing:.22em;color:var(--os-muted)}
+.latest-copy:before{content:attr(data-issue);position:absolute;left:-42px;top:52%;transform:rotate(-90deg) translateX(-50%);transform-origin:left top;font:700 8px/1 Arial,sans-serif;letter-spacing:.22em;color:var(--os-muted)}
 .latest-copy h1{max-width:830px;margin:18px 0 18px;font-size:clamp(2.2rem,3.35vw,3.55rem);line-height:1.2;letter-spacing:-.045em;text-wrap:pretty}
 .latest-copy h1>span{display:block}
 .latest-copy>p{max-width:760px;font-size:15px;line-height:1.9}
@@ -25,7 +25,7 @@
 
 /* CURRENT RESEARCH — one connected editorial canvas */
 .now-os{position:relative;padding:118px 0 0;background:#eee8e1;overflow:hidden}
-.now-os:before{content:"08 / 2026";position:absolute;right:-.03em;top:42px;font:600 clamp(6rem,15vw,14rem)/.8 Arial,sans-serif;letter-spacing:-.1em;color:rgba(62,50,76,.05);pointer-events:none}
+.now-os:before{content:attr(data-period);position:absolute;right:-.03em;top:42px;font:600 clamp(6rem,15vw,14rem)/.8 Arial,sans-serif;letter-spacing:-.1em;color:rgba(62,50,76,.05);pointer-events:none}
 .now-os .os-heading{position:relative;z-index:2;max-width:1040px;margin-bottom:34px}
 .now-os .os-heading h2{font-size:clamp(2.5rem,3.4vw,4.2rem);text-wrap:balance}
 .now-canvas{position:relative;display:block;min-height:650px;border:1px solid rgba(245,241,234,.18);background:#29262e;color:#faf6ee;overflow:hidden;isolation:isolate}
@@ -99,7 +99,9 @@
 .timeline-os .time-card .time-meta{margin-bottom:36px}.timeline-os .time-card h3{font-size:clamp(1.25rem,2vw,1.85rem)}
 .timeline-os .time-link{margin-top:24px;grid-template-columns:1fr auto}.timeline-os .time-link span{display:none}
 .stories-os .story-track{grid-template-columns:minmax(220px,.62fr) minmax(0,1.38fr);padding:36px 0;background:transparent}
-.stories-os .story-track-head{padding-right:42px}.stories-os .story-track ol{position:relative;border-left:0;border-top:1px solid var(--art-line)}
+.stories-os .story-track-head{padding-right:42px}.stories-os .story-track ol{position:relative;border-left:0;border-top:1px solid var(--art-line);overflow-x:auto;scrollbar-width:thin;overscroll-behavior-x:contain;padding-bottom:16px}
+.stories-os .story-track-head:after{content:"SCROLL TO TRACE →";display:block;margin-top:20px;color:var(--os-muted);font-size:9px;letter-spacing:.12em}
+.stories-os .story-track li{min-width:180px}
 .stories-os .story-track li{border-left:0}.stories-os .story-track li:before{top:-4px}
 .stories-os .story-track a{padding:20px 17px 18px 0}
 .research-os .people-command{position:relative;background:#3b3049;overflow:hidden}
@@ -110,6 +112,13 @@
 .research-os .quote-wall-card{min-height:410px;padding:34px;border-right:1px solid var(--art-line);border-bottom:1px solid var(--art-line);background:transparent}
 .research-os .quote-wall-card:first-child{grid-row:span 2;min-height:820px}.research-os .quote-wall-card:first-child blockquote{font-size:clamp(2.8rem,5vw,5.4rem)}
 .research-os .knowledge{background:#ded6d1}.research-os .knowledge-layout{border:0;min-height:670px;background:radial-gradient(circle at 42% 46%,rgba(71,60,100,.17),transparent 26rem),linear-gradient(130deg,#f4f0eb,#d8cfcc)}
+.research-os .knowledge-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;align-items:center;gap:30px;padding:36px}
+.research-os .knowledge-map{position:relative;inset:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 12px;align-items:center}
+.research-os .knowledge-command{position:relative;left:auto;top:auto;justify-self:center;width:100%;max-width:116px;min-height:100px;aspect-ratio:1;transform:none;padding:12px;line-height:1.5}
+.research-os .knowledge-command:hover,.research-os .knowledge-command.is-active{transform:scale(1.035)}
+.research-os .knowledge-panel{position:relative;right:auto;bottom:auto;width:auto;align-self:end;margin-bottom:16px}
+.research-os .knowledge-panel h3{font-size:25px;line-height:1.45;text-wrap:pretty}
+.research-os .knowledge-command{text-wrap:balance}
 
 /* section entrance — reactive, never ambient */
 .art-ready .now-canvas,.art-ready .recent-editorial,.art-ready .people-layout,.art-ready .knowledge-layout{opacity:.001;transform:translateY(22px) scale(.99);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.8,.2,1)}
@@ -131,7 +140,10 @@
   .timeline-os .time-travel-list{grid-template-columns:1fr}.timeline-os .time-card,.timeline-os .time-card:nth-child(2n),.timeline-os .time-card:nth-child(4n){min-height:0;border-right:0;border-top:1px solid var(--art-line);padding:21px 0}.timeline-os .time-card:first-child{border-top:0}.timeline-os .time-card .time-meta{margin-bottom:8px}
   .stories-os .story-track{grid-template-columns:1fr}.stories-os .story-track ol{overflow-x:auto}.stories-os .story-track-head{padding-right:0}
   .research-os .quote-wall{grid-template-columns:1fr}.research-os .quote-wall-card,.research-os .quote-wall-card:first-child{grid-row:auto;min-height:300px;padding:26px 0;border-right:0}.research-os .quote-wall-card:first-child blockquote{font-size:clamp(2.2rem,10vw,3.4rem)}
-  .research-os .knowledge-layout{min-height:690px}
+  .research-os .knowledge-layout{min-height:0;grid-template-columns:1fr;padding:20px;gap:24px}
+  .research-os .knowledge-map{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 10px}
+  .research-os .knowledge-command{min-height:82px;padding:8px;font-size:10px}
+  .research-os .knowledge-panel{margin:0}
 }
 
 @media(prefers-reduced-motion:reduce){

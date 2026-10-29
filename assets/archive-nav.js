@@ -11,6 +11,7 @@
   const normalize = value => (value || "").replace(/\s+/g, " ").trim();
 
   const storyLabel = label => {
+    if (/エグゼクティブ/i.test(label)) return "SUMMARY";
     if (/概要|要点|summary/i.test(label)) return "OVERVIEW";
     if (/議題|論点|topics|discussion/i.test(label)) return "DISCUSSION";
     if (/決定|decisions/i.test(label)) return "DECISIONS";
@@ -24,10 +25,10 @@
   const setupAIInterpretation = main => {
     if (main.querySelector(".ai-interpretation")) return;
     const sections = [...main.querySelectorAll(":scope > .feature, :scope > .section")];
-    const findText = pattern => normalize(sections.find(section => pattern.test(normalize(section.querySelector("h2")?.textContent)))?.textContent);
+    const findText = pattern => normalize(sections.find(section => pattern.test(normalize(section.querySelector("h2")?.textContent)))?.querySelector(".content-card p")?.textContent);
     const history = findText(/歴史|historical/i);
     const change = findText(/前回|previous/i);
-    const title = normalize(document.querySelector(".hero h1, .archive-hero h1, h1")?.textContent) || "この回";
+    const title = normalize(document.querySelector(".hero-copy p:last-child")?.textContent) || "この回";
     const lead = (history || change || normalize(main.textContent)).replace(/^(歴史的な位置づけ|前回からの変化)\s*/, "").slice(0, 230);
     const interpretation = document.createElement("section");
     interpretation.className = "section ai-interpretation";
@@ -193,7 +194,12 @@
       connected.innerHTML = '<div class="section-kicker">Connected To</div><h2>この回は、どこから来て、<br>どこへ続くか。</h2><p>前後の記録を、会話と行動が連続する一つの流れとして読む。</p>';
       const trace = document.createElement("div");
       trace.className = "connection-trace";
-      [items[currentIndex - 1], items[currentIndex], items[currentIndex + 1]].filter(Boolean).forEach(item => {
+      const curatedDates = window.RiseLeapResearch?.meetingNotes?.[items[currentIndex].date]?.connectsTo || [];
+      const connectedItems = [...new Map([
+        ...curatedDates.map(date => items.find(item => item.date === date)),
+        items[currentIndex - 1], items[currentIndex], items[currentIndex + 1]
+      ].filter(Boolean).map(item => [item.date, item])).values()].sort((a, b) => a.date.localeCompare(b.date));
+      connectedItems.forEach(item => {
         const entry = document.createElement(item.href === currentFile ? "div" : "a");
         entry.className = `connection-node ${item.href === currentFile ? "is-current" : ""}`;
         if (entry.tagName === "A") entry.href = item.href;
